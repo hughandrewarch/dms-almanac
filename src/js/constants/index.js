@@ -1,1 +1,2 @@
 export const FETCH_TOWNS = "FETCH_TOWNS"
+export const RECEIVE_TOWNS = "RECEIVE_TOWNS"
