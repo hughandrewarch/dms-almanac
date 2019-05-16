@@ -6,12 +6,25 @@ export function pageMiddleware({ dispatch }) {
     return function(action){
       switch (action.type) {
         case FETCH_TOWNS:
-          console.log('here');
-          let payload =  ['Hughan', 'Amberlea', 'Ironport']
-          return dispatch(receiveTowns(payload));
+          //TODO use an api call to get (once i make a backend)
+          return dispatch(receiveTowns(townPayload));
         default:
       }
       return next(action)
     }
   }
 }
+
+const townPayload =  [
+  {
+    id: 1,
+    name: 'Hughan'
+  },
+  {
+    id: 2,
+    name: 'Amberlea'
+  },
+  {
+    id: 3,
+    name: 'Ironport'
+  }]
