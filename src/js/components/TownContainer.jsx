@@ -20,8 +20,28 @@ export const mapDispatchToProps = (dispatch) => {
 // 2: or use as only a town holder
 class _TownContainer_ extends Component {
 
+  constructor() {
+    super()
+
+    this.state = {}
+  }
+
   componentDidMount() {
     this.props.fetchTowns()
+  }
+
+  renderTown() {
+    if (this.state.selectedTown) {
+      return (
+        <Town town={this.state.selectedTown}/>
+      )
+    }
+  }
+
+  selectTown(_, el) {
+    this.setState(() => {
+      return { selectedTown: el }
+    })
   }
 
   render() {
@@ -30,12 +50,16 @@ class _TownContainer_ extends Component {
         <h2>Towns Go Here</h2>
         <ul className="list-group list-group-flush">
           {this.props.towns.map(el => (
-            <li className="list-group-item" key={el.id}>
-              <Town town={el}/>
+            <li className="list-group-item"
+                key={el.id}
+                onClick={(e) => this.selectTown(e, el)}>
+              {el.name}
             </li>
           ))}
         </ul>
+        {this.renderTown()}
       </div>
+
     )
   }
 }

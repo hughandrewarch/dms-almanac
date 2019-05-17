@@ -8,16 +8,12 @@ export default class Town extends React.Component {
 
   constructor(props) {
     super(props)
-
-    this.state = {
-      name: this.props.town.name
-    }
   }
 
   render() {
     return(
       <div>
-        {this.state.name}
+        {this.props.town.name}
       </div>
     )
   }
