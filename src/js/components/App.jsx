@@ -1,5 +1,5 @@
 import React from 'react'
-import TownContainerOrig from "./TownContainerOrig"
+import TownList from "./TownListContainer"
 import Town from "./TownContainer"
 
 function App() {
@@ -7,13 +7,13 @@ function App() {
     <div className="row mt-5">
       <div className="col-md-4 offset-md-1">
         <h2>Almanac</h2>
-        <TownContainerOrig/>
+        <h2>Towns Go Here</h2>
+        <TownList/>
         <h2>Town Goes Here</h2>
-        <Town townId={3}/>
+        <Town/>
       </div>
     </div>
   )
-  //TODO investigate whether or not I like using the id for town
 }
 
 

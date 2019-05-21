@@ -9,6 +9,7 @@ export function townMiddleware({ dispatch }) {
         case FETCH_TOWNS:
           return dispatch(receiveTowns(townList))
         case FETCH_TOWN:
+          console.log('middleware', action);
           let town = allFullTowns.filter(town => town.id === action.payload)[0]
           return dispatch(receiveTown(town))
         default:
