@@ -11,9 +11,14 @@ export default class Town extends React.Component {
   }
 
   render() {
-    return(
+    return (
       <div>
-        {this.props.town.name}
+        <div>
+          {this.props.town.name}
+        </div>
+        <div>
+          {this.props.town.population}
+        </div>
       </div>
     )
   }

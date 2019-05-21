@@ -1,69 +1,44 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { fetchTowns as _fetchTowns_ } from "../actions"
+import { fetchTown as _fetchTown_ } from "../actions"
 import Town from "./Town"
 
 export const mapStateToProps = (state) => {
-  return { towns: state.towns }
+  return { town: state.town }
 }
 
-export const mapDispatchToProps = (dispatch) => {
+export const mapDispatchToProps = (dispatch, props) => {
   return {
-    fetchTowns: () => {
-      dispatch(_fetchTowns_())
+    fetchTown: () => {
+      dispatch(_fetchTown_(props.townId))
     }
   }
 }
 
-//TODO either
-// 1: rename and use as a control to choose which town to display
-// 2: or use as only a town holder
-class _TownContainer_ extends Component {
-
-  constructor() {
-    super()
-
-    this.state = {}
-  }
+class TownContainer extends Component {
 
   componentDidMount() {
-    this.props.fetchTowns()
+    this.props.fetchTown()
   }
 
   renderTown() {
-    if (this.state.selectedTown) {
+    if (this.props.town) {
       return (
-        <Town town={this.state.selectedTown}/>
+        <Town town={this.props.town}/>
       )
+    } else {
+      return null
     }
-  }
-
-  selectTown(_, el) {
-    this.setState(() => {
-      return { selectedTown: el }
-    })
   }
 
   render() {
     return (
-      <div>
-        <h2>Towns Go Here</h2>
-        <ul className="list-group list-group-flush">
-          {this.props.towns.map(el => (
-            <li className="list-group-item"
-                key={el.id}
-                onClick={(e) => this.selectTown(e, el)}>
-              {el.name}
-            </li>
-          ))}
-        </ul>
-        {this.renderTown()}
-      </div>
-
+      this.renderTown()
     )
   }
 }
 
-const TownContainer = connect(mapStateToProps, mapDispatchToProps)(_TownContainer_)
+const _Town_ = connect(mapStateToProps, mapDispatchToProps)(TownContainer)
 
-export default TownContainer
+export default _Town_
+
