@@ -5,7 +5,6 @@ export function fetchTowns() {
 }
 
 export function fetchTown(payload) {
-  console.log('action', payload);
   return { type: FETCH_TOWN, payload: payload }
 }
 
