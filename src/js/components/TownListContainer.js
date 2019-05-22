@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { fetchTown as _fetchTown_, fetchTowns as _fetchTowns_ } from "../actions"
+import { fetchTown as _fetchTown_, fetchTownList as _fetchTownList_ } from "../actions"
 import TownList from "./TownList"
 
 export const mapStateToProps = (state) => {
@@ -9,8 +9,8 @@ export const mapStateToProps = (state) => {
 
 export const mapDispatchToProps = (dispatch) => {
   return {
-    fetchTowns: () => {
-      dispatch(_fetchTowns_())
+    fetchTownList: () => {
+      dispatch(_fetchTownList_())
     },
     fetchTown: (townId) => {
       dispatch(_fetchTown_(townId))
@@ -21,7 +21,7 @@ export const mapDispatchToProps = (dispatch) => {
 class _TownListContainer_ extends Component {
 
   componentDidMount() {
-    this.props.fetchTowns()
+    this.props.fetchTownList()
   }
 
   render() {

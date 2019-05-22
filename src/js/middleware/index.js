@@ -1,13 +1,13 @@
-import { FETCH_TOWN, FETCH_TOWNS } from "../constants"
-import { receiveTown, receiveTowns } from "../actions"
+import { FETCH_TOWN, FETCH_TOWN_LIST } from "../constants"
+import { receiveTown, receiveTownList } from "../actions"
 
 export function townMiddleware({ dispatch }) {
   return function (next) {
     return function (action) {
       //TODO use an api call to get (once i make a backend)
       switch (action.type) {
-        case FETCH_TOWNS:
-          return dispatch(receiveTowns(townList))
+        case FETCH_TOWN_LIST:
+          return dispatch(receiveTownList(townList))
         case FETCH_TOWN:
           let town = allFullTowns.filter(town => town.id === action.payload)[0]
           return dispatch(receiveTown(town))

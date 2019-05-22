@@ -1,4 +1,4 @@
-import { RECEIVE_TOWN, RECEIVE_TOWNS } from "../constants"
+import { RECEIVE_TOWN, RECEIVE_TOWN_LIST } from "../constants"
 
 const initialState = {
   towns: []
@@ -7,7 +7,7 @@ const initialState = {
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     //TODO rename towns and town to something like townList and town (linked to constants note)
-    case RECEIVE_TOWNS:
+    case RECEIVE_TOWN_LIST:
       return Object.assign({}, state, {
         towns: state.towns.concat(action.payload)
       })
