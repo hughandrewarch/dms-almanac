@@ -3,14 +3,10 @@ import * as Props from "../props"
 
 export default class Town extends React.Component {
   static propTypes = {
-    town: Props.TOWN.isRequired
+    town: Props.TOWN
   }
 
-  constructor(props) {
-    super(props)
-  }
-
-  render() {
+  renderTown() {
     return (
       <div>
         <div>
@@ -21,5 +17,15 @@ export default class Town extends React.Component {
         </div>
       </div>
     )
+
+  }
+
+  render() {
+
+    if (this.props.town != null) {
+      return this.renderTown()
+    } else {
+      return null
+    }
   }
 }
