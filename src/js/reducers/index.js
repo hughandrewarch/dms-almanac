@@ -8,7 +8,7 @@ function rootReducer(state = initialState, action) {
   switch (action.type) {
     case RECEIVE_TOWN_LIST:
       return Object.assign({}, state, {
-        towns: state.towns.concat(action.payload)
+        towns: action.payload
       })
     case RECEIVE_TOWN:
       return Object.assign({}, state, {
