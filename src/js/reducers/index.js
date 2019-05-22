@@ -6,7 +6,6 @@ const initialState = {
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
-    //TODO rename towns and town to something like townList and town (linked to constants note)
     case RECEIVE_TOWN_LIST:
       return Object.assign({}, state, {
         towns: state.towns.concat(action.payload)
