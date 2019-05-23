@@ -4,12 +4,14 @@ import { receiveTown, receiveTownList } from "../actions"
 export function townMiddleware({ dispatch }) {
   return function (next) {
     return function (action) {
-      //TODO use an api call to get (once i make a backend)
+      //TODO 1 : use an api call to get (once i make a backend),
+      //     1b: shouldn't need parse int at this point
       switch (action.type) {
         case FETCH_TOWN_LIST:
           return dispatch(receiveTownList(townList))
         case FETCH_TOWN:
-          let town = allFullTowns.filter(town => town.id === action.payload)[0]
+          const townId = parseInt(action.payload)
+          let town = allFullTowns.filter(town => town.id === townId)[0]
           return dispatch(receiveTown(town))
         default:
       }

@@ -1,6 +1,7 @@
 import React from "react"
 import * as Props from "../props"
 import PropTypes from 'prop-types'
+import { Link } from "react-router-dom"
 
 
 export default class TownList extends React.Component {
@@ -9,8 +10,9 @@ export default class TownList extends React.Component {
     selectTown: PropTypes.func,
   }
 
-  selectTown(_, el) {
-    this.props.selectTown(el.id)
+  //TODO export to routes file
+  linkTown(id) {
+    return "/town/" + id
   }
 
   render() {
@@ -18,12 +20,12 @@ export default class TownList extends React.Component {
       <ul className="list-group list-group-flush">
         {this.props.towns.map(el => (
           <li className="list-group-item"
-              key={el.id}
-              onClick={(e) => this.selectTown(e, el)}>
-            {el.name}
+              key={el.id}>
+            <Link to={this.linkTown(el.id)}>{el.name}</Link>
           </li>
         ))}
       </ul>
     )
   }
 }
+

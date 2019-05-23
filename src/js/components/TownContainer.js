@@ -1,11 +1,21 @@
 import { connect } from "react-redux"
 import Town from "./Town"
+import { fetchTown as _fetchTown_ } from "../actions"
 
-export const mapStateToProps = (state) => {
-  return { town: state.town }
+export const mapStateToProps = (state, props) => {
+  return {
+    params: props.match.params,
+    town: state.town
+  }
 }
 
-const _Town_ = connect(mapStateToProps, null)(Town)
+export const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchTown: (townId) => {
+      dispatch(_fetchTown_(townId))
+    }
+  }
+}
 
-export default _Town_
+export default connect(mapStateToProps, mapDispatchToProps)(Town)
 
