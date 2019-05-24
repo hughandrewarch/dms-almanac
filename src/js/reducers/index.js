@@ -1,7 +1,10 @@
 import { RECEIVE_TOWN, RECEIVE_TOWN_LIST } from "../constants"
 
 const initialState = {
-  towns: []
+  towns: [],
+  town: {
+    spots: []
+  }
 }
 
 function rootReducer(state = initialState, action) {

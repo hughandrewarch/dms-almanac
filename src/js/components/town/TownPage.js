@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Town from "./TownContainer"
+import SpotList from "./poi/SpotListContainer"
 
 export default class TownPage extends React.Component {
 
@@ -15,6 +16,11 @@ export default class TownPage extends React.Component {
   }
 
   render() {
-    return <Town/>
+    return (
+      <div>
+        <Town/>
+        <SpotList/>
+      </div>
+    )
   }
 }

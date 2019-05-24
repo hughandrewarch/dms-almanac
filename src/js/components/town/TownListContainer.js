@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { fetchTown as _fetchTown_, fetchTownList as _fetchTownList_ } from "../actions"
+import { fetchTown as _fetchTown_, fetchTownList as _fetchTownList_ } from "../../actions"
 import TownList from "./TownList"
 
 export const mapStateToProps = (state) => {
@@ -9,6 +9,7 @@ export const mapStateToProps = (state) => {
 
 export const mapDispatchToProps = (dispatch) => {
   return {
+    //TODO Maybe pull out to page object
     fetchTownList: () => {
       dispatch(_fetchTownList_())
     },

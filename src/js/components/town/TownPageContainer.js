@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import { fetchTown as _fetchTown_ } from "../actions"
+import { fetchTown as _fetchTown_ } from "../../actions"
 import TownPage from "./TownPage"
 
 export const mapStateToProps = (state, props) => {

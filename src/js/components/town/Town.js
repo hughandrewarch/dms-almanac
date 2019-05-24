@@ -1,5 +1,5 @@
 import React from "react"
-import * as Props from "../props"
+import * as Props from "../../props"
 
 export default class Town extends React.Component {
   static propTypes = {

@@ -1,4 +1,4 @@
-import { FETCH_TOWN, FETCH_TOWN_LIST, RECEIVE_TOWN_LIST, RECEIVE_TOWN } from "../constants"
+import { FETCH_SPOT, FETCH_TOWN, FETCH_TOWN_LIST, RECEIVE_TOWN, RECEIVE_TOWN_LIST } from "../constants"
 
 export function fetchTownList() {
   return { type: FETCH_TOWN_LIST }
@@ -14,4 +14,8 @@ export function receiveTownList(payload) {
 
 export function receiveTown(payload) {
   return { type: RECEIVE_TOWN, payload: payload }
+}
+
+export function fetchSpot(payload) {
+  return { type: FETCH_SPOT, payload: payload }
 }
