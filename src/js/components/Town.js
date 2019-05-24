@@ -1,20 +1,29 @@
 import React from "react"
-import TownView from "./TownView"
-import PropTypes from "prop-types"
+import * as Props from "../props"
 
 export default class Town extends React.Component {
-
   static propTypes = {
-    params: PropTypes.shape({
-      townId: PropTypes.string.isRequired
-    }).isRequired,
+    town: Props.TOWN
   }
 
-  componentDidMount() {
-    this.props.fetchTown(this.props.params.townId)
+  renderTown() {
+    return (
+      <div>
+        <div>
+          {this.props.town.name}
+        </div>
+        <div>
+          {this.props.town.population}
+        </div>
+      </div>
+    )
   }
 
   render() {
-    return <TownView town={this.props.town}/>
+    if (this.props.town != null) {
+      return this.renderTown()
+    } else {
+      return null
+    }
   }
 }

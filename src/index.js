@@ -7,7 +7,7 @@ import store from "./js/store"
 import Red from "./js/components/Red"
 import Green from "./js/components/Green"
 import { BrowserRouter as Router, Link, Route } from "react-router-dom"
-import TownView from "./js/components/TownContainer"
+import TownPage from "./js/components/TownPageContainer"
 
 
 ReactDOM.render((
@@ -24,7 +24,7 @@ ReactDOM.render((
         <Route path="/red/:id" component={Red} />
         <Route path="/green" component={Green} />
         <Route path="/town/:townId" render={props => {
-          return (<TownView {...props}/>)
+          return (<TownPage {...props}/>)
         }} />
       </div>
     </Router>
@@ -32,6 +32,7 @@ ReactDOM.render((
 ), document.getElementById('root'))
 
 
+//Generated
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
