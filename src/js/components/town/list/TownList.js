@@ -1,8 +1,8 @@
 import React from "react"
-import * as Props from "../../props"
+import * as Props from "../../../props"
 import PropTypes from 'prop-types'
 import { Link } from "react-router-dom"
-import { Towns } from '../../routes'
+import { Towns } from '../../../routes'
 
 export default class TownList extends React.Component {
   static propTypes = {

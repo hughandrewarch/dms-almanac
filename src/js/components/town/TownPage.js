@@ -1,8 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Town from "./TownContainer"
-import SpotList from "./spot/SpotListContainer"
-import PersonList from "./person/PersonListContainer"
+import SpotList from "../spot/SpotListContainer"
+import PersonList from "../person/PersonListContainer"
 import { fetchTown as _fetchTown_ } from "../../actions"
 import connect from "react-redux/es/connect/connect"
 
@@ -22,7 +22,7 @@ export const mapDispatchToProps = (dispatch) => {
   }
 }
 
-
+//TODO find a proper file structure home for this
 class _TownPage_ extends React.Component {
 
   static propTypes = {

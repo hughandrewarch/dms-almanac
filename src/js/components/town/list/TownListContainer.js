@@ -1,7 +1,8 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { fetchTown as _fetchTown_, fetchTownList as _fetchTownList_ } from "../../actions"
-import TownList from "./TownList"
+import { fetchTownList as _fetchTownList_ } from "../../../actions"
+import NavList from "../../list/NavList"
+import { Towns } from "../../../routes"
 
 export const mapStateToProps = (state) => {
   return { towns: state.towns }
@@ -12,9 +13,6 @@ export const mapDispatchToProps = (dispatch) => {
     //TODO Maybe pull out to page object
     fetchTownList: () => {
       dispatch(_fetchTownList_())
-    },
-    fetchTown: (townId) => {
-      dispatch(_fetchTown_(townId))
     }
   }
 }
@@ -28,8 +26,8 @@ class _TownListContainer_ extends Component {
   render() {
     return (
       <div>
-        <TownList towns={this.props.towns}
-                  selectTown={this.props.fetchTown}/>
+        <NavList items={this.props.towns}
+                 onSelectLink={Towns.show}/>
       </div>
     )
   }

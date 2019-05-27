@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { fetchSpot as _fetchSpot_ } from "../../../actions"
-import SpotList from "./SpotList"
+import { fetchSpot as _fetchSpot_ } from "../../actions"
+import List from "../list/List"
 
 export const mapStateToProps = (state) => {
   return { spots: state.town.spots }
@@ -20,8 +20,8 @@ class _SpotListContainer_ extends Component {
   render() {
     return (
       <div>
-        <SpotList spots={this.props.spots}
-                  selectSpot={this.props.fetchSpot}/>
+        <List items={this.props.spots}
+              selectItem={this.props.fetchSpot}/>
       </div>
 
     )

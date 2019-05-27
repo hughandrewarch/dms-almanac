@@ -1,5 +1,5 @@
 import React from 'react'
-import TownList from "./town/TownListContainer"
+import TownList from "./town/list/TownListContainer"
 
 function App() {
   return (

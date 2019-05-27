@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { fetchPerson as _fetchPerson_ } from "../../../actions"
-import PersonList from "./PersonList"
+import { fetchPerson as _fetchPerson_ } from "../../actions"
+import List from "../list/List"
 
 export const mapStateToProps = (state) => {
   return { people: state.town.people }
@@ -20,8 +20,8 @@ class _PersonListContainer_ extends Component {
   render() {
     return (
       <div>
-        <PersonList people={this.props.people}
-                    selectPerson={this.props.fetchPerson}/>
+        <List items={this.props.people}
+              selectItem={this.props.fetchPerson}/>
       </div>
     )
   }
