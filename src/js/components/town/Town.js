@@ -15,6 +15,9 @@ export default class Town extends React.Component {
         <div>
           {this.props.town.population}
         </div>
+        <div>
+          {this.props.town.description}
+        </div>
       </div>
     )
   }

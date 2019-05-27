@@ -12,8 +12,12 @@ export function townMiddleware({ dispatch }) {
         case FETCH_TOWN:
           const townId = parseInt(action.payload)
           let town = allFullTowns.filter(town => town.id === townId)[0]
+
           let spots = spotList.filter(spot => spot.townId === townId)
           town.spots = spots
+
+          let people = peopleList.filter(person => person.townId === townId)
+          town.people = people
           return dispatch(receiveTown(town))
         default:
       }
@@ -34,21 +38,25 @@ const allFullTowns = [
     id: 1,
     name: 'Hughan',
     population: 5000,
+    description: "Capital city, 3 wall layers, 9 districts and a castle",
   },
   {
     id: 2,
     name: 'Amberlea',
     population: 1000,
+    description: "farming central, fortified storehouses, elevated on walls",
   },
   {
     id: 3,
     name: 'Roseport',
     population: 800,
+    description: "largest port city",
   },
   {
     id: 4,
     name: 'Elkshorn',
     population: 500,
+    description: "small hunting village on the edge of the fireleaf forest",
   }
 ]
 
@@ -83,4 +91,15 @@ const allSpotsFull = [
     name: 'poi4',
     description: 'description-4'
   }
+]
+
+const peopleList = [
+  { id: 1, name: 'person a', townId: 1 },
+  { id: 2, name: 'person b', townId: 1 },
+  { id: 3, name: 'person c', townId: 2 },
+  { id: 4, name: 'person d', townId: 2 },
+  { id: 5, name: 'person e', townId: 2 },
+  { id: 6, name: 'person f', townId: 3 },
+  { id: 7, name: 'person g', townId: 4 },
+  { id: 8, name: 'person h', townId: 4 }
 ]

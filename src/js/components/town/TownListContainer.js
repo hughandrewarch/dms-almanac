@@ -31,7 +31,6 @@ class _TownListContainer_ extends Component {
         <TownList towns={this.props.towns}
                   selectTown={this.props.fetchTown}/>
       </div>
-
     )
   }
 }

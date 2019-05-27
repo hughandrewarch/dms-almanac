@@ -2,6 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import Town from "./TownContainer"
 import SpotList from "./spot/SpotListContainer"
+import PersonList from "./person/PersonListContainer"
 import { fetchTown as _fetchTown_ } from "../../actions"
 import connect from "react-redux/es/connect/connect"
 
@@ -37,8 +38,12 @@ class _TownPage_ extends React.Component {
   render() {
     return (
       <div>
+        <h2>Town</h2>
         <Town/>
+        <h2>Places</h2>
         <SpotList/>
+        <h2>People</h2>
+        <PersonList/>
       </div>
     )
   }
