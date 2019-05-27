@@ -7,7 +7,7 @@ import store from "./js/store"
 import Red from "./js/components/Red"
 import Green from "./js/components/Green"
 import { BrowserRouter as Router, Link, Route } from "react-router-dom"
-import TownPage from "./js/components/town/TownPageContainer"
+import TownPage from "./js/components/town/TownPage"
 
 
 ReactDOM.render((

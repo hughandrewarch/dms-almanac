@@ -1,9 +1,28 @@
 import React from "react"
 import PropTypes from "prop-types"
 import Town from "./TownContainer"
-import SpotList from "./poi/SpotListContainer"
+import SpotList from "./spot/SpotListContainer"
+import { fetchTown as _fetchTown_ } from "../../actions"
+import connect from "react-redux/es/connect/connect"
 
-export default class TownPage extends React.Component {
+
+export const mapStateToProps = (state, props) => {
+  return {
+    params: props.match.params,
+  }
+}
+
+export const mapDispatchToProps = (dispatch) => {
+
+  return {
+    fetchTown: (townId) => {
+      dispatch(_fetchTown_(townId))
+    }
+  }
+}
+
+
+class _TownPage_ extends React.Component {
 
   static propTypes = {
     params: PropTypes.shape({
@@ -24,3 +43,5 @@ export default class TownPage extends React.Component {
     )
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(_TownPage_)
