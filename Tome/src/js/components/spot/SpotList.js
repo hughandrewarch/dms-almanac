@@ -2,10 +2,8 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import { fetchSpot as _fetchSpot_ } from "../../actions"
 import List from "../list/List"
-
-export const mapStateToProps = (state) => {
-  return { spots: state.town.spots }
-}
+import PropTypes from "prop-types"
+import * as Props from "../../props"
 
 export const mapDispatchToProps = (dispatch) => {
   return {
@@ -16,11 +14,14 @@ export const mapDispatchToProps = (dispatch) => {
 }
 
 class _SpotListContainer_ extends Component {
+  static propTypes = {
+    spotList: PropTypes.arrayOf(Props.LIST_ITEM),
+  }
 
   render() {
     return (
       <div>
-        <List items={this.props.spots}
+        <List items={this.props.spotList}
               selectItem={this.props.fetchSpot}/>
       </div>
 
@@ -28,6 +29,6 @@ class _SpotListContainer_ extends Component {
   }
 }
 
-const SpotListContainer = connect(mapStateToProps, mapDispatchToProps)(_SpotListContainer_)
+const SpotList = connect(null, mapDispatchToProps)(_SpotListContainer_)
 
-export default SpotListContainer
+export default SpotList

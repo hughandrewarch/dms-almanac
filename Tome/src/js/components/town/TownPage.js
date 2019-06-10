@@ -1,8 +1,8 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Town from "./TownContainer"
-import SpotList from "../spot/SpotListContainer"
-import PersonList from "../person/PersonListContainer"
+import Town from "./Town"
+import SpotList from "../spot/SpotList"
+import PersonList from "../person/PersonList"
 import { fetchTown as _fetchTown_ } from "../../actions"
 import connect from "react-redux/es/connect/connect"
 
@@ -10,6 +10,9 @@ import connect from "react-redux/es/connect/connect"
 export const mapStateToProps = (state, props) => {
   return {
     params: props.match.params,
+    town: state.townPage.town,
+    spotList: state.townPage.spotList,
+    personList: state.townPage.personList
   }
 }
 
@@ -39,11 +42,11 @@ class _TownPage_ extends React.Component {
     return (
       <div>
         <h2>Town</h2>
-        <Town/>
+        <Town town = {this.props.town}/>
         <h2>Places</h2>
-        <SpotList/>
+        <SpotList spotList = {this.props.spotList}/>
         <h2>People</h2>
-        <PersonList/>
+        <PersonList personList = {this.props.personList}/>
       </div>
     )
   }

@@ -3,8 +3,11 @@ package com.api.weave.controllers
 import com.api.weave.models.Person
 import com.api.weave.models.Spot
 import com.api.weave.models.Town
-import com.api.weave.models.Town2
-import org.springframework.web.bind.annotation.*
+import com.api.weave.models.TownPage
+import com.api.weave.models.list.ListItem
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class TownController {
@@ -12,43 +15,44 @@ class TownController {
     @GetMapping("/towns")
     fun towns() =
             listOf(
-                    Town(1, "Hughan"),
-                    Town(2, "Amberlea"),
-                    Town(3, "Roseport"),
-                    Town(4, "Elkshorn")
+                    ListItem(1, "Hughan"),
+                    ListItem(2, "Amberlea"),
+                    ListItem(3, "Roseport"),
+                    ListItem(4, "Elkshorn")
             )
 
     @GetMapping("/town/{id}")
-    fun towns(@PathVariable id: Long): Town2 {
-        var town = allFullTowns.first { it.id == id }
+    fun towns(@PathVariable id: Long): TownPage {
+        val town = allFullTowns.first { it.id == id }
+        val spotList = spotList.filter { it.townId == id }.map { ListItem(it.id, it.name) }
+        val personList = personList.filter { it.townId == id }.map { ListItem(it.id, it.name) }
 
-        val spots = spotList.filter { it.townId == id }
-        val people = peopleList.filter { it.townId == id }
-
-        town.spots = spots
-        town.people = people
-
-        return town
+        val townPage = TownPage(
+                town = town,
+                spotList = spotList,
+                personList = personList
+        )
+        return townPage
     }
 }
 
 val allFullTowns = listOf(
-        Town2(
+        Town(
                 id = 1,
                 name = "Hughan",
                 population = 5000,
                 description = "Capital city, 3 wall layers, 9 districts and a castle"),
-        Town2(
+        Town(
                 id = 2,
                 name = "Amberlea",
                 population = 1000,
                 description = "farming central, fortified storehouses, elevated on walls"),
-        Town2(
+        Town(
                 id = 3,
                 name = "Roseport",
                 population = 800,
                 description = "largest port city"),
-        Town2(
+        Town(
                 id = 4,
                 name = "Elkshorn",
                 population = 500,
@@ -65,7 +69,7 @@ val spotList = listOf(
         Spot(id = 7, name = "poi4a", townId = 4)
 )
 
-val peopleList = listOf(
+val personList = listOf(
         Person(id = 1, name = "person a", townId = 1),
         Person(id = 2, name = "person b", townId = 1),
         Person(id = 3, name = "person c", townId = 2),

@@ -1,11 +1,15 @@
 package com.api.weave.models
 
-data class Town(val id: Long, val name: String)
-data class Town2(
+import com.api.weave.models.list.ListItem
+
+data class Town(
         val id: Long,
         val name: String,
         val population: Long,
-        val description: String,
-        var spots: List<Spot> = emptyList(),
-        var people: List<Person> = emptyList()
+        val description: String
+)
+data class TownPage(
+        val town: Town,
+        var spotList: List<ListItem> = emptyList(),
+        var personList: List<ListItem> = emptyList()
 )
