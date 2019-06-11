@@ -1,17 +1,21 @@
 package com.api.weave.api.town
 
 import com.api.weave.api.person.PersonService
-import com.api.weave.api.person.allFullPeople
-import com.api.weave.models.*
+import com.api.weave.models.Spot
+import com.api.weave.models.TownPage
 import com.api.weave.models.list.ListItem
 import org.springframework.stereotype.Component
 
 @Component
-class TownService(private val personService: PersonService) {
+class TownService(
+        private val townRepository: TownRepository,
+        private val personService: PersonService) {
 
-    //TODO add town serializer
+    //TODO add page serializers
+    //TODO add List<ListItem> serializer
     fun findOne(id: Long): TownPage {
-        val town = allFullTowns.first { it.id == id }
+
+        val town = townRepository.find(id)
         val spotList = spotList.filter { it.townId == id }.map { ListItem(it.id, it.name) }
         val personList = personService.listDenizens(town.id)
 
@@ -22,34 +26,11 @@ class TownService(private val personService: PersonService) {
     }
 
     fun listTowns(): List<ListItem> {
-        return allFullTowns.map {
+        return townRepository.findAll().map {
             ListItem(it.id, it.name)
         }
     }
 }
-
-val allFullTowns = listOf(
-        Town(
-                id = 1,
-                name = "Hughan",
-                population = 5000,
-                description = "Capital city, 3 wall layers, 9 districts and a castle"),
-        Town(
-                id = 2,
-                name = "Amberlea",
-                population = 1000,
-                description = "farming central, fortified storehouses, elevated on walls"),
-        Town(
-                id = 3,
-                name = "Roseport",
-                population = 800,
-                description = "largest port city"),
-        Town(
-                id = 4,
-                name = "Elkshorn",
-                population = 500,
-                description = "small hunting village on the edge of the fireleaf forest")
-)
 
 //TODO extract spots service
 val spotList = listOf(
