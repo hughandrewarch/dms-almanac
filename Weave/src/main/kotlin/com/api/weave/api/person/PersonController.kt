@@ -10,10 +10,6 @@ class PersonController(private val service: PersonService) {
 
     @GetMapping("/person/{id}")
     fun person(@PathVariable id: Long): PersonPage {
-        val person = service.findOne(id)
-
-        return PersonPage(
-            person = person
-        )
+        return service.findOne(id)
     }
 }
