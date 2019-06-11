@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component
 class TownService(private val personService: PersonService) {
 
     //TODO add town serializer
-    //TODO extract spots service
     fun findOne(id: Long): TownPage {
         val town = allFullTowns.first { it.id == id }
         val spotList = spotList.filter { it.townId == id }.map { ListItem(it.id, it.name) }
@@ -52,6 +51,7 @@ val allFullTowns = listOf(
                 description = "small hunting village on the edge of the fireleaf forest")
 )
 
+//TODO extract spots service
 val spotList = listOf(
         Spot(id = 1, name = "poi1a", townId = 1),
         Spot(id = 2, name = "poi1b", townId = 1),

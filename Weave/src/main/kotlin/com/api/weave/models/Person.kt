@@ -10,13 +10,13 @@ data class Person(
 data class PersonPage(
         val person: Person
 )
-data class PersonCon(
+data class PersonRelation(
         val id: Long,
         val relatedId: Long,
-        val relation: PersonConnection
+        val relation: PersonRelationType
 )
 
-enum class PersonConnection {
+enum class PersonRelationType {
     DENIZEN,
     OWNER,
     WORKER,

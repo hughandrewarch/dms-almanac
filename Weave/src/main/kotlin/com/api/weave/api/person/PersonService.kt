@@ -1,8 +1,8 @@
 package com.api.weave.api.person
 
 import com.api.weave.models.Person
-import com.api.weave.models.PersonCon
-import com.api.weave.models.PersonConnection
+import com.api.weave.models.PersonRelation
+import com.api.weave.models.PersonRelationType
 import com.api.weave.models.PersonPage
 import com.api.weave.models.list.ListItem
 import org.springframework.stereotype.Component
@@ -21,10 +21,10 @@ class PersonService {
     }
 
     fun listDenizens(relatedId: Long): List<ListItem> {
-        return listPeople(PersonConnection.DENIZEN, relatedId)
+        return listPeople(PersonRelationType.DENIZEN, relatedId)
     }
 
-    private fun listPeople(relation: PersonConnection, relatedId: Long): List<ListItem> {
+    private fun listPeople(relation: PersonRelationType, relatedId: Long): List<ListItem> {
         val personIds = personListCon
                 .filter {
                     it.relation == relation && it.relatedId == relatedId
@@ -50,14 +50,14 @@ val allFullPeople = listOf(
 )
 
 val personListCon = listOf(
-        PersonCon(id = 1, relation = PersonConnection.DENIZEN, relatedId = 1),
-        PersonCon(id = 2, relation = PersonConnection.DENIZEN, relatedId = 1),
-        PersonCon(id = 3, relation = PersonConnection.DENIZEN, relatedId = 2),
-        PersonCon(id = 4, relation = PersonConnection.DENIZEN, relatedId = 2),
-        PersonCon(id = 5, relation = PersonConnection.DENIZEN, relatedId = 2),
-        PersonCon(id = 6, relation = PersonConnection.DENIZEN, relatedId = 3),
-        PersonCon(id = 7, relation = PersonConnection.DENIZEN, relatedId = 4),
-        PersonCon(id = 8, relation = PersonConnection.DENIZEN, relatedId = 4),
-        PersonCon(id = 9, relation = PersonConnection.MEMBER, relatedId = 1),
-        PersonCon(id = 10, relation = PersonConnection.OWNER, relatedId = 1)
+        PersonRelation(id = 1, relation = PersonRelationType.DENIZEN, relatedId = 1),
+        PersonRelation(id = 2, relation = PersonRelationType.DENIZEN, relatedId = 1),
+        PersonRelation(id = 3, relation = PersonRelationType.DENIZEN, relatedId = 2),
+        PersonRelation(id = 4, relation = PersonRelationType.DENIZEN, relatedId = 2),
+        PersonRelation(id = 5, relation = PersonRelationType.DENIZEN, relatedId = 2),
+        PersonRelation(id = 6, relation = PersonRelationType.DENIZEN, relatedId = 3),
+        PersonRelation(id = 7, relation = PersonRelationType.DENIZEN, relatedId = 4),
+        PersonRelation(id = 8, relation = PersonRelationType.DENIZEN, relatedId = 4),
+        PersonRelation(id = 9, relation = PersonRelationType.MEMBER, relatedId = 1),
+        PersonRelation(id = 10, relation = PersonRelationType.OWNER, relatedId = 1)
 )
