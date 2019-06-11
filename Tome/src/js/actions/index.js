@@ -1,4 +1,12 @@
-import { FETCH_PERSON, FETCH_SPOT, FETCH_TOWN, FETCH_TOWN_LIST, RECEIVE_TOWN, RECEIVE_TOWN_LIST } from "../constants"
+import {
+  FETCH_PERSON,
+  FETCH_SPOT,
+  FETCH_TOWN,
+  FETCH_TOWN_LIST,
+  RECEIVE_PERSON,
+  RECEIVE_TOWN,
+  RECEIVE_TOWN_LIST
+} from "../constants"
 
 export function fetchTownList() {
   return { type: FETCH_TOWN_LIST }
@@ -22,4 +30,8 @@ export function fetchSpot(payload) {
 
 export function fetchPerson(payload) {
   return { type: FETCH_PERSON, payload: payload }
+}
+
+export function receivePerson(payload) {
+  return { type: RECEIVE_PERSON, payload: payload }
 }

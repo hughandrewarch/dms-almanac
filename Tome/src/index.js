@@ -8,6 +8,7 @@ import Red from "./js/components/Red"
 import Green from "./js/components/Green"
 import { BrowserRouter as Router, Link, Route } from "react-router-dom"
 import TownPage from "./js/components/town/TownPage"
+import PersonPage from "./js/components/person/PersonPage"
 
 
 ReactDOM.render((
@@ -25,6 +26,9 @@ ReactDOM.render((
         <Route path="/green" component={Green} />
         <Route path="/town/:townId" render={props => {
           return (<TownPage {...props}/>)
+        }} />
+        <Route path="/person/:personId" render={props => {
+          return (<PersonPage {...props}/>)
         }} />
       </div>
     </Router>

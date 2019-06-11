@@ -1,9 +1,6 @@
 package com.api.weave.controllers
 
-import com.api.weave.models.Person
-import com.api.weave.models.Spot
-import com.api.weave.models.Town
-import com.api.weave.models.TownPage
+import com.api.weave.models.*
 import com.api.weave.models.list.ListItem
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -12,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class TownController {
 
+    //TODO extract Town service to prep for db
     @GetMapping("/towns")
     fun towns() =
             listOf(
@@ -25,7 +23,11 @@ class TownController {
     fun towns(@PathVariable id: Long): TownPage {
         val town = allFullTowns.first { it.id == id }
         val spotList = spotList.filter { it.townId == id }.map { ListItem(it.id, it.name) }
-        val personList = personList.filter { it.townId == id }.map { ListItem(it.id, it.name) }
+        val personIds = personListCon.filter {
+            it.relation == PersonConnection.DENIZEN && it.relatedId == id
+        }.map { it.id }
+
+        val personList = allFullPeople.filter { personIds.contains(it.id) }.map { ListItem(it.id, it.name) }
 
         val townPage = TownPage(
                 town = town,
@@ -69,13 +71,15 @@ val spotList = listOf(
         Spot(id = 7, name = "poi4a", townId = 4)
 )
 
-val personList = listOf(
-        Person(id = 1, name = "person a", townId = 1),
-        Person(id = 2, name = "person b", townId = 1),
-        Person(id = 3, name = "person c", townId = 2),
-        Person(id = 4, name = "person d", townId = 2),
-        Person(id = 5, name = "person e", townId = 2),
-        Person(id = 6, name = "person f", townId = 3),
-        Person(id = 7, name = "person g", townId = 4),
-        Person(id = 8, name = "person h", townId = 4)
+val personListCon = listOf(
+        PersonCon(id =  1, relatedId = 1, relation = PersonConnection.DENIZEN),
+        PersonCon(id =  2, relatedId = 1, relation = PersonConnection.DENIZEN),
+        PersonCon(id =  3, relatedId = 2, relation = PersonConnection.DENIZEN),
+        PersonCon(id =  4, relatedId = 2, relation = PersonConnection.DENIZEN),
+        PersonCon(id =  5, relatedId = 2, relation = PersonConnection.DENIZEN),
+        PersonCon(id =  6, relatedId = 3, relation = PersonConnection.DENIZEN),
+        PersonCon(id =  7, relatedId = 4, relation = PersonConnection.DENIZEN),
+        PersonCon(id =  8, relatedId = 4, relation = PersonConnection.DENIZEN),
+        PersonCon(id =  9, relatedId = 1, relation = PersonConnection.MEMBER),
+        PersonCon(id = 10, relatedId = 1, relation = PersonConnection.OWNER)
 )

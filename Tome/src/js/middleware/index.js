@@ -1,5 +1,5 @@
-import { FETCH_TOWN, FETCH_TOWN_LIST } from "../constants"
-import { receiveTown, receiveTownList } from "../actions"
+import { FETCH_PERSON, FETCH_TOWN, FETCH_TOWN_LIST } from "../constants"
+import { receivePerson, receiveTown, receiveTownList } from "../actions"
 
 export function townMiddleware({ dispatch }) {
   return function (next) {
@@ -23,6 +23,16 @@ export function townMiddleware({ dispatch }) {
             })
             .catch(console.log)
           break
+        case FETCH_PERSON:
+          const personId = parseInt(action.payload)
+          fetch('http://localhost:8080/person/' + personId)
+            .then(res => res.json())
+            .then((data) => {
+              dispatch(receivePerson(data))
+            })
+            .catch(console.log)
+          break
+
         default:
       }
       return next(action)

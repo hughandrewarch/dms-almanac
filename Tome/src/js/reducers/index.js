@@ -1,4 +1,4 @@
-import { RECEIVE_TOWN, RECEIVE_TOWN_LIST } from "../constants"
+import { RECEIVE_PERSON, RECEIVE_TOWN, RECEIVE_TOWN_LIST } from "../constants"
 
 const initialState = {
   towns: [],
@@ -6,6 +6,9 @@ const initialState = {
     town: {},
     spotList: [],
     personList: []
+  },
+  personPage: {
+    person: {}
   }
 }
 
@@ -21,6 +24,12 @@ function rootReducer(state = initialState, action) {
           town: action.payload.town,
           spotList: action.payload.spotList,
           personList: action.payload.personList
+        }
+      })
+    case RECEIVE_PERSON:
+      return Object.assign({}, state, {
+        personPage: {
+          person: action.payload.person,
         }
       })
     default:

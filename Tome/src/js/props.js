@@ -18,5 +18,6 @@ export const SPOT = PropTypes.shape({
 
 export const PERSON = PropTypes.shape({
   LIST_ITEM,
+  race: PropTypes.string,
   description: PropTypes.string,
 })
