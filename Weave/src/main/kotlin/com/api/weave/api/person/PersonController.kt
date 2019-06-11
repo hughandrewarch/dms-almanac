@@ -1,7 +1,6 @@
-package com.api.weave.controllers
+package com.api.weave.api.person
 
 import com.api.weave.models.*
-import com.api.weave.models.list.ListItem
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController

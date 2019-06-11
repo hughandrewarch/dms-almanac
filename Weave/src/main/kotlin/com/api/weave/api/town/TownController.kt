@@ -1,5 +1,6 @@
-package com.api.weave.controllers
+package com.api.weave.api.town
 
+import com.api.weave.api.person.allFullPeople
 import com.api.weave.models.*
 import com.api.weave.models.list.ListItem
 import org.springframework.web.bind.annotation.GetMapping
