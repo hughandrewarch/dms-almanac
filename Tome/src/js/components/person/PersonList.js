@@ -7,8 +7,8 @@ import * as Props from "../../props"
 
 export const mapDispatchToProps = (dispatch) => {
   return {
-    fetchPerson: (spotId) => {
-      dispatch(_fetchPerson_(spotId))
+    fetchPerson: (placeId) => {
+      dispatch(_fetchPerson_(placeId))
     }
   }
 }

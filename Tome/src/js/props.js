@@ -11,7 +11,7 @@ export const TOWN = PropTypes.shape({
   population: PropTypes.number,
 })
 
-export const SPOT = PropTypes.shape({
+export const PLACE = PropTypes.shape({
   LIST_ITEM,
   description: PropTypes.string,
 })

@@ -1,6 +1,6 @@
 import {
   FETCH_PERSON,
-  FETCH_SPOT,
+  FETCH_PLACE,
   FETCH_TOWN,
   FETCH_TOWN_LIST,
   RECEIVE_PERSON,
@@ -24,8 +24,8 @@ export function receiveTown(payload) {
   return { type: RECEIVE_TOWN, payload: payload }
 }
 
-export function fetchSpot(payload) {
-  return { type: FETCH_SPOT, payload: payload }
+export function fetchPlace(payload) {
+  return { type: FETCH_PLACE, payload: payload }
 }
 
 export function fetchPerson(payload) {

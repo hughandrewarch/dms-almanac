@@ -4,7 +4,7 @@ const initialState = {
   towns: [],
   townPage: {
     town: {},
-    spotList: [],
+    placeList: [],
     personList: []
   },
   personPage: {
@@ -22,7 +22,7 @@ function rootReducer(state = initialState, action) {
       return Object.assign({}, state, {
         townPage: {
           town: action.payload.town,
-          spotList: action.payload.spotList,
+          placeList: action.payload.placeList,
           personList: action.payload.personList
         }
       })

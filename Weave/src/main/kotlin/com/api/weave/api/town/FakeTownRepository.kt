@@ -1,6 +1,6 @@
 package com.api.weave.api.town
 
-import com.api.weave.models.Town
+import com.api.weave.models.*
 import org.springframework.stereotype.Component
 
 @Component
@@ -20,20 +20,24 @@ val allFullTowns = listOf(
                 id = 1,
                 name = "Hughan",
                 population = 5000,
-                description = "Capital city, 3 wall layers, 9 districts and a castle"),
+                description = "Capital city, 3 wall layers, 9 districts and a castle",
+                type = TownType.CITY),
         Town(
                 id = 2,
                 name = "Amberlea",
                 population = 1000,
-                description = "farming central, fortified storehouses, elevated on walls"),
+                description = "farming central, fortified storehouses, elevated on walls",
+                type = TownType.TOWN),
         Town(
                 id = 3,
                 name = "Roseport",
                 population = 800,
-                description = "largest port city"),
+                description = "largest port city",
+                type = TownType.TOWN),
         Town(
                 id = 4,
                 name = "Elkshorn",
                 population = 500,
-                description = "small hunting village on the edge of the fireleaf forest")
+                description = "small hunting village on the edge of the fireleaf forest",
+                type = TownType.VILLAGE)
 )

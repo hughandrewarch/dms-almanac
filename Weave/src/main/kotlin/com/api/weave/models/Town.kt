@@ -2,14 +2,23 @@ package com.api.weave.models
 
 import com.api.weave.models.list.ListItem
 
+//TODO rename to settlement
 data class Town(
         val id: Long,
         val name: String,
         val population: Long,
-        val description: String
+        val description: String,
+        val type: TownType
 )
+
 data class TownPage(
         val town: Town,
-        var spotList: List<ListItem> = emptyList(),
+        var placeList: List<ListItem> = emptyList(),
         var personList: List<ListItem> = emptyList()
 )
+
+enum class TownType {
+    VILLAGE,
+    TOWN,
+    CITY
+}
