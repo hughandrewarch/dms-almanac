@@ -5,7 +5,6 @@ import com.api.weave.models.PersonRelation
 import com.api.weave.models.PersonRelationType
 import org.springframework.stereotype.Component
 
-
 @Component
 class FakePersonRepository : PersonRepository {
     override fun find(id: Long): Person {

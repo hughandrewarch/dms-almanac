@@ -3,7 +3,6 @@ package com.api.weave.api.town
 import com.api.weave.models.Town
 import org.springframework.stereotype.Component
 
-
 @Component
 class FakeTownRepository : TownRepository {
 
