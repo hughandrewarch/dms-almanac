@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component
 
 
 @Component
-class FakeSlotRepository : TownRepository {
+class FakeTownRepository : TownRepository {
 
     override fun find(id: Long): Town {
         return allFullTowns.first { it.id == id }

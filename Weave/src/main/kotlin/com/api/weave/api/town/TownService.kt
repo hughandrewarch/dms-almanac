@@ -32,7 +32,8 @@ class TownService(
     }
 }
 
-//TODO extract spots service
+//TODO extractT spots service
+// Think if spot and town are the same and just need a type
 val spotList = listOf(
         Spot(id = 1, name = "poi1a", townId = 1),
         Spot(id = 2, name = "poi1b", townId = 1),
