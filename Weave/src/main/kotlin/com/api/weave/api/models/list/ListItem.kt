@@ -1,3 +1,3 @@
-package com.api.weave.domain.models.list
+package com.api.weave.api.models.list
 
 data class ListItem(val id: Long, val name: String)

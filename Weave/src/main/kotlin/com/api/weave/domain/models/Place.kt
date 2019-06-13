@@ -1,6 +1,5 @@
 package com.api.weave.domain.models
 
-
 data class Place(
         val id: Long,
         val name: String,

@@ -1,4 +1,4 @@
-package com.api.weave.spi
+package com.api.weave.spi.adapters
 
 import com.api.weave.domain.ports.spi.TownRepository
 import com.api.weave.domain.models.*

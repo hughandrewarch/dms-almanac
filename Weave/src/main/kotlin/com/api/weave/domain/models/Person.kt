@@ -7,9 +7,6 @@ data class Person(
         val description: String
 )
 
-data class PersonPage(
-        val person: Person
-)
 data class PersonRelation(
         val id: Long,
         val relatedId: Long,
