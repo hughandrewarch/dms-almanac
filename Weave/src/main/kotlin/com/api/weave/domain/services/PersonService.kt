@@ -1,4 +1,4 @@
-package com.api.weave.domain
+package com.api.weave.domain.services
 
 import com.api.weave.domain.models.Person
 import com.api.weave.domain.ports.spi.PersonRepository

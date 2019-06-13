@@ -1,4 +1,4 @@
-package com.api.weave.api.serializer
+package com.api.weave.api.serializers
 
 import com.api.weave.api.models.list.ListItem
 import com.api.weave.domain.models.Person

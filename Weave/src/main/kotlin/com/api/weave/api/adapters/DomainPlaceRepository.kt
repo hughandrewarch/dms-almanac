@@ -1,6 +1,6 @@
 package com.api.weave.api.adapters
 
-import com.api.weave.domain.PlaceService
+import com.api.weave.domain.services.PlaceService
 import com.api.weave.domain.models.Place
 import com.api.weave.domain.ports.api.PlaceRepository
 import org.springframework.stereotype.Component

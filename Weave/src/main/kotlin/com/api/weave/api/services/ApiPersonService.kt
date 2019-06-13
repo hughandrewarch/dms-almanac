@@ -1,7 +1,7 @@
-package com.api.weave.api
+package com.api.weave.api.services
 
 import com.api.weave.api.models.PersonPage
-import com.api.weave.api.serializer.PersonPageSerializer
+import com.api.weave.api.serializers.PersonPageSerializer
 import com.api.weave.domain.ports.api.PersonRepository
 import org.springframework.stereotype.Component
 

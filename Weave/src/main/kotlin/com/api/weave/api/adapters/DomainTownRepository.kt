@@ -1,6 +1,6 @@
 package com.api.weave.api.adapters
 
-import com.api.weave.domain.TownService
+import com.api.weave.domain.services.TownService
 import com.api.weave.domain.models.Town
 import com.api.weave.domain.ports.api.TownRepository
 import org.springframework.stereotype.Component

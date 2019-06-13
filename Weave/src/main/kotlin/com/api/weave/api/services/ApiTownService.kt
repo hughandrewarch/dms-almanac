@@ -1,9 +1,9 @@
-package com.api.weave.api
+package com.api.weave.api.services
 
 import com.api.weave.api.models.TownPage
-import com.api.weave.api.serializer.ListSerializer
-import com.api.weave.api.serializer.TownPageSerializer
-import com.api.weave.domain.PersonService
+import com.api.weave.api.serializers.ListSerializer
+import com.api.weave.api.serializers.TownPageSerializer
+import com.api.weave.domain.services.PersonService
 import com.api.weave.api.models.list.ListItem
 import com.api.weave.domain.ports.api.PlaceRepository
 import com.api.weave.domain.ports.api.TownRepository

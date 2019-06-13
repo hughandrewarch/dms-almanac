@@ -1,6 +1,6 @@
 package com.api.weave.api.controllers
 
-import com.api.weave.api.ApiTownService
+import com.api.weave.api.services.ApiTownService
 import com.api.weave.api.models.TownPage
 import com.api.weave.api.models.list.ListItem
 import org.springframework.web.bind.annotation.GetMapping
