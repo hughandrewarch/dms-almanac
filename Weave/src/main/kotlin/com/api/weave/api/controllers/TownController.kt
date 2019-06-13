@@ -1,7 +1,8 @@
-package com.api.weave.api.town
+package com.api.weave.api.controllers
 
-import com.api.weave.models.TownPage
-import com.api.weave.models.list.ListItem
+import com.api.weave.domain.TownService
+import com.api.weave.domain.models.TownPage
+import com.api.weave.domain.models.list.ListItem
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController

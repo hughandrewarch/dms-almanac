@@ -1,6 +1,6 @@
-package com.api.weave.models
+package com.api.weave.domain.models
 
-import com.api.weave.models.list.ListItem
+import com.api.weave.domain.models.list.ListItem
 
 //TODO rename to settlement
 data class Town(

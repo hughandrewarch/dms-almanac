@@ -1,6 +1,7 @@
-package com.api.weave.api.place
+package com.api.weave.domain
 
-import com.api.weave.models.list.ListItem
+import com.api.weave.domain.ports.spi.PlaceRepository
+import com.api.weave.domain.models.list.ListItem
 import org.springframework.stereotype.Component
 
 @Component

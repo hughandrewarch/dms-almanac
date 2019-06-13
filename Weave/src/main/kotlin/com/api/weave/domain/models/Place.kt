@@ -1,4 +1,4 @@
-package com.api.weave.models
+package com.api.weave.domain.models
 
 
 data class Place(

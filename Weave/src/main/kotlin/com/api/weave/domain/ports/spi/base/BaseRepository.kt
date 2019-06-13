@@ -1,4 +1,4 @@
-package com.api.weave.api.base
+package com.api.weave.domain.ports.spi.base
 
 interface BaseRepository<T> {
     fun find(id: Long): T

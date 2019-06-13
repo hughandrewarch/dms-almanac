@@ -1,6 +1,7 @@
-package com.api.weave.api.person
+package com.api.weave.api.controllers
 
-import com.api.weave.models.*
+import com.api.weave.domain.PersonService
+import com.api.weave.domain.models.*
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class PersonController(private val service: PersonService) {
 
-    @GetMapping("/person/{id}")
+    @GetMapping("/controllers/{id}")
     fun person(@PathVariable id: Long): PersonPage {
         return service.findOne(id)
     }

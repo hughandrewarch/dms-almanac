@@ -1,8 +1,9 @@
-package com.api.weave.api.person
+package com.api.weave.domain
 
-import com.api.weave.models.PersonPage
-import com.api.weave.models.PersonRelationType
-import com.api.weave.models.list.ListItem
+import com.api.weave.domain.ports.spi.PersonRepository
+import com.api.weave.domain.models.PersonPage
+import com.api.weave.domain.models.PersonRelationType
+import com.api.weave.domain.models.list.ListItem
 import org.springframework.stereotype.Component
 
 @Component

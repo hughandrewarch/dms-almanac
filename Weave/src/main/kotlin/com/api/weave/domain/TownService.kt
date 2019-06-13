@@ -1,9 +1,8 @@
-package com.api.weave.api.town
+package com.api.weave.domain
 
-import com.api.weave.api.person.PersonService
-import com.api.weave.api.place.PlaceService
-import com.api.weave.models.TownPage
-import com.api.weave.models.list.ListItem
+import com.api.weave.domain.ports.spi.TownRepository
+import com.api.weave.domain.models.TownPage
+import com.api.weave.domain.models.list.ListItem
 import org.springframework.stereotype.Component
 
 @Component

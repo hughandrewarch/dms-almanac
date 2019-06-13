@@ -1,6 +1,7 @@
-package com.api.weave.api.town
+package com.api.weave.spi
 
-import com.api.weave.models.*
+import com.api.weave.domain.ports.spi.TownRepository
+import com.api.weave.domain.models.*
 import org.springframework.stereotype.Component
 
 @Component

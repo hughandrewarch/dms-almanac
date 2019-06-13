@@ -1,8 +1,9 @@
-package com.api.weave.api.place
+package com.api.weave.spi
 
-import com.api.weave.models.Place
-import com.api.weave.models.PlaceRelation
-import com.api.weave.models.PlaceType
+import com.api.weave.domain.ports.spi.PlaceRepository
+import com.api.weave.domain.models.Place
+import com.api.weave.domain.models.PlaceRelation
+import com.api.weave.domain.models.PlaceType
 import org.springframework.stereotype.Component
 
 @Component
