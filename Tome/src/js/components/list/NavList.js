@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 
 export default class NavList extends React.Component {
   static propTypes = {
-    items: PropTypes.arrayOf(Props.TOWN),
+    items: PropTypes.arrayOf(Props.SETTLEMENT),
     onSelectLink: PropTypes.func,
   }
 

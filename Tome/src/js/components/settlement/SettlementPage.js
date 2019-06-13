@@ -1,48 +1,48 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Town from "./Town"
+import Settlement from "./Settlement"
 import PlaceList from "../place/PlaceList"
 import PersonList from "../person/PersonList"
-import { fetchTown as _fetchTown_ } from "../../actions"
+import { fetchSettlement as _fetchSettlement_ } from "../../actions"
 import connect from "react-redux/es/connect/connect"
 
 
 export const mapStateToProps = (state, props) => {
   return {
     params: props.match.params,
-    town: state.townPage.town,
-    placeList: state.townPage.placeList,
-    personList: state.townPage.personList
+    settlement: state.settlementPage.settlement,
+    placeList: state.settlementPage.placeList,
+    personList: state.settlementPage.personList
   }
 }
 
 export const mapDispatchToProps = (dispatch) => {
 
   return {
-    fetchTown: (townId) => {
-      dispatch(_fetchTown_(townId))
+    fetchSettlement: (settlementId) => {
+      dispatch(_fetchSettlement_(settlementId))
     }
   }
 }
 
 //TODO find a proper file structure home for this
-class _TownPage_ extends React.Component {
+class _SettlementPage_ extends React.Component {
 
   static propTypes = {
     params: PropTypes.shape({
-      townId: PropTypes.string.isRequired
+      settlementId: PropTypes.string.isRequired
     }).isRequired,
   }
 
   componentDidMount() {
-    this.props.fetchTown(this.props.params.townId)
+    this.props.fetchSettlement(this.props.params.settlementId)
   }
 
   render() {
     return (
       <div>
-        <h2>Town</h2>
-        <Town town = {this.props.town}/>
+        <h2>Settlement</h2>
+        <Settlement settlement = {this.props.settlement}/>
         <h2>Places</h2>
         <PlaceList placeList = {this.props.placeList}/>
         <h2>People</h2>
@@ -52,4 +52,4 @@ class _TownPage_ extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(_TownPage_)
+export default connect(mapStateToProps, mapDispatchToProps)(_SettlementPage_)

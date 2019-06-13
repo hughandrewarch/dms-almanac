@@ -6,7 +6,7 @@ export const LIST_ITEM = PropTypes.shape({
   name: PropTypes.string.required,
 })
 
-export const TOWN = PropTypes.shape({
+export const SETTLEMENT = PropTypes.shape({
   LIST_ITEM,
   population: PropTypes.number,
 })

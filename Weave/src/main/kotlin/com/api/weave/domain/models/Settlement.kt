@@ -1,15 +1,14 @@
 package com.api.weave.domain.models
 
-//TODO rename to settlement
-data class Town(
+data class Settlement(
         val id: Long,
         val name: String,
         val population: Long,
         val description: String,
-        val type: TownType
+        val type: SettlementType
 )
 
-enum class TownType {
+enum class SettlementType {
     VILLAGE,
     TOWN,
     CITY

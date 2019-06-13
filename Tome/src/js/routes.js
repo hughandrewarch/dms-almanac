@@ -1,5 +1,5 @@
-export class Towns {
+export class Settlements {
   static show = (id) => {
-    return `/town/${id}`
+    return `/settlement/${id}`
   }
 }

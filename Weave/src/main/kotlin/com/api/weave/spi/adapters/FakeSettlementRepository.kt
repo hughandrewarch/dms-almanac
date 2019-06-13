@@ -1,44 +1,44 @@
 package com.api.weave.spi.adapters
 
-import com.api.weave.domain.ports.spi.TownRepository
+import com.api.weave.domain.ports.spi.SettlementRepository
 import com.api.weave.domain.models.*
 import org.springframework.stereotype.Component
 
 @Component
-class FakeTownRepository : TownRepository {
+class FakeSettlementRepository : SettlementRepository {
 
-    override fun find(id: Long): Town {
-        return allFullTowns.first { it.id == id }
+    override fun find(id: Long): Settlement {
+        return allFullSettlements.first { it.id == id }
     }
 
-    override fun findAll(): List<Town> {
-        return allFullTowns
+    override fun findAll(): List<Settlement> {
+        return allFullSettlements
     }
 }
 
-val allFullTowns = listOf(
-        Town(
+val allFullSettlements = listOf(
+        Settlement(
                 id = 1,
                 name = "Hughan",
                 population = 5000,
                 description = "Capital city, 3 wall layers, 9 districts and a castle",
-                type = TownType.CITY),
-        Town(
+                type = SettlementType.CITY),
+        Settlement(
                 id = 2,
                 name = "Amberlea",
                 population = 1000,
                 description = "farming central, fortified storehouses, elevated on walls",
-                type = TownType.TOWN),
-        Town(
+                type = SettlementType.TOWN),
+        Settlement(
                 id = 3,
                 name = "Roseport",
                 population = 800,
                 description = "largest port city",
-                type = TownType.TOWN),
-        Town(
+                type = SettlementType.TOWN),
+        Settlement(
                 id = 4,
                 name = "Elkshorn",
                 population = 500,
                 description = "small hunting village on the edge of the fireleaf forest",
-                type = TownType.VILLAGE)
+                type = SettlementType.VILLAGE)
 )

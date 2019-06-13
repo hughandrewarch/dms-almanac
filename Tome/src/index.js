@@ -7,9 +7,8 @@ import store from "./js/store"
 import Red from "./js/components/Red"
 import Green from "./js/components/Green"
 import { BrowserRouter as Router, Link, Route } from "react-router-dom"
-import TownPage from "./js/components/town/TownPage"
+import SettlementPage from "./js/components/settlement/SettlementPage"
 import PersonPage from "./js/components/person/PersonPage"
-
 
 ReactDOM.render((
   <Provider store={store}>
@@ -24,8 +23,8 @@ ReactDOM.render((
         <Route exact path="/" component={App} />
         <Route path="/red/:id" component={Red} />
         <Route path="/green" component={Green} />
-        <Route path="/town/:townId" render={props => {
-          return (<TownPage {...props}/>)
+        <Route path="/settlement/:settlementId" render={props => {
+          return (<SettlementPage {...props}/>)
         }} />
         <Route path="/person/:personId" render={props => {
           return (<PersonPage {...props}/>)

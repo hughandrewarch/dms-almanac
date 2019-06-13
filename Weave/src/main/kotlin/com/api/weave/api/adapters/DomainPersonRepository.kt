@@ -6,13 +6,13 @@ import com.api.weave.domain.ports.api.PersonRepository
 import org.springframework.stereotype.Component
 
 @Component
-class DomainPersonRepository(private val personDomainService: PersonService): PersonRepository {
+class DomainPersonRepository(private val service: PersonService): PersonRepository {
 
     override fun find(id: Long): Person {
-        return personDomainService.find(id)
+        return service.find(id)
     }
 
     override fun listDenizens(settlementId: Long): List<Person> {
-        return personDomainService.listDenizens(settlementId)
+        return service.listDenizens(settlementId)
     }
 }

@@ -2,21 +2,21 @@ import React from "react"
 import * as Props from "../../../props"
 import PropTypes from 'prop-types'
 import { Link } from "react-router-dom"
-import { Towns } from '../../../routes'
+import { Settlements } from '../../../routes'
 
-export default class TownList extends React.Component {
+export default class SettlementList extends React.Component {
   static propTypes = {
-    towns: PropTypes.arrayOf(Props.TOWN),
-    selectTown: PropTypes.func,
+    settlements: PropTypes.arrayOf(Props.SETTLEMENT),
+    selectSettlement: PropTypes.func,
   }
 
   render() {
     return (
       <ul className="list-group list-group-flush">
-        {this.props.towns.map(el => (
+        {this.props.settlements.map(el => (
           <li className="list-group-item"
               key={el.id}>
-            <Link to={Towns.show(el.id)}>{el.name}</Link>
+            <Link to={Settlements.show(el.id)}>{el.name}</Link>
           </li>
         ))}
       </ul>

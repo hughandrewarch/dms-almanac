@@ -1,27 +1,27 @@
 import {
   FETCH_PERSON,
   FETCH_PLACE,
-  FETCH_TOWN,
-  FETCH_TOWN_LIST,
+  FETCH_SETTLEMENT,
+  FETCH_SETTLEMENT_LIST,
   RECEIVE_PERSON,
-  RECEIVE_TOWN,
-  RECEIVE_TOWN_LIST
+  RECEIVE_SETTLEMENT,
+  RECEIVE_SETTLEMENT_LIST
 } from "../constants"
 
-export function fetchTownList() {
-  return { type: FETCH_TOWN_LIST }
+export function fetchSettlementList() {
+  return { type: FETCH_SETTLEMENT_LIST }
 }
 
-export function fetchTown(payload) {
-  return { type: FETCH_TOWN, payload: payload }
+export function fetchSettlement(payload) {
+  return { type: FETCH_SETTLEMENT, payload: payload }
 }
 
-export function receiveTownList(payload) {
-  return { type: RECEIVE_TOWN_LIST, payload: payload }
+export function receiveSettlementList(payload) {
+  return { type: RECEIVE_SETTLEMENT_LIST, payload: payload }
 }
 
-export function receiveTown(payload) {
-  return { type: RECEIVE_TOWN, payload: payload }
+export function receiveSettlement(payload) {
+  return { type: RECEIVE_SETTLEMENT, payload: payload }
 }
 
 export function fetchPlace(payload) {
