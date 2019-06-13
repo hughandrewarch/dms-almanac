@@ -5,7 +5,6 @@ import com.api.weave.domain.ports.spi.PersonRepository
 import com.api.weave.domain.models.PersonRelationType
 import org.springframework.stereotype.Component
 
-@Component
 class PersonService(private val personRepository: PersonRepository) {
 
     fun find(id: Long): Person {

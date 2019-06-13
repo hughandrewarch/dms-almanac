@@ -4,7 +4,6 @@ import com.api.weave.domain.models.Settlement
 import com.api.weave.domain.ports.spi.SettlementRepository
 import org.springframework.stereotype.Component
 
-@Component
 class SettlementService(private val settlementRepository: SettlementRepository) {
 
     fun find(id: Long): Settlement {
