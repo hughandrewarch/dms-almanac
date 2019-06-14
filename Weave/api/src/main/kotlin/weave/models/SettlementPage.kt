@@ -1,7 +1,6 @@
-package weave.api.models
+package weave.models
 
-import com.api.weave.domain.models.Settlement
-import com.api.weave.api.models.list.ListItem
+import weave.models.list.ListItem
 
 //TODO rename to response?
 data class SettlementPage(

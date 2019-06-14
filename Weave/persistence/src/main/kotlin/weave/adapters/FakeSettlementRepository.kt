@@ -1,9 +1,9 @@
-package weave.spi.adapters
+package weave.adapters
 
-import com.api.weave.domain.ports.spi.SettlementRepository
-import org.springframework.stereotype.Component
+import weave.ports.persistence.SettlementRepository
+import weave.models.Settlement
+import weave.models.SettlementType
 
-@Component
 class FakeSettlementRepository : SettlementRepository {
 
     override fun find(id: Long): Settlement {

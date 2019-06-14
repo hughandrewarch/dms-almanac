@@ -1,8 +1,8 @@
-package weave.domain.services
+package weave.services
 
-import com.api.weave.domain.models.Person
-import com.api.weave.domain.ports.spi.PersonRepository
-import com.api.weave.domain.models.PersonRelationType
+import weave.models.Person
+import weave.ports.persistence.PersonRepository
+import weave.models.PersonRelationType
 
 class PersonService(private val personRepository: PersonRepository) {
 

@@ -1,12 +1,10 @@
-package weave.spi.adapters
+package weave.adapters
 
-import com.api.weave.domain.ports.spi.PlaceRepository
-import com.api.weave.domain.models.Place
-import com.api.weave.domain.models.PlaceRelation
-import com.api.weave.domain.models.PlaceType
-import org.springframework.stereotype.Component
+import weave.ports.persistence.PlaceRepository
+import weave.models.Place
+import weave.models.PlaceRelation
+import weave.models.PlaceType
 
-@Component
 class FakePlaceRepository : PlaceRepository {
     override fun find(id: Long): Place {
         return allFullPlaces.first{ it.id == id }

@@ -1,6 +1,4 @@
-package weave.api.models
-
-import com.api.weave.domain.models.Person
+package weave.models
 
 //TODO rename response?
 data class PersonPage(

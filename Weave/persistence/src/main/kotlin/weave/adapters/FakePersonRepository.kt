@@ -1,12 +1,10 @@
-package weave.spi.adapters
+package weave.adapters
 
-import com.api.weave.domain.ports.spi.PersonRepository
-import com.api.weave.domain.models.Person
-import com.api.weave.domain.models.PersonRelation
-import com.api.weave.domain.models.PersonRelationType
-import org.springframework.stereotype.Component
+import weave.models.Person
+import weave.models.PersonRelation
+import weave.models.PersonRelationType
+import weave.ports.persistence.PersonRepository
 
-@Component
 class FakePersonRepository : PersonRepository {
     override fun find(id: Long): Person {
         return allFullPeople.first { it.id == id }

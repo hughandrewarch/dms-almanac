@@ -1,8 +1,8 @@
-package weave.api.controllers
+package weave.controllers
 
-import com.api.weave.api.services.ApiSettlementService
-import com.api.weave.api.models.SettlementPage
-import com.api.weave.api.models.list.ListItem
+import weave.services.ApiSettlementService
+import weave.models.SettlementPage
+import weave.models.list.ListItem
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController

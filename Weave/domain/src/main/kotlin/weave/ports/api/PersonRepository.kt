@@ -1,6 +1,6 @@
-package weave.domain.ports.api
+package weave.ports.api
 
-import com.api.weave.domain.models.Person
+import weave.models.Person
 
 interface PersonRepository {
     fun find(id: Long): Person

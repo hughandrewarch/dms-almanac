@@ -1,8 +1,8 @@
-package weave.api.adapters
+package weave.adapters
 
-import com.api.weave.domain.services.PersonService
-import com.api.weave.domain.models.Person
-import com.api.weave.domain.ports.api.PersonRepository
+import weave.services.PersonService
+import weave.models.Person
+import weave.ports.api.PersonRepository
 import org.springframework.stereotype.Component
 
 @Component

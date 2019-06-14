@@ -1,8 +1,8 @@
-package weave.api.adapters
+package weave.adapters
 
-import com.api.weave.domain.services.SettlementService
-import com.api.weave.domain.models.Settlement
-import com.api.weave.domain.ports.api.SettlementRepository
+import weave.services.SettlementService
+import weave.models.Settlement
+import weave.ports.api.SettlementRepository
 import org.springframework.stereotype.Component
 
 @Component

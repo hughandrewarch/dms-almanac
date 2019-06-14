@@ -1,4 +1,4 @@
-package weave.domain.models
+package weave.models
 
 data class Settlement(
         val id: Long,

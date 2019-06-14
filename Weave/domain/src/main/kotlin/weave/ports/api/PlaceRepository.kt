@@ -1,6 +1,6 @@
-package weave.domain.ports.api
+package weave.ports.api
 
-import com.api.weave.domain.models.Place
+import weave.models.Place
 
 interface PlaceRepository {
     fun findAll(settlementId: Long): List<Place>

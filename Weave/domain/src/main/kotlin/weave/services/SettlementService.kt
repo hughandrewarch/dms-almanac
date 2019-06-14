@@ -1,7 +1,7 @@
-package weave.domain.services
+package weave.services
 
-import com.api.weave.domain.models.Settlement
-import com.api.weave.domain.ports.spi.SettlementRepository
+import weave.models.Settlement
+import weave.ports.persistence.SettlementRepository
 
 class SettlementService(private val settlementRepository: SettlementRepository) {
 

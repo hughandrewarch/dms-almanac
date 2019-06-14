@@ -1,6 +1,5 @@
-pluginManagement {
-	repositories {
-		gradlePluginPortal()
-	}
-}
 rootProject.name = "weave"
+
+include 'api'
+include 'domain'
+include 'persistence'

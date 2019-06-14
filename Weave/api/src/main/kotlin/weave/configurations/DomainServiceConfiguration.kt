@@ -1,13 +1,13 @@
-package weave.api.configurations
+package weave.configurations
 
-import com.api.weave.domain.services.PersonService
-import com.api.weave.domain.services.PlaceService
-import com.api.weave.domain.services.SettlementService
-import com.api.weave.spi.adapters.FakePersonRepository
-import com.api.weave.spi.adapters.FakePlaceRepository
-import com.api.weave.spi.adapters.FakeSettlementRepository
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import weave.adapters.FakePersonRepository
+import weave.adapters.FakePlaceRepository
+import weave.adapters.FakeSettlementRepository
+import weave.services.PersonService
+import weave.services.PlaceService
+import weave.services.SettlementService
 
 @Configuration
 class DomainServiceConfiguration {

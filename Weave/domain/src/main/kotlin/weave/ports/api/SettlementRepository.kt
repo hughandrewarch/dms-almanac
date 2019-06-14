@@ -1,6 +1,6 @@
-package weave.domain.ports.api
+package weave.ports.api
 
-import com.api.weave.domain.models.Settlement
+import weave.models.Settlement
 
 interface SettlementRepository {
     fun find(id: Long): Settlement

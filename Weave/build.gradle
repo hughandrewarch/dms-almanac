@@ -10,3 +10,21 @@ buildscript {
 		classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version" // See https://kotlinlang.org/docs/reference/compiler-plugins.html#spring-support
 	}
 }
+
+allprojects {
+	apply plugin: 'kotlin' // Required for Kotlin integration
+	
+	repositories {
+		jcenter()
+	}
+	
+	dependencies {
+		compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version" // Required for Kotlin integration
+	}
+
+	compileKotlin {
+		kotlinOptions {
+			jvmTarget = JavaVersion.VERSION_1_8
+		}
+	}
+}

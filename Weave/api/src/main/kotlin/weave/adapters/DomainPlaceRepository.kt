@@ -1,8 +1,8 @@
-package weave.api.adapters
+package weave.adapters
 
-import com.api.weave.domain.services.PlaceService
-import com.api.weave.domain.models.Place
-import com.api.weave.domain.ports.api.PlaceRepository
+import weave.services.PlaceService
+import weave.models.Place
+import weave.ports.api.PlaceRepository
 import org.springframework.stereotype.Component
 
 @Component

@@ -1,7 +1,7 @@
-package weave.domain.services
+package weave.services
 
-import com.api.weave.domain.models.Place
-import com.api.weave.domain.ports.spi.PlaceRepository
+import weave.models.Place
+import weave.ports.persistence.PlaceRepository
 
 class PlaceService(private val placeRepository: PlaceRepository) {
 

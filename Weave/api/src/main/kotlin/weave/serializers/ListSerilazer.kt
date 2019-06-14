@@ -1,9 +1,9 @@
-package weave.api.serializers
+package weave.serializers
 
-import com.api.weave.api.models.list.ListItem
-import com.api.weave.domain.models.Person
-import com.api.weave.domain.models.Place
-import com.api.weave.domain.models.Settlement
+import weave.models.list.ListItem
+import weave.models.Person
+import weave.models.Place
+import weave.models.Settlement
 import org.springframework.stereotype.Component
 
 @Component

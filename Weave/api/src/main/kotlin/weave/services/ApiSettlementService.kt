@@ -1,13 +1,12 @@
-package weave.api.services
+package weave.services
 
-import com.api.weave.api.models.SettlementPage
-import com.api.weave.api.serializers.ListSerializer
-import com.api.weave.api.serializers.SettlementPageSerializer
-import com.api.weave.domain.services.PersonService
-import com.api.weave.api.models.list.ListItem
-import com.api.weave.domain.ports.api.PlaceRepository
-import com.api.weave.domain.ports.api.SettlementRepository
+import weave.models.SettlementPage
+import weave.serializers.ListSerializer
+import weave.serializers.SettlementPageSerializer
+import weave.models.list.ListItem
 import org.springframework.stereotype.Component
+import weave.ports.api.PlaceRepository
+import weave.ports.api.SettlementRepository
 
 @Component
 class ApiSettlementService(
