@@ -1,0 +1,9 @@
+rootProject.name = "backend"
+
+include 'api'
+include 'domain'
+include 'persistence'
+
+project(":api").projectDir = file("magic")
+project(":domain").projectDir = file("weave")
+project(":persistence").projectDir = file("raw-magic")
