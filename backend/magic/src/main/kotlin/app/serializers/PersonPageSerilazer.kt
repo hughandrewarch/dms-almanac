@@ -1,6 +1,6 @@
-package serializers
+package app.serializers
 
-import models.PersonPage
+import app.models.PersonPage
 import models.Person
 import org.springframework.stereotype.Component
 

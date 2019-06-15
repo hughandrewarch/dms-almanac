@@ -1,6 +1,6 @@
-package serializers
+package app.serializers
 
-import models.SettlementPage
+import app.models.SettlementPage
 import models.Person
 import models.Place
 import models.Settlement

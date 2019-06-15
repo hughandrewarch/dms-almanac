@@ -1,4 +1,4 @@
-package adapters
+package app.adapters
 
 import services.SettlementService
 import models.Settlement

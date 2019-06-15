@@ -1,6 +1,6 @@
-package serializers
+package app.serializers
 
-import models.list.ListItem
+import app.models.list.ListItem
 import models.Person
 import models.Place
 import models.Settlement

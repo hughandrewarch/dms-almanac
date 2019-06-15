@@ -1,6 +1,7 @@
-package models
+package app.models
 
-import models.list.ListItem
+import app.models.list.ListItem
+import models.Settlement
 
 //TODO rename to response?
 data class SettlementPage(

@@ -1,4 +1,4 @@
-package adapters
+package app.adapters
 
 import services.PlaceService
 import models.Place

@@ -1,4 +1,4 @@
-package adapters
+package app.adapters
 
 import services.PersonService
 import models.Person

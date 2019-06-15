@@ -1,7 +1,7 @@
-package services
+package app.services
 
-import models.PersonPage
-import serializers.PersonPageSerializer
+import app.models.PersonPage
+import app.serializers.PersonPageSerializer
 import ports.api.PersonRepository
 import org.springframework.stereotype.Component
 

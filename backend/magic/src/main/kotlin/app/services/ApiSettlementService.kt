@@ -1,12 +1,13 @@
-package services
+package app.services
 
-import models.SettlementPage
-import serializers.ListSerializer
-import serializers.SettlementPageSerializer
-import models.list.ListItem
+import app.models.SettlementPage
+import app.serializers.ListSerializer
+import app.serializers.SettlementPageSerializer
+import app.models.list.ListItem
 import org.springframework.stereotype.Component
 import ports.api.PlaceRepository
 import ports.api.SettlementRepository
+import services.PersonService
 
 @Component
 class ApiSettlementService(

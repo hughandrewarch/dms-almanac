@@ -1,8 +1,8 @@
-package controllers
+package app.controllers
 
-import services.ApiSettlementService
-import models.SettlementPage
-import models.list.ListItem
+import app.services.ApiSettlementService
+import app.models.SettlementPage
+import app.models.list.ListItem
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
