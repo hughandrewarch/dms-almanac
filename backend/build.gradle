@@ -20,11 +20,29 @@ allprojects {
 	
 	dependencies {
 		compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version" // Required for Kotlin integration
+
+		testCompile 'org.assertj:assertj-core:3.10.0'
+		testCompile 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0-RC1'
+		testCompile("org.junit.jupiter:junit-jupiter-api:5.4.2")
+		testRuntime("org.junit.jupiter:junit-jupiter-engine:5.4.2")
 	}
 
 	compileKotlin {
 		kotlinOptions {
 			jvmTarget = JavaVersion.VERSION_1_8
 		}
+	}
+
+	compileTestKotlin {
+		sourceCompatibility = JavaVersion.VERSION_1_8
+		targetCompatibility = JavaVersion.VERSION_1_8
+
+		kotlinOptions {
+			jvmTarget = JavaVersion.VERSION_1_8
+		}
+	}
+
+	test {
+		useJUnitPlatform()
 	}
 }
