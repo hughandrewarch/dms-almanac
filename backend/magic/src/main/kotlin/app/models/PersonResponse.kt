@@ -2,7 +2,6 @@ package app.models
 
 import models.Person
 
-//TODO rename response?
-data class PersonPage(
+data class PersonResponse(
         val person: Person
 )

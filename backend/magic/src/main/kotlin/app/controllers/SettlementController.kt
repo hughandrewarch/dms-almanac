@@ -1,7 +1,7 @@
 package app.controllers
 
 import app.services.ApiSettlementService
-import app.models.SettlementPage
+import app.models.SettlementResponse
 import app.models.list.ListItem
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -16,7 +16,7 @@ class SettlementController(private val service: ApiSettlementService) {
     }
 
     @GetMapping("/settlement/{id}")
-    fun settlement(@PathVariable id: Long): SettlementPage {
+    fun settlement(@PathVariable id: Long): SettlementResponse {
         return service.find(id)
     }
 }

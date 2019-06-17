@@ -3,8 +3,7 @@ package app.models
 import app.models.list.ListItem
 import models.Settlement
 
-//TODO rename to response?
-data class SettlementPage(
+data class SettlementResponse(
         val settlement: Settlement,
         var placeList: List<ListItem> = emptyList(),
         var personList: List<ListItem> = emptyList()

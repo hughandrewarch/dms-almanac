@@ -1,7 +1,7 @@
 package app.controllers
 
 import app.services.ApiPersonService
-import app.models.PersonPage
+import app.models.PersonResponse
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 class PersonController(private val service: ApiPersonService) {
 
     @GetMapping("/person/{id}")
-    fun person(@PathVariable id: Long): PersonPage {
+    fun person(@PathVariable id: Long): PersonResponse {
         return service.find(id)
     }
 }

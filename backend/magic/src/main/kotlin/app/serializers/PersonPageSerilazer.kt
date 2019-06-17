@@ -1,12 +1,12 @@
 package app.serializers
 
-import app.models.PersonPage
+import app.models.PersonResponse
 import models.Person
 import org.springframework.stereotype.Component
 
 @Component
-class PersonPageSerializer {
-    fun serialize(person: Person): PersonPage {
-        return PersonPage(person = person)
+class PersonResponseSerializer {
+    fun serialize(person: Person): PersonResponse {
+        return PersonResponse(person = person)
     }
 }

@@ -1,16 +1,16 @@
 package app.services
 
-import app.models.PersonPage
-import app.serializers.PersonPageSerializer
+import app.models.PersonResponse
+import app.serializers.PersonResponseSerializer
 import ports.api.PersonRepository
 import org.springframework.stereotype.Component
 
 @Component
 class ApiPersonService(
-        private val personPageSerializer: PersonPageSerializer,
+        private val personResponseSerializer: PersonResponseSerializer,
         private val personRepository: PersonRepository) {
 
-  fun find(id: Long): PersonPage {
-        return personPageSerializer.serialize(personRepository.find(id))
+  fun find(id: Long): PersonResponse {
+        return personResponseSerializer.serialize(personRepository.find(id))
     }
 }
