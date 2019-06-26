@@ -2,12 +2,12 @@ package app.configurations
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import adapters.FakePersonRepository
-import adapters.FakePlaceRepository
-import adapters.FakeSettlementRepository
-import services.PersonService
-import services.PlaceService
-import services.SettlementService
+import almanac.adapters.persistence.FakePersonRepository
+import almanac.adapters.persistence.FakePlaceRepository
+import almanac.adapters.persistence.FakeSettlementRepository
+import almanac.services.PersonService
+import almanac.services.PlaceService
+import almanac.services.SettlementService
 
 @Configuration
 class DomainServiceConfiguration {

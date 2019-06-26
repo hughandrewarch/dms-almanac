@@ -1,6 +1,6 @@
 package app.models
 
-import models.Person
+import almanac.models.Person
 
 data class PersonResponse(
         val person: Person

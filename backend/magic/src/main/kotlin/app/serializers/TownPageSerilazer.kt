@@ -1,9 +1,9 @@
 package app.serializers
 
 import app.models.SettlementResponse
-import models.Person
-import models.Place
-import models.Settlement
+import almanac.models.Person
+import almanac.models.Place
+import almanac.models.Settlement
 import org.springframework.stereotype.Component
 
 @Component

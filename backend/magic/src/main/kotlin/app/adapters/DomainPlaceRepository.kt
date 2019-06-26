@@ -1,8 +1,8 @@
 package app.adapters
 
-import services.PlaceService
-import models.Place
-import ports.api.PlaceRepository
+import almanac.services.PlaceService
+import almanac.models.Place
+import almanac.ports.api.PlaceRepository
 import org.springframework.stereotype.Component
 
 @Component

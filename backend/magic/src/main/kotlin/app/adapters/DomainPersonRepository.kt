@@ -1,8 +1,8 @@
 package app.adapters
 
-import services.PersonService
-import models.Person
-import ports.api.PersonRepository
+import almanac.services.PersonService
+import almanac.models.Person
+import almanac.ports.api.PersonRepository
 import org.springframework.stereotype.Component
 
 @Component

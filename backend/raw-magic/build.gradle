@@ -7,10 +7,15 @@ buildscript {
 
 	dependencies {
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" // Required for Kotlin integration
-		classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version" // See https://kotlinlang.org/docs/reference/compiler-plugins.html#spring-support
 	}
 }
 
+apply plugin: 'kotlin'
+
+jar { enabled = true }
+
 dependencies {
 	compile project(':domain')
+
+	testCompile project(path: ':domain', configuration: 'contractTest')
 }

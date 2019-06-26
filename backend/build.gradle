@@ -13,7 +13,7 @@ buildscript {
 
 allprojects {
 	apply plugin: 'kotlin' // Required for Kotlin integration
-	
+
 	repositories {
 		jcenter()
 	}
@@ -27,7 +27,14 @@ allprojects {
 		testRuntime("org.junit.jupiter:junit-jupiter-engine:5.4.2")
 	}
 
+	sourceCompatibility = JavaVersion.VERSION_1_8
+	targetCompatibility = JavaVersion.VERSION_1_8
+
 	compileKotlin {
+
+		sourceCompatibility = JavaVersion.VERSION_1_8
+		targetCompatibility = JavaVersion.VERSION_1_8
+
 		kotlinOptions {
 			jvmTarget = JavaVersion.VERSION_1_8
 		}

@@ -5,9 +5,9 @@ import app.serializers.ListSerializer
 import app.serializers.SettlementResponseSerializer
 import app.models.list.ListItem
 import org.springframework.stereotype.Component
-import ports.api.PlaceRepository
-import ports.api.SettlementRepository
-import services.PersonService
+import almanac.ports.api.PlaceRepository
+import almanac.ports.api.SettlementRepository
+import almanac.services.PersonService
 
 @Component
 class ApiSettlementService(

@@ -1,7 +1,7 @@
 package app.serializers
 
 import app.models.PersonResponse
-import models.Person
+import almanac.models.Person
 import org.springframework.stereotype.Component
 
 @Component

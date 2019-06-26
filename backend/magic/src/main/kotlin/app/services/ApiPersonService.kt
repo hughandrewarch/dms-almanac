@@ -2,7 +2,7 @@ package app.services
 
 import app.models.PersonResponse
 import app.serializers.PersonResponseSerializer
-import ports.api.PersonRepository
+import almanac.ports.api.PersonRepository
 import org.springframework.stereotype.Component
 
 @Component

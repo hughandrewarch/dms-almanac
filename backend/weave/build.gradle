@@ -9,24 +9,23 @@ sourceSets {
 }
 
 task contractTestJar(type: Jar) {
+	classifier = 'contractTest'
 	from sourceSets.contractTest.output
 }
 
+configurations {
+	contractTest
+}
+
 artifacts {
-	testCompile contractTestJar
+	contractTest contractTestJar
 }
 
 dependencies {
-	compile 'org.slf4j:slf4j-api:1.7.25'
-
 	contractTestCompile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 
 	contractTestCompile("org.junit.jupiter:junit-jupiter-api:5.4.2")
 	contractTestRuntime("org.junit.jupiter:junit-jupiter-engine:5.4.2")
 
-	contractTestCompile("junit:junit:4.12")
-	contractTestRuntime("org.junit.vintage:junit-vintage-engine:5.4.2")
-
 	contractTestCompile 'org.assertj:assertj-core:3.10.0'
-	contractTestCompile 'javax.transaction:javax.transaction-api:1.2'
 }

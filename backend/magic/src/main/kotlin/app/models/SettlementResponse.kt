@@ -1,7 +1,7 @@
 package app.models
 
 import app.models.list.ListItem
-import models.Settlement
+import almanac.models.Settlement
 
 data class SettlementResponse(
         val settlement: Settlement,

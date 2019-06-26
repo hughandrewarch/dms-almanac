@@ -1,8 +1,8 @@
 package app.adapters
 
-import services.SettlementService
-import models.Settlement
-import ports.api.SettlementRepository
+import almanac.services.SettlementService
+import almanac.models.Settlement
+import almanac.ports.api.SettlementRepository
 import org.springframework.stereotype.Component
 
 @Component
