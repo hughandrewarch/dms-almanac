@@ -1,5 +1,6 @@
 package almanac.adapters.persistence
 
+import almanac.exceptions.PersonNotFoundException
 import almanac.models.Person
 import almanac.models.PersonRelation
 import almanac.models.PersonRelationType
@@ -13,7 +14,7 @@ class FakePersonRepository : PersonRepository {
     private var relations: MutableList<PersonRelation> = mutableListOf()
 
     override fun find(id: Long): Person {
-        return people.first { it.id == id }
+        return people.firstOrNull { it.id == id } ?: throw PersonNotFoundException(id)
     }
 
     override fun findAll(): List<Person> {
@@ -38,9 +39,13 @@ class FakePersonRepository : PersonRepository {
 
         return people.filter { personIds.contains(it.id) }
     }
+
+    fun init() {
+        people = allFullPeople
+    }
 }
 
-val allFullPeople = listOf(
+val allFullPeople = mutableListOf(
         Person(id = 1, name = "controllers a", race = "dwarf", description = "npc a"),
         Person(id = 2, name = "controllers b", race = "elf", description = "npc b"),
         Person(id = 3, name = "controllers c", race = "half-elf", description = "npc c"),

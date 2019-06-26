@@ -1,17 +1,28 @@
 package almanac.adapters.persistence
 
+import almanac.exceptions.PlaceNotFoundException
 import almanac.models.Place
 import almanac.models.PlaceRelation
 import almanac.models.PlaceType
 import almanac.ports.persistence.PlaceRepository
 
 class FakePlaceRepository : PlaceRepository {
+
+    private var places: MutableList<Place> = mutableListOf()
+    private var id = 1L
+
     override fun find(id: Long): Place {
-        return allFullPlaces.first{ it.id == id }
+        return places.firstOrNull { it.id == id } ?: throw PlaceNotFoundException(id)
     }
 
     override fun findAll(): List<Place> {
-        return allFullPlaces
+        return places
+    }
+
+    override fun create(name: String, description: String, type: PlaceType): Place {
+        val place = Place(id++, name, description, type)
+        places.add(place)
+        return place
     }
 
     override fun findAll(settlementId: Long): List<Place> {
@@ -19,11 +30,15 @@ class FakePlaceRepository : PlaceRepository {
                 .filter { it.settlementId == settlementId }
                 .map { it.id }
 
-        return allFullPlaces.filter { placeIds.contains(it.id) }
+        return places.filter { placeIds.contains(it.id) }
+    }
+
+    fun init() {
+        places = allFullPlaces
     }
 }
 
-val allFullPlaces = listOf(
+val allFullPlaces = mutableListOf(
         Place(
                 id = 1,
                 name = "Three Eyed Owls",

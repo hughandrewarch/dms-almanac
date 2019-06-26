@@ -1,7 +1,9 @@
 package almanac.ports.persistence
 
+import almanac.exceptions.PersonNotFoundException
 import almanac.models.Person
 import almanac.models.PersonRelationType
+import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -39,6 +41,16 @@ abstract class PersonRepositoryContractTest {
         assertThat(person).isEqualTo(
                 Person(createdPerson.id, "Lester", "Human", "Dresses as a Rabbit")
         )
+    }
+
+    @Test
+    fun `find throws exception when no person found`() {
+
+        Assertions.assertThatThrownBy {
+            subject.find(-1L)
+        }
+                .isInstanceOf(PersonNotFoundException::class.java)
+                .hasMessageContaining("<-1>")
     }
 
     @Test
