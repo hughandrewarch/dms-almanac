@@ -56,9 +56,7 @@ abstract class PersonRepositoryContractTest {
 
     @Test
     fun `findAll by relation with no relations`() {
-        val person = subject.create("Lester", "Human", "Dresses as a Rabbit")
-
-        val people = subject.findAll(PersonRelationType.DENIZEN, 1L)
+        val people = subject.findAll(PersonRelationType.DENIZEN, -1)
 
         assertThat(people).isEmpty()
     }
