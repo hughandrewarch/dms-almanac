@@ -1,21 +1,35 @@
 package almanac.adapters.persistence
 
+import almanac.exceptions.SettlementNotFoundException
 import almanac.models.Settlement
 import almanac.models.SettlementType
 import almanac.ports.persistence.SettlementRepository
 
 class FakeSettlementRepository : SettlementRepository {
 
+    private var settlements: MutableList<Settlement> = mutableListOf()
+    private var id = 1L
+
     override fun find(id: Long): Settlement {
-        return allFullSettlements.first { it.id == id }
+        return settlements.firstOrNull { it.id == id } ?: throw SettlementNotFoundException(id)
     }
 
     override fun findAll(): List<Settlement> {
-        return allFullSettlements
+        return settlements
+    }
+
+    override fun create(name: String, population: Long, description: String, type: SettlementType): Settlement {
+        val settlement = Settlement(id++, name, population, description, type)
+        settlements.add(settlement)
+        return settlement
+    }
+
+    fun init() {
+        settlements = allFullSettlements
     }
 }
 
-val allFullSettlements = listOf(
+val allFullSettlements = mutableListOf(
         Settlement(
                 id = 1,
                 name = "Hughan",
