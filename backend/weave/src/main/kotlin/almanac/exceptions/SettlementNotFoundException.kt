@@ -1,4 +1,5 @@
 package almanac.exceptions
 
-class SettlementNotFoundException(SettlementId: Long)
-    : RuntimeException("No Settlement found with id <$SettlementId>")
+import almanac.exceptions.base.BaseNotFoundException
+
+class SettlementNotFoundException(settlementId: Long): BaseNotFoundException(settlementId, "settlement")

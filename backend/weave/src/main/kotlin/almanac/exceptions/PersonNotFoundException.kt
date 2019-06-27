@@ -1,4 +1,5 @@
 package almanac.exceptions
 
-class PersonNotFoundException(personId: Long)
-    : RuntimeException("No person found with id <$personId>")
+import almanac.exceptions.base.BaseNotFoundException
+
+class PersonNotFoundException(personId: Long): BaseNotFoundException(personId, "person")
