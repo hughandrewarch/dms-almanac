@@ -1,11 +1,9 @@
 package almanac.services
 
+import almanac.ports.persistence.PlaceRepository
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
-import almanac.models.PersonRelationType
 import org.junit.jupiter.api.Test
-import almanac.ports.persistence.PersonRepository
-import almanac.ports.persistence.PlaceRepository
 
 internal class PlaceServiceTest {
 
