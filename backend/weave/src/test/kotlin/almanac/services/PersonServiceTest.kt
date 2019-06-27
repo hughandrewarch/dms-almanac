@@ -12,6 +12,15 @@ internal class PersonServiceTest {
     private val service = PersonService(repo)
 
     @Test
+    fun find() {
+        val id = 1L
+
+        service.find(id)
+
+        verify(repo).find(id)
+    }
+
+    @Test
     fun listDenizens() {
         val relatedId = 1L
 
