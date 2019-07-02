@@ -1,21 +1,21 @@
 package almanac.services
 
+import almanac.models.PersonRelationType
+import almanac.ports.persistence.PersonRepository
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
-import almanac.models.PersonRelationType
 import org.junit.jupiter.api.Test
-import almanac.ports.persistence.PersonRepository
 
 internal class PersonServiceTest {
 
     private val repo = mock<PersonRepository>()
-    private val service = PersonService(repo)
+    private val subject = PersonService(repo)
 
     @Test
     fun find() {
         val id = 1L
 
-        service.find(id)
+        subject.find(id)
 
         verify(repo).find(id)
     }
@@ -24,7 +24,7 @@ internal class PersonServiceTest {
     fun listDenizens() {
         val relatedId = 1L
 
-        service.listDenizens(relatedId)
+        subject.listDenizens(relatedId)
 
         verify(repo).findAll(PersonRelationType.DENIZEN, relatedId)
     }

@@ -8,13 +8,13 @@ import org.junit.jupiter.api.Test
 internal class PlaceServiceTest {
 
     private val repo = mock<PlaceRepository>()
-    private val service = PlaceService(repo)
+    private val subject = PlaceService(repo)
 
     @Test
     fun findPlace() {
         val settlementId = 1L
 
-        service.findPlaces(settlementId)
+        subject.findPlaces(settlementId)
 
         verify(repo).findAll(settlementId)
     }
