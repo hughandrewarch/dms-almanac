@@ -2,9 +2,9 @@ package app.configurations
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import almanac.adapters.persistence.FakePersonRepository
-import almanac.adapters.persistence.FakePlaceRepository
-import almanac.adapters.persistence.FakeSettlementRepository
+import almanac.adapters.FakePersonRepository
+import almanac.adapters.FakePlaceRepository
+import almanac.adapters.FakeSettlementRepository
 import almanac.services.PersonService
 import almanac.services.PlaceService
 import almanac.services.SettlementService
