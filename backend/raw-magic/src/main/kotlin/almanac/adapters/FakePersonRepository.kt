@@ -1,4 +1,4 @@
-package almanac.adapters.persistence
+package almanac.adapters
 
 import almanac.exceptions.PersonNotFoundException
 import almanac.models.Person
