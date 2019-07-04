@@ -17,7 +17,7 @@ class ApiSettlementService(
         private val placeRepository: PlaceRepository,
         private val personService: PersonService) {
 
-  fun find(id: Long): SettlementResponse {
+    fun find(id: Long): SettlementResponse {
         val settlement = settlementRepository.find(id)
         val placeList = placeRepository.findAll(settlement.id)
         val personList = personService.listDenizens(settlement.id)
