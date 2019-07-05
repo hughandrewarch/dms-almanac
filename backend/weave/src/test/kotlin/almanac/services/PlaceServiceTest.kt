@@ -1,5 +1,6 @@
 package almanac.services
 
+import almanac.models.PlaceType
 import almanac.ports.persistence.PlaceRepository
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
@@ -17,5 +18,12 @@ internal class PlaceServiceTest {
         subject.findPlaces(settlementId)
 
         verify(repo).findAll(settlementId)
+    }
+
+    @Test
+    fun create() {
+        subject.create("Ship Wrecked", "converted ship wreck", PlaceType.TAVERN)
+
+        verify(repo).create("Ship Wrecked", "converted ship wreck", PlaceType.TAVERN)
     }
 }
