@@ -14,16 +14,25 @@ class DomainServiceConfiguration {
 
     @Bean
     fun settlementService(): SettlementService {
-        return SettlementService(FakeSettlementRepository())
+        val settlementRepo = FakeSettlementRepository()
+        settlementRepo.init()
+
+        return SettlementService(settlementRepo)
     }
 
     @Bean
     fun placeService(): PlaceService {
-        return PlaceService(FakePlaceRepository())
+        val placeRepo = FakePlaceRepository()
+        placeRepo.init()
+
+        return PlaceService(placeRepo)
     }
 
     @Bean
     fun personService(): PersonService {
-        return PersonService(FakePersonRepository())
+        val personRepo = FakePersonRepository()
+        personRepo.init()
+
+        return PersonService(personRepo)
     }
 }
