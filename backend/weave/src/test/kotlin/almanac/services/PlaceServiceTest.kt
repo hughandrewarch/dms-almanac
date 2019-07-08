@@ -12,18 +12,25 @@ internal class PlaceServiceTest {
     private val subject = PlaceService(repo)
 
     @Test
+    fun create() {
+        subject.create("Ship Wrecked", "converted ship wreck", PlaceType.TAVERN)
+
+        verify(repo).create("Ship Wrecked", "converted ship wreck", PlaceType.TAVERN)
+    }
+
+    @Test
+    fun createRelation() {
+        subject.createRelation(1L, 2L)
+
+        verify(repo).createRelation(1L, 2L)
+    }
+
+    @Test
     fun findPlace() {
         val settlementId = 1L
 
         subject.findPlaces(settlementId)
 
         verify(repo).findAll(settlementId)
-    }
-
-    @Test
-    fun create() {
-        subject.create("Ship Wrecked", "converted ship wreck", PlaceType.TAVERN)
-
-        verify(repo).create("Ship Wrecked", "converted ship wreck", PlaceType.TAVERN)
     }
 }
