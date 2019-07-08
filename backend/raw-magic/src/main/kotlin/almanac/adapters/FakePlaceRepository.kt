@@ -7,10 +7,10 @@ import almanac.models.PlaceType
 import almanac.ports.persistence.PlaceRepository
 
 class FakePlaceRepository : PlaceRepository {
-
     private var places: MutableList<Place> = mutableListOf()
-    private var id = 1L
+    private var relations: MutableList<PlaceRelation> = mutableListOf()
 
+    private var id = 1L
     override fun find(id: Long): Place {
         return places.firstOrNull { it.id == id } ?: throw PlaceNotFoundException(id)
     }
@@ -25,8 +25,12 @@ class FakePlaceRepository : PlaceRepository {
         return place
     }
 
+    override fun createRelation(id: Long, settlementId: Long) {
+        relations.add(PlaceRelation(id, settlementId))
+    }
+
     override fun findAll(settlementId: Long): List<Place> {
-        val placeIds = placeRelation
+        val placeIds = relations
                 .filter { it.settlementId == settlementId }
                 .map { it.id }
 
@@ -35,6 +39,7 @@ class FakePlaceRepository : PlaceRepository {
 
     fun init() {
         places = allFullPlaces
+        relations = placeRelations
     }
 }
 
@@ -76,7 +81,7 @@ val allFullPlaces = mutableListOf(
                 type = PlaceType.TAVERN)
 )
 
-val placeRelation = listOf(
+val placeRelations = mutableListOf(
         PlaceRelation(id = 1, settlementId = 1),
         PlaceRelation(id = 2, settlementId = 1),
         PlaceRelation(id = 3, settlementId = 1),

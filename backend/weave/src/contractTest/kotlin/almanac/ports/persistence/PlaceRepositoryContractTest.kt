@@ -6,6 +6,7 @@ import almanac.models.PlaceType
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
 abstract class PlaceRepositoryContractTest {
@@ -65,30 +66,44 @@ abstract class PlaceRepositoryContractTest {
                 .hasMessageContaining("<-1>")
     }
 
-    @Test
-    fun findAll() {
-        val place1 = subject.create(
-                "Drunken Dancer",
-                "tavern with live music and dancing",
-                PlaceType.TAVERN)
-        val place2 = subject.create(
-                "Two Legged Barstool",
-                "enchanters shop",
-                PlaceType.SHOP)
+    @Nested
+    inner class findAll() {
 
-        val people = subject.findAll()
+        private lateinit var place1: Place
+        private lateinit var place2: Place
 
-        assertThat(people).containsExactlyInAnyOrder(
-                Place(
-                        place1.id,
-                        "Drunken Dancer",
-                        "tavern with live music and dancing",
-                        PlaceType.TAVERN),
-                Place(
-                        place2.id,
-                        "Two Legged Barstool",
-                        "enchanters shop",
-                        PlaceType.SHOP)
-        )
+        @BeforeEach
+        fun setup() {
+            place1 = subject.create("Drunken Dancer", "tavern with live music and dancing", PlaceType.TAVERN)
+            place2 = subject.create("Two Legged Barstool", "enchanters shop", PlaceType.SHOP)
+        }
+
+        @Test
+        fun `findAll without settlement id`() {
+            val people = subject.findAll()
+
+            assertThat(people).containsExactlyInAnyOrder(
+                    place1, place2
+            )
+        }
+
+        @Test
+        fun `findAll with settlement id and no relations should return empty list`() {
+            val people = subject.findAll(1L)
+
+            assertThat(people).isEmpty()
+        }
+
+        @Test
+        fun `findAll with settlement id and relations should return list of places`() {
+            subject.createRelation(place1.id, 1L)
+
+            val people = subject.findAll(1L)
+
+            assertThat(people).containsExactlyInAnyOrder(
+                    place1
+            )
+        }
     }
+
 }
