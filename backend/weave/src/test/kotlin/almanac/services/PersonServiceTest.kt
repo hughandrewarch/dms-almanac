@@ -12,6 +12,13 @@ internal class PersonServiceTest {
     private val subject = PersonService(repo)
 
     @Test
+    fun create() {
+        subject.create("Lombeau", "Human", "Wandering Fancyman")
+
+        verify(repo).create("Lombeau", "Human", "Wandering Fancyman")
+    }
+
+    @Test
     fun find() {
         val id = 1L
 
