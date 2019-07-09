@@ -8,6 +8,10 @@ import org.springframework.stereotype.Component
 @Component
 class DomainPersonRepository(private val service: PersonService): PersonRepository {
 
+    override fun create(name: String, race: String, description: String): Person {
+        return service.create(name, race, description)
+    }
+
     override fun find(id: Long): Person {
         return service.find(id)
     }
