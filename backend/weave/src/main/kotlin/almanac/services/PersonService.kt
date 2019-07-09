@@ -7,7 +7,11 @@ import almanac.models.PersonRelationType
 class PersonService(private val personRepository: PersonRepository) {
 
     fun create(name: String, race: String, description: String): Person {
-        return  personRepository.create(name, race, description)
+        return personRepository.create(name, race, description)
+    }
+
+    fun createRelation(id: Long, relation: PersonRelationType, relationId: Long): Boolean {
+        return personRepository.createRelation(id, relation, relationId)
     }
 
     fun find(id: Long): Person {

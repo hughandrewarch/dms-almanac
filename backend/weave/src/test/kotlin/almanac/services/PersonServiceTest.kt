@@ -19,6 +19,13 @@ internal class PersonServiceTest {
     }
 
     @Test
+    fun createRelation() {
+        subject.createRelation(1L, PersonRelationType.WORKER, 2L)
+
+        verify(repo).createRelation(1L, PersonRelationType.WORKER, 2L)
+    }
+
+    @Test
     fun find() {
         val id = 1L
 
