@@ -2,9 +2,11 @@ package almanac.ports.api
 
 import almanac.exceptions.PersonNotFoundException
 import almanac.models.Person
+import almanac.models.PersonRelationType
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
 abstract class PersonRepositoryContractTest {
@@ -30,22 +32,61 @@ abstract class PersonRepositoryContractTest {
                         "id")
     }
 
-    @Test
-    fun `find returns a found person`() {
-        val created = subject.create("Lombeau", "Human", "Wandering fancyman")
+    @Nested
+    inner class find() {
 
-        val person = subject.find(created.id)
+        @Test
+        fun `it should throw an exception when no person found`() {
 
-        assertThat(created).isEqualTo(person)
+            assertThatThrownBy {
+                subject.find(-1)
+            }
+                    .isInstanceOf(PersonNotFoundException::class.java)
+                    .hasMessageContaining("<-1>")
+        }
+
+        @Test
+        fun `it should return a found person`() {
+            val created = subject.create("Lombeau", "Human", "Wandering fancyman")
+
+            val person = subject.find(created.id)
+
+            assertThat(created).isEqualTo(person)
+        }
     }
 
-    @Test
-    fun `find throws an exception when no person found`() {
+    @Nested
+    inner class findAll() {
 
-        assertThatThrownBy {
-            subject.find(-1)
+        private lateinit var person1: Person
+        private lateinit var person2: Person
+        private lateinit var person3: Person
+
+        @BeforeEach
+        fun setup() {
+            person1 = subject.create("Lombeau", "Human", "Wandering fancyman")
+            person2 = subject.create("Lester", "Human", "Dresses as a Rabbit")
+            person3 = subject.create("Rita", "Tiefling", "Guild Steward")
         }
-                .isInstanceOf(PersonNotFoundException::class.java)
-                .hasMessageContaining("<-1>")
+
+        @Test
+        fun `it should return empty if no denizens found`() {
+            val people = subject.listDenizens(-1)
+
+            assertThat(people).isEmpty()
+        }
+
+        @Test
+        fun `it should list of matching denizens`() {
+            subject.createRelation(person1.id, PersonRelationType.DENIZEN, 1L)
+            subject.createRelation(person2.id, PersonRelationType.DENIZEN, 2L)
+            subject.createRelation(person3.id, PersonRelationType.DENIZEN, 1L)
+
+            val people = subject.listDenizens(1L)
+
+            assertThat(people).containsExactlyInAnyOrder(
+                    person1, person3
+            )
+        }
     }
 }

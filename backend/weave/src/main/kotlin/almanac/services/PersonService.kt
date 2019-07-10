@@ -10,8 +10,8 @@ class PersonService(private val personRepository: PersonRepository) {
         return personRepository.create(name, race, description)
     }
 
-    fun createRelation(id: Long, relation: PersonRelationType, relationId: Long): Boolean {
-        return personRepository.createRelation(id, relation, relationId)
+    fun createRelation(id: Long, relation: PersonRelationType, relationId: Long) {
+        personRepository.createRelation(id, relation, relationId)
     }
 
     fun find(id: Long): Person {

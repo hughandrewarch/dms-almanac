@@ -6,6 +6,6 @@ import almanac.models.PersonRelationType
 
 interface PersonRepository: BaseRepository<Person> {
     fun create(name: String, race: String, description: String): Person
-    fun createRelation(id: Long, relation: PersonRelationType, relationId: Long): Boolean
+    fun createRelation(id: Long, relation: PersonRelationType, relationId: Long)
     fun findAll(relation: PersonRelationType, relatedId: Long): List<Person>
 }

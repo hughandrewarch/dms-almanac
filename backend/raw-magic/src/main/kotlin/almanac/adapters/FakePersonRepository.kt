@@ -27,8 +27,8 @@ class FakePersonRepository : PersonRepository {
         return person
     }
 
-    override fun createRelation(id: Long, relation: PersonRelationType, relationId: Long): Boolean {
-       return relations.add(PersonRelation(id, relation, relationId))
+    override fun createRelation(id: Long, relation: PersonRelationType, relationId: Long) {
+       relations.add(PersonRelation(id, relation, relationId))
     }
 
     override fun findAll(relation: PersonRelationType, relatedId: Long): List<Person> {

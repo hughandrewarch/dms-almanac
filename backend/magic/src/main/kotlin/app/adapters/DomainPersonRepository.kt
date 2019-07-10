@@ -2,14 +2,18 @@ package app.adapters
 
 import almanac.services.PersonService
 import almanac.models.Person
+import almanac.models.PersonRelationType
 import almanac.ports.api.PersonRepository
 import org.springframework.stereotype.Component
 
 @Component
 class DomainPersonRepository(private val service: PersonService): PersonRepository {
-
     override fun create(name: String, race: String, description: String): Person {
         return service.create(name, race, description)
+    }
+
+    override fun createRelation(id: Long, relationType: PersonRelationType, relatedId: Long) {
+        service.createRelation(id, relationType, relatedId)
     }
 
     override fun find(id: Long): Person {
