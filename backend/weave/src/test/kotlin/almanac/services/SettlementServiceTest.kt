@@ -1,5 +1,6 @@
 package almanac.services
 
+import almanac.models.SettlementType
 import almanac.ports.persistence.SettlementRepository
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
@@ -9,6 +10,13 @@ internal class SettlementServiceTest {
 
     private val repo = mock<SettlementRepository>()
     private val subject = SettlementService(repo)
+
+    @Test
+    fun create() {
+        subject.create("name", 300, "description", SettlementType.CITY)
+
+        verify(repo).create("name", 300, "description", SettlementType.CITY)
+    }
 
     @Test
     fun find() {
