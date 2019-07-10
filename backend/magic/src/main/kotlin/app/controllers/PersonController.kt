@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class PersonController(private val service: ApiPersonService) {
 
+    //TODO add tests
     @GetMapping("/person/{id}")
     fun person(@PathVariable id: Long): PersonResponse {
         return service.find(id)

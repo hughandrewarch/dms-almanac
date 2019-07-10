@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class SettlementController(private val service: ApiSettlementService) {
 
+    //TODO add tests
     @GetMapping("/settlements")
     fun settlements(): List<ListItem> {
         return service.findAll()
