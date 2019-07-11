@@ -1,12 +1,10 @@
 package app.serializers
 
 import almanac.models.*
-import app.models.SettlementResponse
+import almanac.models.Person
 import app.models.list.ListItem
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 
 internal class SettlementResponseSerializerTest {
 

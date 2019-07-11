@@ -1,6 +1,7 @@
 package app.services
 
 import almanac.models.*
+import almanac.models.Person
 import almanac.ports.api.PlaceRepository
 import almanac.ports.api.SettlementRepository
 import almanac.services.PersonService

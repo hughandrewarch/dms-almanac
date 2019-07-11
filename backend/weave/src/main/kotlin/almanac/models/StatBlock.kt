@@ -1,9 +1,18 @@
 package almanac.models
 
 data class StatBlock(
-        val id: Long,
+        val personId: Long,
         val abilityScores: Map<Ability, Int> = default
-)
+) {
+    companion object {
+        fun of(personId: Long, str: Int = 10, dex: Int = 10, con: Int = 10, int: Int = 10, wis: Int = 10, cha: Int = 10): StatBlock {
+            return StatBlock(
+                    personId,
+                    mapOf(Pair(Ability.STR, str), Pair(Ability.DEX, dex), Pair(Ability.CON, con), Pair(Ability.INT, int), Pair(Ability.WIS, wis), Pair(Ability.CHA, cha))
+            )
+        }
+    }
+}
 
 enum class Ability {
     STR, DEX, CON, INT, WIS, CHA

@@ -1,6 +1,7 @@
 package app.serializers
 
 import almanac.models.*
+import almanac.models.Person
 import app.models.list.ListItem
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Nested
