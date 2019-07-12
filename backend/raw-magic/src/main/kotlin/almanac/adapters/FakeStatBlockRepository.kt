@@ -29,4 +29,7 @@ class FakeStatBlockRepository : StatBlockRepository {
     override fun find(personId: Long): StatBlock {
         return statBlocks.firstOrNull { it.personId == personId } ?: throw StatBlockNotFoundException(personId)
     }
+
+    fun init() {
+    }
 }

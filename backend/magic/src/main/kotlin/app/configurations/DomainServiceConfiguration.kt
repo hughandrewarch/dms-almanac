@@ -5,13 +5,16 @@ import org.springframework.context.annotation.Configuration
 import almanac.adapters.FakePersonRepository
 import almanac.adapters.FakePlaceRepository
 import almanac.adapters.FakeSettlementRepository
+import almanac.adapters.FakeStatBlockRepository
 import almanac.services.PersonService
 import almanac.services.PlaceService
 import almanac.services.SettlementService
+import almanac.services.StatBlockService
 
 @Configuration
 class DomainServiceConfiguration {
 
+    //TODO try to move these out of api layer
     @Bean
     fun settlementService(): SettlementService {
         val settlementRepo = FakeSettlementRepository()
@@ -34,5 +37,13 @@ class DomainServiceConfiguration {
         personRepo.init()
 
         return PersonService(personRepo)
+    }
+
+    @Bean
+    fun statBlockService(): StatBlockService {
+        val statBlockRepo = FakeStatBlockRepository()
+        statBlockRepo.init()
+
+        return StatBlockService(statBlockRepo)
     }
 }
