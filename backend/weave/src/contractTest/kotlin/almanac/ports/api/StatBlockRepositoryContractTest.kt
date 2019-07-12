@@ -1,8 +1,7 @@
-package almanac.ports.persistence
+package almanac.ports.api
 
 import almanac.exceptions.StatBlockExistsException
 import almanac.exceptions.StatBlockNotFoundException
-import almanac.models.Ability
 import almanac.models.StatBlock
 import almanac.utils.AbilityScore
 import org.assertj.core.api.Assertions.assertThat

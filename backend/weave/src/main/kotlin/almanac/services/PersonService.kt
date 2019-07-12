@@ -4,6 +4,10 @@ import almanac.models.Person
 import almanac.ports.persistence.PersonRepository
 import almanac.models.PersonRelationType
 
+//TODO: Move out to own module?
+//api -- service -- persistence
+//         |
+//       domain
 class PersonService(private val personRepository: PersonRepository) {
 
     fun create(name: String, race: String, description: String): Person {
