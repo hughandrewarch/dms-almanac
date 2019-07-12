@@ -1,6 +1,7 @@
 package almanac.ports.persistence
 
-import almanac.exceptions.StatblockNotFoundException
+import almanac.exceptions.StatBlockExistsException
+import almanac.exceptions.StatBlockNotFoundException
 import almanac.models.Ability
 import almanac.models.StatBlock
 import org.assertj.core.api.Assertions.assertThat
@@ -40,6 +41,17 @@ abstract class StatBlockRepositoryContractTest {
             )
 
         }
+
+        @Test
+        fun `create should throw a statblock exists exception when a stat block exists for that person`() {
+            subject.create(1L)
+
+            assertThatThrownBy {
+                subject.create(1L)
+            }
+                    .isInstanceOf(StatBlockExistsException::class.java)
+                    .hasMessageContaining("<1>")
+        }
     }
 
     @Nested
@@ -51,7 +63,7 @@ abstract class StatBlockRepositoryContractTest {
             assertThatThrownBy {
                 subject.find(-1L)
             }
-                    .isInstanceOf(StatblockNotFoundException::class.java)
+                    .isInstanceOf(StatBlockNotFoundException::class.java)
                     .hasMessageContaining("<-1>")
         }
 
