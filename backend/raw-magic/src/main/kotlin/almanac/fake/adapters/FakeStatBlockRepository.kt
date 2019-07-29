@@ -1,4 +1,4 @@
-package almanac.adapters
+package almanac.fake.adapters
 
 import almanac.exceptions.StatBlockExistsException
 import almanac.exceptions.StatBlockNotFoundException

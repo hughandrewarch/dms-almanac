@@ -1,6 +1,6 @@
 package app.adapters
 
-import almanac.adapters.FakePersonRepository
+import almanac.fake.adapters.FakePersonRepository
 import almanac.ports.api.PersonRepository
 import almanac.ports.api.PersonRepositoryContractTest
 import almanac.services.PersonService

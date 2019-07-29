@@ -1,4 +1,4 @@
-package almanac.adapters
+package almanac.fake.adapters
 
 import almanac.ports.persistence.PlaceRepository
 import almanac.ports.persistence.PlaceRepositoryContractTest

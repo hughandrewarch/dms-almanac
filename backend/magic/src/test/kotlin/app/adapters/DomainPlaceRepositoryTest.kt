@@ -1,6 +1,6 @@
 package app.adapters
 
-import almanac.adapters.FakePlaceRepository
+import almanac.fake.adapters.FakePlaceRepository
 import almanac.ports.api.PlaceRepository
 import almanac.ports.api.PlaceRepositoryContractTest
 import almanac.services.PlaceService

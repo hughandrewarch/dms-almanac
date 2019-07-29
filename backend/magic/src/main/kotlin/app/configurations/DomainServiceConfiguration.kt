@@ -2,10 +2,10 @@ package app.configurations
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import almanac.adapters.FakePersonRepository
-import almanac.adapters.FakePlaceRepository
-import almanac.adapters.FakeSettlementRepository
-import almanac.adapters.FakeStatBlockRepository
+import almanac.fake.adapters.FakePersonRepository
+import almanac.fake.adapters.FakePlaceRepository
+import almanac.fake.adapters.FakeSettlementRepository
+import almanac.fake.adapters.FakeStatBlockRepository
 import almanac.services.PersonService
 import almanac.services.PlaceService
 import almanac.services.SettlementService

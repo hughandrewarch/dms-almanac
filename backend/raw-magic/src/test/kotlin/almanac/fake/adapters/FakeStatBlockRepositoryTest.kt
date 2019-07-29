@@ -1,7 +1,7 @@
-package almanac.adapters
+package almanac.fake.adapters
 
-import almanac.ports.persistence.StatBlockRepositoryContractTest
 import almanac.ports.persistence.StatBlockRepository
+import almanac.ports.persistence.StatBlockRepositoryContractTest
 
 class FakeStatBlockRepositoryTest: StatBlockRepositoryContractTest() {
 

@@ -1,6 +1,6 @@
 package app.adapters
 
-import almanac.adapters.FakeStatBlockRepository
+import almanac.fake.adapters.FakeStatBlockRepository
 import almanac.ports.api.StatBlockRepository
 import almanac.ports.api.StatBlockRepositoryContractTest
 import almanac.services.StatBlockService

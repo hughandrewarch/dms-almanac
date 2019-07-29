@@ -1,4 +1,4 @@
-package almanac.adapters
+package almanac.fake.adapters
 
 import almanac.exceptions.PersonNotFoundException
 import almanac.models.Person
@@ -39,6 +39,8 @@ class FakePersonRepository : PersonRepository {
 
         return people.filter { personIds.contains(it.id) }
     }
+
+    override fun clear() {}
 
     fun init() {
         people = allFullPeople

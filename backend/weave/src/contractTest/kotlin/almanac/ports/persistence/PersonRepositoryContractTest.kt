@@ -14,6 +14,9 @@ abstract class PersonRepositoryContractTest {
     @BeforeEach
     fun setUp() {
         subject = buildSubject()
+
+        //TODO temp, figure out way to clear between all tests
+        subject.clear()
     }
 
     abstract fun buildSubject(): PersonRepository
