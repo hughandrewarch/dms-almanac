@@ -1,21 +1,21 @@
 package almanac.jdbc.adapters
 
+import almanac.DatabaseDependencyLoader
 import almanac.ports.persistence.PersonRepository
 import almanac.ports.persistence.PersonRepositoryContractTest
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.jdbc.core.JdbcTemplate
-import org.springframework.jdbc.datasource.DriverManagerDataSource
-import org.springframework.stereotype.Component
+import org.springframework.test.context.ActiveProfiles
 
-@Component
+@ActiveProfiles(profiles = ["test"])
+@SpringBootTest(classes = [DatabaseDependencyLoader::class])
 class JdbcPersonRepositoryTest : PersonRepositoryContractTest() {
 
+    @Autowired
+    private lateinit var jdbcTemplate: JdbcTemplate
+
     override fun buildSubject(): PersonRepository {
-        val dataSourceLoc = DriverManagerDataSource()
-
-        dataSourceLoc.url = "jdbc:mysql://localhost/raw_magic"
-        dataSourceLoc.username = "root"
-        dataSourceLoc.password = ""
-
-        return JdbcPersonRepository(JdbcTemplate(dataSourceLoc))
+        return JdbcPersonRepository(jdbcTemplate)
     }
 }
