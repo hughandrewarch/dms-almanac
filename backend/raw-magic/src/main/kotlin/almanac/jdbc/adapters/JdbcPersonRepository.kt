@@ -14,21 +14,14 @@ import org.springframework.jdbc.support.KeyHolder
 
 class JdbcPersonRepository(private val jdbcTemplate: JdbcTemplate) : PersonRepository {
 
-    private var people: MutableList<Person> = mutableListOf()
+    //TODO make db
     private var relations: MutableList<PersonRelation> = mutableListOf()
 
     override fun find(id: Long): Person {
         try {
             return jdbcTemplate.queryForObject(
                     """select id, name, race, description from person where id = ?""",
-                    RowMapper { rs, _ ->
-                        Person(
-                                id = rs.getLong("id"),
-                                name = rs.getString("name"),
-                                race = rs.getString("race"),
-                                description = rs.getString("description")
-                        )
-                    },
+                    mapper,
                     id
             )!!
             //TODO maybe move try catch up?
@@ -40,14 +33,7 @@ class JdbcPersonRepository(private val jdbcTemplate: JdbcTemplate) : PersonRepos
     override fun findAll(): List<Person> {
         return jdbcTemplate.query(
                 """select id, name, race, description from person""",
-                RowMapper { rs, _ ->
-                    Person(
-                            id = rs.getLong("id"),
-                            name = rs.getString("name"),
-                            race = rs.getString("race"),
-                            description = rs.getString("description")
-                    )
-                }
+                mapper
         )
     }
 
@@ -76,20 +62,10 @@ class JdbcPersonRepository(private val jdbcTemplate: JdbcTemplate) : PersonRepos
         relations.add(PersonRelation(id, relation, relationId))
     }
 
-    //TODO relation, also match with line 35
+    //TODO query with relation
     override fun findAll(relation: PersonRelationType, relatedId: Long): List<Person> {
 
-        val people = jdbcTemplate.query(
-                """select id, name, race, description from person""",
-                RowMapper { rs, _ ->
-                    Person(
-                            id = rs.getLong("id"),
-                            name = rs.getString("name"),
-                            race = rs.getString("race"),
-                            description = rs.getString("description")
-                    )
-                }
-        )
+        val people = findAll()
 
         val personIds = relations
                 .filter {
@@ -99,37 +75,16 @@ class JdbcPersonRepository(private val jdbcTemplate: JdbcTemplate) : PersonRepos
         return people.filter { personIds.contains(it.id) }
     }
 
-    fun init() {
-        people = allFullPeople
-    }
-
     override fun clear() {
         jdbcTemplate.update("""delete from person""")
     }
 }
 
-val allFullPeople = mutableListOf(
-        Person(id = 1, name = "controllers a", race = "dwarf", description = "npc a"),
-        Person(id = 2, name = "controllers b", race = "elf", description = "npc b"),
-        Person(id = 3, name = "controllers c", race = "half-elf", description = "npc c"),
-        Person(id = 4, name = "controllers d", race = "tiefling", description = "npc d"),
-        Person(id = 5, name = "controllers e", race = "human", description = "npc e"),
-        Person(id = 6, name = "controllers f", race = "human", description = "npc f"),
-        Person(id = 7, name = "controllers g", race = "dragonborn", description = "npc g"),
-        Person(id = 8, name = "controllers h", race = "dwarf", description = "npc h"),
-        Person(id = 9, name = "controllers i", race = "dwarf", description = "npc i"),
-        Person(id = 10, name = "controllers j", race = "dwarf", description = "npc j")
-)
-
-val personListCon = listOf(
-        PersonRelation(id = 1, relation = PersonRelationType.DENIZEN, relationId = 1),
-        PersonRelation(id = 2, relation = PersonRelationType.DENIZEN, relationId = 1),
-        PersonRelation(id = 3, relation = PersonRelationType.DENIZEN, relationId = 2),
-        PersonRelation(id = 4, relation = PersonRelationType.DENIZEN, relationId = 2),
-        PersonRelation(id = 5, relation = PersonRelationType.DENIZEN, relationId = 2),
-        PersonRelation(id = 6, relation = PersonRelationType.DENIZEN, relationId = 3),
-        PersonRelation(id = 7, relation = PersonRelationType.DENIZEN, relationId = 4),
-        PersonRelation(id = 8, relation = PersonRelationType.DENIZEN, relationId = 4),
-        PersonRelation(id = 9, relation = PersonRelationType.MEMBER, relationId = 1),
-        PersonRelation(id = 10, relation = PersonRelationType.OWNER, relationId = 1)
-)
+private val mapper = RowMapper { rs, _ ->
+    Person(
+            id = rs.getLong("id"),
+            name = rs.getString("name"),
+            race = rs.getString("race"),
+            description = rs.getString("description")
+    )
+}
