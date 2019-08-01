@@ -3,7 +3,6 @@ package almanac.jdbc.adapters
 import almanac.exceptions.PersonNotFoundException
 import almanac.jdbc.util.preparedStatementCreator
 import almanac.models.Person
-import almanac.models.PersonRelation
 import almanac.models.PersonRelationType
 import almanac.ports.persistence.PersonRepository
 import org.springframework.dao.EmptyResultDataAccessException
@@ -13,9 +12,6 @@ import org.springframework.jdbc.support.GeneratedKeyHolder
 import org.springframework.jdbc.support.KeyHolder
 
 class JdbcPersonRepository(private val jdbcTemplate: JdbcTemplate) : PersonRepository {
-
-    //TODO make db
-    private var relations: MutableList<PersonRelation> = mutableListOf()
 
     override fun find(id: Long): Person {
         try {
@@ -54,7 +50,7 @@ class JdbcPersonRepository(private val jdbcTemplate: JdbcTemplate) : PersonRepos
 
         val id = keyHolder.key!!.toLong()
 
-        return Person(id, name, race, description)
+        return find(id)
     }
 
     override fun createRelation(personId: Long, relation: PersonRelationType, relationId: Long) {

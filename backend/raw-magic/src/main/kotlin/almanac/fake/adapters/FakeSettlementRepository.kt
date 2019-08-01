@@ -6,10 +6,9 @@ import almanac.models.SettlementType
 import almanac.ports.persistence.SettlementRepository
 
 class FakeSettlementRepository : SettlementRepository {
-
     private var settlements: MutableList<Settlement> = mutableListOf()
-    private var id = 1L
 
+    private var id = 1L
     override fun find(id: Long): Settlement {
         return settlements.firstOrNull { it.id == id } ?: throw SettlementNotFoundException(id)
     }
@@ -22,6 +21,9 @@ class FakeSettlementRepository : SettlementRepository {
         val settlement = Settlement(id++, name, population, description, type)
         settlements.add(settlement)
         return settlement
+    }
+
+    override fun clear() {
     }
 
     fun init() {

@@ -14,6 +14,8 @@ abstract class SettlementRepositoryContractTest {
     @BeforeEach
     fun setUp() {
         subject = buildSubject()
+
+        subject.clear()
     }
 
     abstract fun buildSubject(): SettlementRepository
