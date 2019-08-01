@@ -27,15 +27,15 @@ class FakePersonRepository : PersonRepository {
         return person
     }
 
-    override fun createRelation(id: Long, relation: PersonRelationType, relationId: Long) {
-       relations.add(PersonRelation(id, relation, relationId))
+    override fun createRelation(personId: Long, relation: PersonRelationType, relationId: Long) {
+       relations.add(PersonRelation(personId, relation, relationId))
     }
 
     override fun findAll(relation: PersonRelationType, relatedId: Long): List<Person> {
         val personIds = relations
                 .filter {
                     it.relation == relation && it.relationId == relatedId
-                }.map { it.id }
+                }.map { it.personId }
 
         return people.filter { personIds.contains(it.id) }
     }
@@ -44,6 +44,7 @@ class FakePersonRepository : PersonRepository {
 
     fun init() {
         people = allFullPeople
+        relations = personListCon.toMutableList()
     }
 }
 
@@ -61,14 +62,14 @@ val allFullPeople = mutableListOf(
 )
 
 val personListCon = listOf(
-        PersonRelation(id = 1, relation = PersonRelationType.DENIZEN, relationId = 1),
-        PersonRelation(id = 2, relation = PersonRelationType.DENIZEN, relationId = 1),
-        PersonRelation(id = 3, relation = PersonRelationType.DENIZEN, relationId = 2),
-        PersonRelation(id = 4, relation = PersonRelationType.DENIZEN, relationId = 2),
-        PersonRelation(id = 5, relation = PersonRelationType.DENIZEN, relationId = 2),
-        PersonRelation(id = 6, relation = PersonRelationType.DENIZEN, relationId = 3),
-        PersonRelation(id = 7, relation = PersonRelationType.DENIZEN, relationId = 4),
-        PersonRelation(id = 8, relation = PersonRelationType.DENIZEN, relationId = 4),
-        PersonRelation(id = 9, relation = PersonRelationType.MEMBER, relationId = 1),
-        PersonRelation(id = 10, relation = PersonRelationType.OWNER, relationId = 1)
+        PersonRelation(personId = 1, relation = PersonRelationType.DENIZEN, relationId = 1),
+        PersonRelation(personId = 2, relation = PersonRelationType.DENIZEN, relationId = 1),
+        PersonRelation(personId = 3, relation = PersonRelationType.DENIZEN, relationId = 2),
+        PersonRelation(personId = 4, relation = PersonRelationType.DENIZEN, relationId = 2),
+        PersonRelation(personId = 5, relation = PersonRelationType.DENIZEN, relationId = 2),
+        PersonRelation(personId = 6, relation = PersonRelationType.DENIZEN, relationId = 3),
+        PersonRelation(personId = 7, relation = PersonRelationType.DENIZEN, relationId = 4),
+        PersonRelation(personId = 8, relation = PersonRelationType.DENIZEN, relationId = 4),
+        PersonRelation(personId = 9, relation = PersonRelationType.MEMBER, relationId = 1),
+        PersonRelation(personId = 10, relation = PersonRelationType.OWNER, relationId = 1)
 )

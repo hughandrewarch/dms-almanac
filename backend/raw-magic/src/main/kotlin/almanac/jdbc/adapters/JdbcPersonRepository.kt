@@ -57,24 +57,37 @@ class JdbcPersonRepository(private val jdbcTemplate: JdbcTemplate) : PersonRepos
         return Person(id, name, race, description)
     }
 
-    override fun createRelation(id: Long, relation: PersonRelationType, relationId: Long) {
-        relations.add(PersonRelation(id, relation, relationId))
+    override fun createRelation(personId: Long, relation: PersonRelationType, relationId: Long) {
+
+        jdbcTemplate.update(preparedStatementCreator("""
+                insert into person_relation (person_id, relation, relation_id)
+                values 
+                (?, ?, ?)
+            """
+        ) { ps ->
+            ps.setLong(1, personId)
+            ps.setString(2, relation.toString())
+            ps.setLong(3, relationId)
+        })
     }
 
-    //TODO query with relation
     override fun findAll(relation: PersonRelationType, relatedId: Long): List<Person> {
 
-        val people = findAll()
-
-        val personIds = relations
-                .filter {
-                    it.relation == relation && it.relationId == relatedId
-                }.map { it.id }
-
-        return people.filter { personIds.contains(it.id) }
+        return jdbcTemplate.query(preparedStatementCreator("""
+                select p.id, name, race, description
+                from person p, person_relation pr
+                where p.id = pr.person_id 
+                and pr.relation = ? 
+                and pr.relation_id = ?
+                """.trimMargin()
+        ) { ps ->
+            ps.setString(1, relation.toString())
+            ps.setLong(2, relatedId)
+        }, mapper)
     }
 
     override fun clear() {
+        jdbcTemplate.update("""delete from person_relation""")
         jdbcTemplate.update("""delete from person""")
     }
 }

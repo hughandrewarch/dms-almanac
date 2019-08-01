@@ -8,7 +8,7 @@ data class Person(
 )
 
 data class PersonRelation(
-        val id: Long,
+        val personId: Long,
         val relation: PersonRelationType,
         val relationId: Long
         )
