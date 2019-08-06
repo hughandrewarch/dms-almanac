@@ -3,6 +3,8 @@ package almanac.ports.persistence
 import almanac.exceptions.PlaceNotFoundException
 import almanac.models.Place
 import almanac.models.PlaceType
+import almanac.models.Settlement
+import almanac.models.SettlementType
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.BeforeEach
@@ -11,10 +13,13 @@ import org.junit.jupiter.api.Test
 
 abstract class PlaceRepositoryContractTest {
     private lateinit var subject: PlaceRepository
+    private lateinit var settlementRepository: SettlementRepository
 
     @BeforeEach
     fun setUp() {
         subject = buildSubject()
+        settlementRepository = buildSettlementRepository()
+        subject.clear()
     }
 
     abstract fun buildSubject(): PlaceRepository
@@ -69,11 +74,13 @@ abstract class PlaceRepositoryContractTest {
     @Nested
     inner class findAll() {
 
+        private lateinit var settlement: Settlement
         private lateinit var place1: Place
         private lateinit var place2: Place
 
         @BeforeEach
         fun setup() {
+            settlement = settlementRepository.create("Hughan", 6000, "Royal Capital", SettlementType.CITY)
             place1 = subject.create("Drunken Dancer", "tavern with live music and dancing", PlaceType.TAVERN)
             place2 = subject.create("Two Legged Barstool", "enchanters shop", PlaceType.SHOP)
         }
@@ -89,16 +96,16 @@ abstract class PlaceRepositoryContractTest {
 
         @Test
         fun `findAll with settlement id and no relations should return empty list`() {
-            val people = subject.findAll(1L)
+            val people = subject.findAll(settlement.id)
 
             assertThat(people).isEmpty()
         }
 
         @Test
         fun `findAll with settlement id and relations should return list of places`() {
-            subject.createRelation(place1.id, 1L)
+            subject.createRelation(settlement.id, place1.id)
 
-            val people = subject.findAll(1L)
+            val people = subject.findAll(settlement.id)
 
             assertThat(people).containsExactlyInAnyOrder(
                     place1
@@ -106,4 +113,5 @@ abstract class PlaceRepositoryContractTest {
         }
     }
 
+    abstract fun buildSettlementRepository(): SettlementRepository
 }

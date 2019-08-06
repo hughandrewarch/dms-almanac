@@ -6,6 +6,7 @@ import almanac.models.PlaceType
 
 interface PlaceRepository: BaseRepository<Place> {
     fun create(name: String, description: String, type: PlaceType): Place
-    fun createRelation(id: Long, settlementId: Long)
+    fun createRelation(settlementId: Long, placeId: Long)
     fun findAll(settlementId: Long): List<Place>
+    fun clear()
 }

@@ -13,7 +13,7 @@ enum class PlaceType {
     SHOP
 }
 
-data class PlaceRelation(
-        val id: Long,
-        val settlementId: Long
+data class SettlementPlace(
+        val settlementId: Long,
+        val placeId: Long
 )

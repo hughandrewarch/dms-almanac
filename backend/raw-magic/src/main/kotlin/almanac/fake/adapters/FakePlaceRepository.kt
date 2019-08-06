@@ -2,19 +2,19 @@ package almanac.fake.adapters
 
 import almanac.exceptions.PlaceNotFoundException
 import almanac.models.Place
-import almanac.models.PlaceRelation
+import almanac.models.SettlementPlace
 import almanac.models.PlaceType
 import almanac.ports.persistence.PlaceRepository
 
 class FakePlaceRepository : PlaceRepository {
     private var places: MutableList<Place> = mutableListOf()
-    private var relations: MutableList<PlaceRelation> = mutableListOf()
 
+    private var relations: MutableList<SettlementPlace> = mutableListOf()
     private var id = 1L
+
     override fun find(id: Long): Place {
         return places.firstOrNull { it.id == id } ?: throw PlaceNotFoundException(id)
     }
-
     override fun findAll(): List<Place> {
         return places
     }
@@ -25,17 +25,19 @@ class FakePlaceRepository : PlaceRepository {
         return place
     }
 
-    override fun createRelation(id: Long, settlementId: Long) {
-        relations.add(PlaceRelation(id, settlementId))
+    override fun createRelation(settlementId: Long, placeId: Long) {
+        relations.add(SettlementPlace(settlementId, placeId))
     }
 
     override fun findAll(settlementId: Long): List<Place> {
         val placeIds = relations
                 .filter { it.settlementId == settlementId }
-                .map { it.id }
+                .map { it.placeId }
 
         return places.filter { placeIds.contains(it.id) }
     }
+
+    override fun clear() {}
 
     fun init() {
         places = allFullPlaces
@@ -82,11 +84,11 @@ val allFullPlaces = mutableListOf(
 )
 
 val placeRelations = mutableListOf(
-        PlaceRelation(id = 1, settlementId = 1),
-        PlaceRelation(id = 2, settlementId = 1),
-        PlaceRelation(id = 3, settlementId = 1),
-        PlaceRelation(id = 4, settlementId = 2),
-        PlaceRelation(id = 5, settlementId = 3),
-        PlaceRelation(id = 6, settlementId = 3),
-        PlaceRelation(id = 7, settlementId = 4)
+        SettlementPlace(settlementId = 1, placeId = 1),
+        SettlementPlace(settlementId = 1, placeId = 2),
+        SettlementPlace(settlementId = 1, placeId = 3),
+        SettlementPlace(settlementId = 2, placeId = 4),
+        SettlementPlace(settlementId = 3, placeId = 5),
+        SettlementPlace(settlementId = 3, placeId = 6),
+        SettlementPlace(settlementId = 4, placeId = 7)
 )
