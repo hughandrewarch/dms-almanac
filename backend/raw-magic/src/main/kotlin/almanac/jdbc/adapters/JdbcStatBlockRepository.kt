@@ -62,7 +62,6 @@ class JdbcStatBlockRepository(private val jdbcTemplate: JdbcTemplate) : StatBloc
                     mapper,
                     personId
             )!!
-            //TODO maybe move try catch up?
         } catch (e: EmptyResultDataAccessException) {
             throw StatBlockNotFoundException(personId)
         }

@@ -22,7 +22,6 @@ class JdbcSettlementRepository(private val jdbcTemplate: JdbcTemplate) : Settlem
                     mapper,
                     id
             )!!
-            //TODO maybe move try catch up?
         } catch (e: EmptyResultDataAccessException) {
             throw SettlementNotFoundException(id)
         }

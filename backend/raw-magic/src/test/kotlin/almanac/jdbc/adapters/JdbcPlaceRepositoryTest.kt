@@ -1,7 +1,6 @@
 package almanac.jdbc.adapters
 
 import almanac.DatabaseDependencyLoader
-import almanac.ports.persistence.PersonRepository
 import almanac.ports.persistence.PlaceRepository
 import almanac.ports.persistence.PlaceRepositoryContractTest
 import almanac.ports.persistence.SettlementRepository

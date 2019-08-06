@@ -20,7 +20,6 @@ class JdbcPersonRepository(private val jdbcTemplate: JdbcTemplate) : PersonRepos
                     mapper,
                     id
             )!!
-            //TODO maybe move try catch up?
         } catch (e: EmptyResultDataAccessException) {
             throw PersonNotFoundException(id)
         }
@@ -33,7 +32,6 @@ class JdbcPersonRepository(private val jdbcTemplate: JdbcTemplate) : PersonRepos
         )
     }
 
-    //TODO separate a bit mebe, i don't know what this means... probably, query, mapper, ps, keyholder etc.
     override fun create(name: String, race: String, description: String): Person {
         val keyHolder: KeyHolder = GeneratedKeyHolder()
 
