@@ -14,15 +14,11 @@ import org.springframework.jdbc.support.KeyHolder
 class JdbcPlaceRepository(private val jdbcTemplate: JdbcTemplate) : PlaceRepository {
 
     override fun find(id: Long): Place {
-        try {
-            return jdbcTemplate.queryForObject(
-                    """select id, name, description, type from place where id = ?""",
-                    mapper,
-                    id
-            )!!
-        } catch (e: EmptyResultDataAccessException) {
-            throw PlaceNotFoundException(id)
-        }
+        return jdbcTemplate.query(
+                """select id, name, description, type from place where id = ?""",
+                mapper,
+                id
+        ).singleOrNull() ?: throw PlaceNotFoundException(id)
     }
 
     override fun findAll(): List<Place> {

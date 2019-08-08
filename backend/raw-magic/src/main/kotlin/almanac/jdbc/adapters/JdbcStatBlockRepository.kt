@@ -5,7 +5,6 @@ import almanac.exceptions.StatBlockNotFoundException
 import almanac.jdbc.util.preparedStatementCreator
 import almanac.models.StatBlock
 import almanac.ports.persistence.StatBlockRepository
-import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.RowMapper
 import org.springframework.jdbc.support.GeneratedKeyHolder
@@ -51,20 +50,16 @@ class JdbcStatBlockRepository(private val jdbcTemplate: JdbcTemplate) : StatBloc
     }
 
     override fun find(personId: Long): StatBlock {
-        try {
-            return jdbcTemplate.queryForObject(
-                    """
+        return jdbcTemplate.query(
+                """
                         select psb.person_id, str, dex, con, int_, wis, cha
                         from stat_block sb, person_stat_block psb
                         where psb.person_id = ? 
                         and psb.stat_block_id = sb.id
                     """.trimMargin(),
-                    mapper,
-                    personId
-            )!!
-        } catch (e: EmptyResultDataAccessException) {
-            throw StatBlockNotFoundException(personId)
-        }
+                mapper,
+                personId
+        ).singleOrNull() ?: throw StatBlockNotFoundException(personId)
     }
 
     override fun clear() {

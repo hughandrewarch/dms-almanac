@@ -5,7 +5,6 @@ import almanac.jdbc.util.preparedStatementCreator
 import almanac.models.Person
 import almanac.models.PersonRelationType
 import almanac.ports.persistence.PersonRepository
-import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.RowMapper
 import org.springframework.jdbc.support.GeneratedKeyHolder
@@ -14,15 +13,11 @@ import org.springframework.jdbc.support.KeyHolder
 class JdbcPersonRepository(private val jdbcTemplate: JdbcTemplate) : PersonRepository {
 
     override fun find(id: Long): Person {
-        try {
-            return jdbcTemplate.queryForObject(
-                    """select id, name, race, description from person where id = ?""",
-                    mapper,
-                    id
-            )!!
-        } catch (e: EmptyResultDataAccessException) {
-            throw PersonNotFoundException(id)
-        }
+        return jdbcTemplate.query(
+                """select id, name, race, description from person where id = ?""",
+                mapper,
+                id
+        ).singleOrNull() ?: throw PersonNotFoundException(id)
     }
 
     override fun findAll(): List<Person> {
