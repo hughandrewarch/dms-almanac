@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost/raw_magic_test
+    url: jdbc:mysql://localhost/raw_magic_test?serverTimezone=UTC
     username: root
     password:
     driver-class-name: com.mysql.jdbc.Driver

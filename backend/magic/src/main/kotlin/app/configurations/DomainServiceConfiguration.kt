@@ -6,15 +6,18 @@ import almanac.fake.adapters.FakePersonRepository
 import almanac.fake.adapters.FakePlaceRepository
 import almanac.fake.adapters.FakeSettlementRepository
 import almanac.fake.adapters.FakeStatBlockRepository
+import almanac.jdbc.adapters.JdbcPersonRepository
 import almanac.services.PersonService
 import almanac.services.PlaceService
 import almanac.services.SettlementService
 import almanac.services.StatBlockService
+import org.springframework.jdbc.core.JdbcTemplate
 
 @Configuration
 class DomainServiceConfiguration {
 
     //TODO try to move these out of api layer
+    //Also possibly make individual repos their own beans
     @Bean
     fun settlementService(): SettlementService {
         val settlementRepo = FakeSettlementRepository()
@@ -32,9 +35,8 @@ class DomainServiceConfiguration {
     }
 
     @Bean
-    fun personService(): PersonService {
-        val personRepo = FakePersonRepository()
-        personRepo.init()
+    fun personService(jdbcTemplate: JdbcTemplate): PersonService {
+        val personRepo = JdbcPersonRepository(jdbcTemplate)
 
         return PersonService(personRepo)
     }
