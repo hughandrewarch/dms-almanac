@@ -2,9 +2,9 @@ package almanac.ports.persistence
 
 import almanac.exceptions.StatBlockExistsException
 import almanac.exceptions.StatBlockNotFoundException
+import almanac.models.AbilityScore
 import almanac.models.Person
 import almanac.models.StatBlock
-import almanac.utils.AbilityScore
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.BeforeEach

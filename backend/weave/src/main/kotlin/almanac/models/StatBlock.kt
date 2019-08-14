@@ -8,7 +8,7 @@ data class StatBlock(
         fun of(personId: Long, str: Int = 10, dex: Int = 10, con: Int = 10, int: Int = 10, wis: Int = 10, cha: Int = 10): StatBlock {
             return StatBlock(
                     personId,
-                    mapOf(Pair(Ability.STR, str), Pair(Ability.DEX, dex), Pair(Ability.CON, con), Pair(Ability.INT, int), Pair(Ability.WIS, wis), Pair(Ability.CHA, cha))
+                    AbilityScore.of(str,dex,con,int,wis,cha)
             )
         }
     }
@@ -16,6 +16,21 @@ data class StatBlock(
 
 enum class Ability {
     STR, DEX, CON, INT, WIS, CHA
+}
+
+class AbilityScore {
+    companion object {
+        fun of(str: Int, dex: Int, con: Int, int: Int, wis: Int, cha: Int): Map<Ability, Int> {
+            return mapOf(
+                    Pair(Ability.STR, str),
+                    Pair(Ability.DEX, dex),
+                    Pair(Ability.CON, con),
+                    Pair(Ability.INT, int),
+                    Pair(Ability.WIS, wis),
+                    Pair(Ability.CHA, cha)
+            )
+        }
+    }
 }
 
 private val default = mapOf(
