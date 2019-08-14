@@ -11,7 +11,4 @@ interface SettlementRepository : BaseRepository<Settlement> {
             description: String,
             type: SettlementType
     ): Settlement
-
-    //TODO remove
-    fun clear()
 }

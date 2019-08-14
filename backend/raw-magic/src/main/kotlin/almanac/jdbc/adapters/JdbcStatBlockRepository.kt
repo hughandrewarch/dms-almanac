@@ -62,12 +62,6 @@ class JdbcStatBlockRepository(private val jdbcTemplate: JdbcTemplate) : StatBloc
         ).singleOrNull() ?: throw StatBlockNotFoundException(personId)
     }
 
-    override fun clear() {
-        jdbcTemplate.update("""delete from person_stat_block""")
-        jdbcTemplate.update("""delete from person""")
-        jdbcTemplate.update("""delete from stat_block""")
-    }
-
     private val mapper = RowMapper { rs, _ ->
         StatBlock.of(
                 personId = rs.getLong("person_id"),

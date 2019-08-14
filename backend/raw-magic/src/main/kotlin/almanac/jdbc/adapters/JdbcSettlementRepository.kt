@@ -47,11 +47,6 @@ class JdbcSettlementRepository(private val jdbcTemplate: JdbcTemplate) : Settlem
 
         return find(id)
     }
-
-    override fun clear() {
-        jdbcTemplate.update("""delete from person_relation""")
-        jdbcTemplate.update("""delete from settlement""")
-    }
 }
 
 private val mapper = RowMapper { rs, _ ->

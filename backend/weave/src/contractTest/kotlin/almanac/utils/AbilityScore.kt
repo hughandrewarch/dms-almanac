@@ -2,6 +2,7 @@ package almanac.utils
 
 import almanac.models.Ability
 
+//TODO move away from here
 class AbilityScore {
     companion object {
         fun of(str: Int, dex: Int, con: Int, int: Int, wis: Int, cha: Int): Map<Ability, Int> {

@@ -1,5 +1,5 @@
 buildscript {
-	ext.kotlin_version = '1.3.31' // Required for Kotlin integration
+	ext.kotlin_version = '1.3.41' // Required for Kotlin integration
 	ext.spring_boot_version = '2.1.6.RELEASE'
 	ext.mysql_version = '5.1.21'
 
@@ -21,7 +21,6 @@ dependencies {
 	compile project(':domain')
 
 	compile("org.springframework.boot:spring-boot-starter")
-//	compile("org.springframework:spring-jdbc")
 	compile "org.springframework.boot:spring-boot-starter-jdbc:$spring_boot_version"
 	compile "mysql:mysql-connector-java:$mysql_version"
 

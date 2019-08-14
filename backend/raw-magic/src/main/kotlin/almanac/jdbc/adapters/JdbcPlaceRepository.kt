@@ -71,11 +71,6 @@ class JdbcPlaceRepository(private val jdbcTemplate: JdbcTemplate) : PlaceReposit
             ps.setLong(1, settlementId)
         }, mapper)
     }
-
-    override fun clear() {
-        jdbcTemplate.update("""delete from settlement_place""")
-        jdbcTemplate.update("""delete from place""")
-    }
 }
 
 private val mapper = RowMapper { rs, _ ->

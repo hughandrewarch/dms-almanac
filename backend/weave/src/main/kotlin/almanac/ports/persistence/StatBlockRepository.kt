@@ -14,7 +14,4 @@ interface StatBlockRepository {
     ): StatBlock
 
     fun find(personId: Long): StatBlock
-
-    //TODO remove
-    fun clear()
 }

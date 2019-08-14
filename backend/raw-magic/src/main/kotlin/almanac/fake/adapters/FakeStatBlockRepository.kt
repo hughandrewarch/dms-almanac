@@ -29,9 +29,6 @@ class FakeStatBlockRepository : StatBlockRepository {
         return statBlocks.firstOrNull { it.personId == personId } ?: throw StatBlockNotFoundException(personId)
     }
 
-    override fun clear() {
-    }
-
     fun init() {
     }
 }

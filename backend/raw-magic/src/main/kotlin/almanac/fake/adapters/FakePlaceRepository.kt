@@ -37,8 +37,6 @@ class FakePlaceRepository : PlaceRepository {
         return places.filter { placeIds.contains(it.id) }
     }
 
-    override fun clear() {}
-
     fun init() {
         places = allFullPlaces
         relations = placeRelations

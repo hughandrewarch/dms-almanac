@@ -23,9 +23,6 @@ class FakeSettlementRepository : SettlementRepository {
         return settlement
     }
 
-    override fun clear() {
-    }
-
     fun init() {
         settlements = allFullSettlements
     }

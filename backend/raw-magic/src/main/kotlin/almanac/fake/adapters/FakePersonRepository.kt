@@ -40,8 +40,6 @@ class FakePersonRepository : PersonRepository {
         return people.filter { personIds.contains(it.id) }
     }
 
-    override fun clear() {}
-
     fun init() {
         people = allFullPeople
         relations = personListCon.toMutableList()

@@ -8,5 +8,4 @@ interface PlaceRepository: BaseRepository<Place> {
     fun create(name: String, description: String, type: PlaceType): Place
     fun createRelation(settlementId: Long, placeId: Long)
     fun findAll(settlementId: Long): List<Place>
-    fun clear()
 }

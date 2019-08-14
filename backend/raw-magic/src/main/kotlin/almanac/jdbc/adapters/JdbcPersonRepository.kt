@@ -74,11 +74,6 @@ class JdbcPersonRepository(private val jdbcTemplate: JdbcTemplate) : PersonRepos
             ps.setLong(2, relatedId)
         }, mapper)
     }
-
-    override fun clear() {
-        jdbcTemplate.update("""delete from person_relation""")
-        jdbcTemplate.update("""delete from person""")
-    }
 }
 
 private val mapper = RowMapper { rs, _ ->
