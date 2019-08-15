@@ -14,8 +14,10 @@ internal class ApiPersonServiceTest {
     private val personResponseSerializer = mock<PersonResponseSerializer>()
     private val personRepository = mock<PersonRepository>()
 
-    private val subject = ApiPersonService(personResponseSerializer,
-            personRepository)
+    private val subject = ApiPersonService(
+            personResponseSerializer,
+            personRepository
+    )
 
     @Test
     fun find() {

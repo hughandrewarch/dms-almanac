@@ -1,10 +1,10 @@
 package app.services
 
 import almanac.models.*
-import almanac.models.Person
 import almanac.ports.api.PlaceRepository
 import almanac.ports.api.SettlementRepository
 import almanac.services.PersonService
+import app.models.SettlementCreateRequest
 import app.serializers.ListSerializer
 import app.serializers.SettlementResponseSerializer
 import com.nhaarman.mockitokotlin2.eq
@@ -69,5 +69,19 @@ internal class ApiSettlementServiceTest {
         subject.findAll()
 
         verify(listSerializer).settlement(settlements)
+    }
+
+    @Test
+    fun create() {
+        val settlementCreateRequest = SettlementCreateRequest(
+                "name",
+                100,
+                "description",
+                SettlementType.CITY
+        )
+
+        subject.create(settlementCreateRequest)
+
+        verify(settlementRepository).create("name", 100, "description", SettlementType.CITY)
     }
 }

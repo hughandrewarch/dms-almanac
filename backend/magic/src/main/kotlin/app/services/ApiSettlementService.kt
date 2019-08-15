@@ -1,5 +1,6 @@
 package app.services
 
+import almanac.models.SettlementType
 import app.models.SettlementResponse
 import app.serializers.ListSerializer
 import app.serializers.SettlementResponseSerializer
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component
 import almanac.ports.api.PlaceRepository
 import almanac.ports.api.SettlementRepository
 import almanac.services.PersonService
+import app.models.SettlementCreateRequest
 
 @Component
 class ApiSettlementService(
@@ -27,5 +29,11 @@ class ApiSettlementService(
 
     fun findAll(): List<ListItem> {
         return listSerializer.settlement(settlementRepository.findAll())
+    }
+
+    fun create(request: SettlementCreateRequest): SettlementResponse {
+        val settlement = settlementRepository.create(request.name, request.population, request.description, request.type)
+
+        return settlementResponseSerializer.serialize(settlement, emptyList(), emptyList())
     }
 }
