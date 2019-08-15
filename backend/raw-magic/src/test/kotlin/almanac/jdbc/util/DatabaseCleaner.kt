@@ -64,8 +64,6 @@ class DatabaseCleaner(private val connection: Connection) {
         connection.close()
     }
 
-    data class TableRef(val name: String)
-
     companion object {
         private val LOG = LoggerFactory.getLogger(DatabaseCleaner::class.java)!!
     }

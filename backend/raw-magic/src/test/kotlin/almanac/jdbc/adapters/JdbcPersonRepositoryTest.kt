@@ -10,7 +10,6 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.test.context.ActiveProfiles
 
-
 @ActiveProfiles(profiles = ["test"])
 @SpringBootTest(classes = [DatabaseDependencyLoader::class])
 @ExtendWith(DatabaseCleanerExtension::class)
