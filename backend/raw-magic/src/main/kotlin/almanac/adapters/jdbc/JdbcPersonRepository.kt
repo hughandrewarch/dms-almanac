@@ -1,7 +1,7 @@
-package almanac.jdbc.adapters
+package almanac.adapters.jdbc
 
 import almanac.exceptions.PersonNotFoundException
-import almanac.jdbc.util.preparedStatementCreator
+import almanac.adapters.jdbc.util.preparedStatementCreator
 import almanac.models.Person
 import almanac.models.PersonRelationType
 import almanac.ports.persistence.PersonRepository

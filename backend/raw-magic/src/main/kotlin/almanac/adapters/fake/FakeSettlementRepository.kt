@@ -1,4 +1,4 @@
-package almanac.fake.adapters
+package almanac.adapters.fake
 
 import almanac.exceptions.SettlementNotFoundException
 import almanac.models.Settlement

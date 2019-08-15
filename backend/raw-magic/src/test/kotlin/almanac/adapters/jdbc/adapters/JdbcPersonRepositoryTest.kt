@@ -1,9 +1,10 @@
-package almanac.jdbc.adapters
+package almanac.adapters.jdbc.adapters
 
-import almanac.jdbc.util.DatabaseCleanerExtension
-import almanac.jdbc.util.DatabaseDependencyLoader
-import almanac.ports.persistence.SettlementRepository
-import almanac.ports.persistence.SettlementRepositoryContractTest
+import almanac.adapters.jdbc.JdbcPersonRepository
+import almanac.adapters.jdbc.util.DatabaseCleanerExtension
+import almanac.adapters.jdbc.util.DatabaseDependencyLoader
+import almanac.ports.persistence.PersonRepository
+import almanac.ports.persistence.PersonRepositoryContractTest
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -13,12 +14,12 @@ import org.springframework.test.context.ActiveProfiles
 @ActiveProfiles(profiles = ["test"])
 @SpringBootTest(classes = [DatabaseDependencyLoader::class])
 @ExtendWith(DatabaseCleanerExtension::class)
-class JdbcSettlementRepositoryTest : SettlementRepositoryContractTest() {
+class JdbcPersonRepositoryTest : PersonRepositoryContractTest() {
 
     @Autowired
     private lateinit var jdbcTemplate: JdbcTemplate
 
-    override fun buildSubject(): SettlementRepository{
-        return JdbcSettlementRepository(jdbcTemplate)
+    override fun buildSubject(): PersonRepository {
+        return JdbcPersonRepository(jdbcTemplate)
     }
 }

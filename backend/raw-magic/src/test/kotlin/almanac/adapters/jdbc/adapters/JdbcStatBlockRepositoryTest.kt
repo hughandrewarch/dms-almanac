@@ -1,7 +1,9 @@
-package almanac.jdbc.adapters
+package almanac.adapters.jdbc.adapters
 
-import almanac.jdbc.util.DatabaseCleanerExtension
-import almanac.jdbc.util.DatabaseDependencyLoader
+import almanac.adapters.jdbc.JdbcPersonRepository
+import almanac.adapters.jdbc.JdbcStatBlockRepository
+import almanac.adapters.jdbc.util.DatabaseCleanerExtension
+import almanac.adapters.jdbc.util.DatabaseDependencyLoader
 import almanac.ports.persistence.PersonRepository
 import almanac.ports.persistence.StatBlockRepository
 import almanac.ports.persistence.StatBlockRepositoryContractTest

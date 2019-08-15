@@ -1,4 +1,4 @@
-package almanac.jdbc.util
+package almanac.adapters.jdbc.util
 
 import org.springframework.jdbc.core.PreparedStatementCreator
 import java.sql.PreparedStatement

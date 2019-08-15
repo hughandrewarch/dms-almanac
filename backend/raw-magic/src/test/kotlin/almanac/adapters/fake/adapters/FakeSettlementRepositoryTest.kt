@@ -1,5 +1,6 @@
-package almanac.fake.adapters
+package almanac.adapters.fake.adapters
 
+import almanac.adapters.fake.FakeSettlementRepository
 import almanac.ports.persistence.SettlementRepository
 import almanac.ports.persistence.SettlementRepositoryContractTest
 

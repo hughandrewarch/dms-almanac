@@ -1,5 +1,7 @@
-package almanac.fake.adapters
+package almanac.adapters.fake.adapters
 
+import almanac.adapters.fake.FakePersonRepository
+import almanac.adapters.fake.FakeStatBlockRepository
 import almanac.ports.persistence.PersonRepository
 import almanac.ports.persistence.StatBlockRepository
 import almanac.ports.persistence.StatBlockRepositoryContractTest

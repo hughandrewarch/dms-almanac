@@ -1,6 +1,6 @@
 package app.adapters
 
-import almanac.fake.adapters.FakeSettlementRepository
+import almanac.adapters.fake.FakeSettlementRepository
 import almanac.ports.api.SettlementRepository
 import almanac.ports.api.SettlementRepositoryContractTest
 import almanac.services.SettlementService

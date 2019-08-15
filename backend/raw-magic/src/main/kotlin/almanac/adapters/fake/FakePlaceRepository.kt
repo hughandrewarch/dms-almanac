@@ -1,4 +1,4 @@
-package almanac.fake.adapters
+package almanac.adapters.fake
 
 import almanac.exceptions.PlaceNotFoundException
 import almanac.models.Place

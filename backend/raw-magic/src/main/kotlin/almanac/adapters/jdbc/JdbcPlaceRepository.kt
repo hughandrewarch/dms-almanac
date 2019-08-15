@@ -1,11 +1,10 @@
-package almanac.jdbc.adapters
+package almanac.adapters.jdbc
 
 import almanac.exceptions.PlaceNotFoundException
-import almanac.jdbc.util.preparedStatementCreator
+import almanac.adapters.jdbc.util.preparedStatementCreator
 import almanac.models.Place
 import almanac.models.PlaceType
 import almanac.ports.persistence.PlaceRepository
-import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.RowMapper
 import org.springframework.jdbc.support.GeneratedKeyHolder

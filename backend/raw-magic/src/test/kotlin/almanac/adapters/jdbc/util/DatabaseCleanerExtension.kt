@@ -1,4 +1,4 @@
-package almanac.jdbc.util
+package almanac.adapters.jdbc.util
 
 import org.junit.jupiter.api.extension.BeforeEachCallback
 import org.junit.jupiter.api.extension.ExtensionContext

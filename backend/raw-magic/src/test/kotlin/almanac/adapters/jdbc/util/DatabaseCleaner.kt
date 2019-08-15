@@ -1,4 +1,4 @@
-package almanac.jdbc.util
+package almanac.adapters.jdbc.util
 
 import org.slf4j.LoggerFactory
 import java.sql.Connection

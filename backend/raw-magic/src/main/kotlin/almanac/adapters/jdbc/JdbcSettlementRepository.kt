@@ -1,7 +1,7 @@
-package almanac.jdbc.adapters
+package almanac.adapters.jdbc
 
 import almanac.exceptions.SettlementNotFoundException
-import almanac.jdbc.util.preparedStatementCreator
+import almanac.adapters.jdbc.util.preparedStatementCreator
 import almanac.models.Settlement
 import almanac.models.SettlementType
 import almanac.ports.persistence.SettlementRepository

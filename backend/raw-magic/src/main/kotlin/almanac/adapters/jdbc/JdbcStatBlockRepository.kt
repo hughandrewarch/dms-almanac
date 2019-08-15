@@ -1,8 +1,8 @@
-package almanac.jdbc.adapters
+package almanac.adapters.jdbc
 
 import almanac.exceptions.StatBlockExistsException
 import almanac.exceptions.StatBlockNotFoundException
-import almanac.jdbc.util.preparedStatementCreator
+import almanac.adapters.jdbc.util.preparedStatementCreator
 import almanac.models.StatBlock
 import almanac.ports.persistence.StatBlockRepository
 import org.springframework.jdbc.core.JdbcTemplate
