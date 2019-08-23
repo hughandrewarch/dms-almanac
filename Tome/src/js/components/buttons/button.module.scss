@@ -1,0 +1,46 @@
+@import '../stylesheets/typography';
+
+button, .Button {
+  $red: #F69292;
+  $green: #92F692;
+  $blue: #9292F6;
+
+  @extend %type-weight-medium;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+
+  height: 48px;
+  min-width: 120px;
+
+  white-space: nowrap;
+  letter-spacing: .02em;
+
+  cursor: pointer;
+  outline: none;
+
+
+  &[disabled] {
+    cursor: default;
+    opacity: 0.3;
+  }
+
+  &:hover {
+    transition-duration: 0.3s; // only transition on hover-on, not hover-off
+  }
+
+  &.red {
+    background: $red;
+  }
+
+  &.green {
+    background: $green;
+  }
+
+  &.blue {
+    background: $blue;
+  }
+
+}
