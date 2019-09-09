@@ -1,5 +1,6 @@
 import React from 'react'
 import SettlementList from "./settlement/list/SettlementListContainer"
+import SettlementCreateForm from "./settlement/SettlementCreateForm"
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <div className="col-md-4 offset-md-1">
         <h2>Settlements Go Here</h2>
         <SettlementList/>
+        <SettlementCreateForm/>
       </div>
     </div>
   )

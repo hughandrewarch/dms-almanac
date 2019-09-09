@@ -6,7 +6,7 @@ export default class Button extends React.Component {
 
   static propTypes = {
     onClick: PropTypes.func,
-    disabled: PropTypes.func,
+    disabled: PropTypes.bool,
     colour: PropTypes.oneOf(['red', 'green', 'blue'])
   }
 

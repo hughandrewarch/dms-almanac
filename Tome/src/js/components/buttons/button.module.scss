@@ -1,9 +1,9 @@
 @import '../stylesheets/typography';
 
 button, .Button {
-  $red: #F69292;
-  $green: #92F692;
-  $blue: #9292F6;
+  $red: #F66262;
+  $green: #62F662;
+  $blue: #6262F6;
 
   @extend %type-weight-medium;
 
@@ -42,5 +42,4 @@ button, .Button {
   &.blue {
     background: $blue;
   }
-
 }
