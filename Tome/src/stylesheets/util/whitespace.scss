@@ -1,0 +1,67 @@
+$sizes: (n, xs,  s,   m,   l,    xl,   xxl,  xxxl);
+$pixels:  (0, 2px, 4px, 8px, 16px, 24px, 32px, 48px);
+
+@for $i from 1 through length($sizes) {
+  $size: nth($sizes, $i);
+  $pixel: nth($pixels, $i);
+
+  %ma#{$size}, .ma#{$size} {
+    margin: $pixel !important;
+  }
+
+  %mh#{$size}, .mh#{$size} {
+    margin-left: $pixel !important;
+    margin-right: $pixel !important;
+  }
+
+  %mv#{$size}, .mv#{$size} {
+    margin-top: $pixel !important;
+    margin-bottom: $pixel !important;
+  }
+  
+  %ml#{$size}, .ml#{$size} {
+    margin-left: $pixel !important;
+  }
+  
+  %mr#{$size}, .mr#{$size} {
+    margin-right: $pixel !important;
+  }
+  
+  %mt#{$size}, .mt#{$size} {
+    margin-top: $pixel !important;
+  }
+  
+  %mb#{$size}, .mb#{$size} {
+    margin-bottom: $pixel !important;
+  }
+  
+  %pa#{$size}, .pa#{$size} {
+    padding: $pixel !important;
+  }
+
+  %ph#{$size}, .ph#{$size} {
+    padding-left: $pixel !important;
+    padding-right: $pixel !important;
+  }
+
+  %pv#{$size}, .pv#{$size} {
+    padding-top: $pixel !important;
+    padding-bottom: $pixel !important;
+  }
+  
+  %pl#{$size}, .pl#{$size} {
+    padding-left: $pixel !important;
+  }
+  
+  %pr#{$size}, .pr#{$size} {
+    padding-right: $pixel !important;
+  }
+  
+  %pt#{$size}, .pt#{$size} {
+    padding-top: $pixel !important;
+  }
+  
+  %pb#{$size}, .pb#{$size} {
+    padding-bottom: $pixel !important;
+  }
+}

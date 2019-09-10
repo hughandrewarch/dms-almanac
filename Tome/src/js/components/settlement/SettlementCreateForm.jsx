@@ -48,9 +48,6 @@ class SettlementCreateForm extends React.Component {
         <CreateSettlementFormFields onChange={this.handleChange}/>
 
         <Button onClick={this.handleSubmit}>Submit 1</Button>
-        <Button onClick={this.handleSubmit} colour={'red'}>Submit 2</Button>
-        <Button onClick={this.handleSubmit} colour={'green'}>Submit 3</Button>
-        <Button onClick={this.handleSubmit} colour={'blue'} disabled={true}>Submit 4</Button>
       </div>
     )
   }

@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:200,400,600,700');
+
+body, button {
+  font-family: 'Open Sans', sans-serif;
+}
+
+p {
+  @extend %man;
+  @extend %type-weight-light;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+a[disabled] {
+  pointer-events: none;
+  cursor: default
+}
+
+%type-weight-light {
+  font-weight: 200;
+}
+
+%type-weight-medium {
+  font-weight: 400;
+}
+
+%type-weight-heavy {
+  font-weight: 600;
+}
+
+%type-weight-very-heavy {
+  font-weight: 700;
+}
+
+%heading-1, .heading-1 {
+  font-size: 32px;
+  font-weight: 400;
+}
+
+%heading-2, .heading-2 {
+  font-size: 28px;
+  font-weight: 400;
+}
+
+%heading-3, .heading-3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+%heading-4, .heading-4 {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+%heading-5, .heading-5 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+%heading-6, .heading-6 {
+  font-size: 14px;
+  font-weight: 200;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+}
+
+h1 {
+  @extend %heading-1;
+}
+
+h2 {
+  @extend %heading-2;
+}
+
+h3 {
+  @extend %heading-3;
+}
+
+h4 {
+  @extend %heading-4;
+}
+
+h5 {
+  @extend %heading-5;
+}
+
+h6 {
+  @extend %heading-6;
+}

@@ -9,6 +9,7 @@ import Green from "./js/components/Green"
 import { BrowserRouter as Router, Link, Route } from "react-router-dom"
 import SettlementPage from "./js/components/settlement/SettlementPage"
 import PersonPage from "./js/components/person/PersonPage"
+import './index.scss'
 
 ReactDOM.render((
   <Provider store={store}>
