@@ -2,9 +2,10 @@ import React from "react"
 import connect from "react-redux/es/connect/connect"
 import { createSettlement } from "../../actions"
 import Button from "../buttons/button"
-import CreateSettlementFormFields from "./create_settlement_form_fields"
+import SettlementCreateFormFields from "./settlement_create_form_fields"
 
-
+//TODO is there any real reason for the separation between create form and form fields
+// if form fields are not reusable
 const mapDispatchToProps = (dispatch) => {
 
   return {
@@ -45,9 +46,8 @@ class SettlementCreateForm extends React.Component {
   render() {
     return (
       <div>
-        <CreateSettlementFormFields onChange={this.handleChange}/>
-
-        <Button onClick={this.handleSubmit}>Submit 1</Button>
+        <SettlementCreateFormFields onChange={this.handleChange}/>
+        <Button onClick={this.handleSubmit}>Submit</Button>
       </div>
     )
   }

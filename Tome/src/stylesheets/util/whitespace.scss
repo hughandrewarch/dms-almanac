@@ -1,5 +1,5 @@
-$sizes: (n, xs,  s,   m,   l,    xl,   xxl,  xxxl);
-$pixels:  (0, 2px, 4px, 8px, 16px, 24px, 32px, 48px);
+$sizes:  (n, xs,  s,   m,   l,    xl,   xxl,  xxxl);
+$pixels: (0, 2px, 4px, 8px, 16px, 24px, 32px, 48px);
 
 @for $i from 1 through length($sizes) {
   $size: nth($sizes, $i);

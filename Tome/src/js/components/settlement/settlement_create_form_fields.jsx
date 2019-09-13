@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import FormField from "../forms/form_field"
 
-export default class CreateSettlementFormFields extends React.Component {
+export default class SettlementCreateFormFields extends React.Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired
   }
@@ -71,7 +71,6 @@ export default class CreateSettlementFormFields extends React.Component {
     )
   }
 
-
   renderDescriptionFormField() {
     return (
       <FormField name="description" label="description">
@@ -85,7 +84,7 @@ export default class CreateSettlementFormFields extends React.Component {
 
   render() {
     return (
-      <div className="form">
+      <div>
         {this.renderNameFormField()}
         {this.renderPopulationFormField()}
         {this.renderDescriptionFormField()}

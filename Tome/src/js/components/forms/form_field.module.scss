@@ -1,0 +1,41 @@
+@import "../../../stylesheets/util/whitespace";
+@import "../../../stylesheets/util/typography";
+
+$input-padding: 16px 8px;
+$input-placeholder-color: #B2B2B2;
+$input-font-weight: 100;
+$input-height: 48px;
+$form-control-width: 100%;
+
+.FormField {
+  > label {
+    @extend %mbs;
+    @extend %heading-5;
+
+    display: block;
+  }
+
+  textarea {
+    border: 1px solid #D2D2D2;
+    border-radius: 3px;
+    width: $form-control-width;
+    height: 200px;
+    box-sizing: border-box;
+    font-weight: $input-font-weight;
+    padding: nth($pixels, index($sizes, l));
+    resize: none;
+  }
+
+  input[type=date], input[type=text], input[type=number] {
+    border: 1px solid #D2D2D2;
+    border-radius: 3px;
+    box-shadow: none;
+    padding: $input-padding;
+    box-sizing: border-box;
+    font-weight: $input-font-weight;
+
+    &.error {
+      border-color: #D23232;
+    }
+  }
+}

@@ -1,13 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import style from './form_field.module.scss'
 
 export default class FormField extends React.Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string,
   }
-
-  //todo try adding form field module scss like button
 
   render = () => {
     let children = React.Children.map(this.props.children, (child) => {
@@ -21,7 +20,7 @@ export default class FormField extends React.Component {
     })
 
     return (
-      <div className='form-field'>
+      <div className={style.FormField}>
         <label htmlFor={this.props.name}>{this.props.label}</label>
         {children}
       </div>
