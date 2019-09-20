@@ -4,6 +4,7 @@ button, .Button {
   $red: #F66262;
   $green: #62F662;
   $blue: #6262F6;
+  $white: #FFFFFF;
 
   @extend %type-weight-medium;
 
@@ -24,22 +25,100 @@ button, .Button {
 
   &[disabled] {
     cursor: default;
-    opacity: 0.3;
   }
 
   &:hover {
     transition-duration: 0.3s; // only transition on hover-on, not hover-off
   }
 
+  //TODO add more button styles, ie primary, secondary, etc
   &.red {
     background: $red;
+
+    &:hover:enabled {
+      background-color: darken($red, 7%);
+      color: darken(white, 7%);
+    }
+
+    &:disabled {
+      background-color: lighten($red, 10%);
+      color: black;
+    }
   }
 
   &.green {
     background: $green;
+
+    &:hover:enabled {
+      background-color: darken($green, 7%);
+      color: darken(white, 7%);
+    }
+
+    &:disabled {
+      background-color: lighten($green, 10%);
+      color: black;
+    }
   }
 
   &.blue {
     background: $blue;
+
+    &:hover:enabled {
+      background-color: darken($blue, 7%);
+      color: darken(white, 7%);
+    }
+
+    &:disabled {
+      background-color: lighten($blue, 10%);
+      color: black;
+    }
+  }
+
+  &.white {
+    background: $white;
+
+    &:hover:enabled {
+      background: darken(white, 5%);
+      color: lighten(black, 50%);
+    }
+
+    &:disabled {
+      background-color: darken($white, 5%);
+      color: black;
+    }
+  }
+}
+
+.ButtonDropdown {
+  //display: inline-flex;
+  //flex-direction: column;
+
+  .ButtonDropdownChildren {
+    position: absolute;
+    z-index: 100;
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-bottom-left-radius: .4rem;
+    border-top-right-radius: .4rem;
+    border-bottom-right-radius: .4rem;
+
+    button, .Button .DropdownItem {
+      @extend %pam;
+      border: 0px;
+      min-width: 160px;
+
+      &:first-child {
+        border-top-right-radius: .4rem;
+      }
+
+      &:last-child {
+        border-bottom-left-radius: .4rem;
+        border-bottom-right-radius: .4rem;
+      }
+    }
   }
 }
