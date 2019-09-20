@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Link, Route } from "react-router-dom"
 import SettlementPage from "./js/components/settlement/SettlementPage"
 import PersonPage from "./js/components/person/PersonPage"
 import './index.scss'
+import CreatePage from "./js/pages/create_page"
 
 ReactDOM.render((
   <Provider store={store}>
@@ -20,6 +21,9 @@ ReactDOM.render((
           <li key={1}>
             <Link to="/">Home</Link>
           </li>
+          <li key={2}>
+            <Link to="/creator">Creator</Link>
+          </li>
         </ul>
         <Route exact path="/" component={App} />
         <Route path="/red/:id" component={Red} />
@@ -29,6 +33,9 @@ ReactDOM.render((
         }} />
         <Route path="/person/:personId" render={props => {
           return (<PersonPage {...props}/>)
+        }} />
+        <Route path="/creator" render={props => {
+          return (<CreatePage {...props}/>)
         }} />
       </div>
     </Router>

@@ -28,7 +28,7 @@ export default class ButtonDropdown extends React.Component {
 
   renderChildren() {
 
-    const children = this.props.children.map((child) => {
+    const children = React.Children.toArray(this.props.children).map((child) => {
       return React.cloneElement(child, {
         toggleDropdown: this.toggle,
         key: child.props.name

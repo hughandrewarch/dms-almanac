@@ -3,6 +3,7 @@ import connect from "react-redux/es/connect/connect"
 import { createSettlement } from "../../actions"
 import Button from "../buttons/button"
 import SettlementCreateFormFields from "./settlement_create_form_fields"
+import PropTypes from "prop-types"
 
 //TODO is there any real reason for the separation between create form and form fields
 // if form fields are not reusable
@@ -10,12 +11,16 @@ const mapDispatchToProps = (dispatch) => {
 
   return {
     createSettlement: (name, population, description) => {
-      dispatch(createSettlement(name, population, description))
+      return dispatch(createSettlement(name, population, description))
     }
   }
 }
 
 class SettlementCreateForm extends React.Component {
+
+  static propTypes = {
+    onSubmit: PropTypes.func,
+  }
 
   constructor(props) {
     super(props)
@@ -34,13 +39,15 @@ class SettlementCreateForm extends React.Component {
     })
   }
 
+  //TODO find way to properly chain calls so that i can add loading spinner then act on success/failure
   handleSubmit = (event) => {
     this.props.createSettlement(
       this.state.name,
       this.state.population,
       this.state.description
     )
-    event.preventDefault()
+
+    this.props.onSubmit()
   }
 
   render() {

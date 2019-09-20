@@ -9,7 +9,6 @@ export default class DropdownItem extends React.Component {
     name: PropTypes.string,
     onClick: PropTypes.func,
     toggleDropdown: PropTypes.func
-
   }
 
   static defaultProps = {
