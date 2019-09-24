@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import ButtonDropdown from "./buttons/button_dropdown"
 import DropdownItem from "./buttons/dropdown_item"
 import { Link } from "react-router-dom"
@@ -9,10 +8,6 @@ const forms = {
 }
 
 export default class Header extends React.Component {
-
-  static propTypes = {
-    history: PropTypes.func.isRequired,
-  }
 
   constructor(props) {
     super(props)
@@ -32,7 +27,7 @@ export default class Header extends React.Component {
   route(form) {
     switch (form) {
       case forms.SETTLEMENT:
-        return this.props.history.push('/creators/settlement')
+        return this.props.history.push('/creator/settlement')
       default:
     }
   }

@@ -20,6 +20,7 @@ class SettlementCreateForm extends React.Component {
 
   static propTypes = {
     onSubmit: PropTypes.func,
+    onCancel: PropTypes.func,
   }
 
   constructor(props) {
@@ -40,7 +41,7 @@ class SettlementCreateForm extends React.Component {
   }
 
   //TODO find way to properly chain calls so that i can add loading spinner then act on success/failure
-  handleSubmit = (event) => {
+  handleSubmit = () => {
     this.props.createSettlement(
       this.state.name,
       this.state.population,
@@ -50,11 +51,16 @@ class SettlementCreateForm extends React.Component {
     this.props.onSubmit()
   }
 
+  handleCancel = () => {
+    this.props.onCancel()
+  }
+
   render() {
     return (
       <div>
         <SettlementCreateFormFields onChange={this.handleChange}/>
         <Button onClick={this.handleSubmit}>Submit</Button>
+        <Button onClick={this.handleCancel}>Cancel</Button>
       </div>
     )
   }

@@ -6,11 +6,11 @@ import { Provider } from "react-redux"
 import store from "./js/store"
 import Red from "./js/components/Red"
 import Green from "./js/components/Green"
-import { BrowserRouter as Router, Route } from "react-router-dom"
+import { Router, Route } from "react-router-dom"
 import SettlementPage from "./js/components/settlement/SettlementPage"
 import PersonPage from "./js/components/person/PersonPage"
 import './index.scss'
-import CreateSettlement from "./js/pages/creators/create_settlement"
+import CreateSettlementPage from "./js/pages/creators/create_settlement"
 import history from './js/history'
 import Layout from "./js/pages/layouts/layout"
 
@@ -21,7 +21,7 @@ ReactDOM.render((
         <h2>Almanac</h2>
         <Route exact path="/" render={props => {
           return (
-            <Layout history={props.history}>
+            <Layout {...props}>
               <App/>
             </Layout>
           )
@@ -30,22 +30,22 @@ ReactDOM.render((
         <Route path="/green" component={Green}/>
         <Route path="/settlement/:settlementId" render={props => {
           return (
-            <Layout history={props.history}>
+            <Layout {...props}>
               <SettlementPage {...props}/>
             </Layout>
           )
         }}/>
         <Route path="/person/:personId" render={props => {
           return (
-            <Layout history={props.history}>
+            <Layout {...props}>
               <PersonPage {...props}/>
             </Layout>
           )
         }}/>
         <Route path="/creator/settlement" render={props => {
           return (
-            <Layout history={props.history}>
-              <CreateSettlement {...props}/>
+            <Layout {...props}>
+              <CreateSettlementPage {...props}/>
             </Layout>
           )
         }}/>
