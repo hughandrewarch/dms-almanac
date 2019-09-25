@@ -12,6 +12,7 @@ const initialState = {
   }
 }
 
+//TODO combine reducer
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case RECEIVE_SETTLEMENT_LIST:
