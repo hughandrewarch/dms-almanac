@@ -12,19 +12,35 @@ import {
 // TODO break out by object
 // TODO make payloads more clear as to what they are
 export function fetchSettlement(payload) {
-  return { type: FETCH_SETTLEMENT, payload: payload }
+  return (dispatch) => {
+    const settlementId = parseInt(payload)
+
+    return fetch('http://localhost:8080/settlement/' + settlementId)
+      .then(res => res.json())
+      .then((data) => {
+        dispatch(receiveSettlement(data))
+      })
+      .catch(console.log)
+  }
 }
 
 export function fetchSettlementList() {
-  return { type: FETCH_SETTLEMENT_LIST }
+  return (dispatch) => {
+    return fetch('http://localhost:8080/settlements')
+      .then(res => res.json())
+      .then((data) => {
+        dispatch(receiveSettlementList(data))
+      })
+      .catch(console.log)
+  }
 }
 
 export function receiveSettlement(payload) {
-  return { type: RECEIVE_SETTLEMENT, payload: payload }
+  return  { type: RECEIVE_SETTLEMENT, payload: payload }
 }
 
 export function receiveSettlementList(payload) {
-  return { type: RECEIVE_SETTLEMENT_LIST, payload: payload }
+  return  { type: RECEIVE_SETTLEMENT_LIST, payload: payload }
 }
 
 export function createSettlement(name, population, description) {
@@ -53,7 +69,16 @@ export function fetchPlace(payload) {
 }
 
 export function fetchPerson(payload) {
-  return { type: FETCH_PERSON, payload: payload }
+  return (dispatch) => {
+    const personId = parseInt(payload)
+
+    return fetch('http://localhost:8080/person/' + parseInt(personId))
+      .then(res => res.json())
+      .then((data) => {
+        dispatch(receivePerson(data))
+      })
+      .catch(console.log)
+  }
 }
 
 export function receivePerson(payload) {
