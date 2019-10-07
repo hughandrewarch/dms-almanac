@@ -6,8 +6,7 @@ import { Settlements } from '../../../routes'
 
 export default class SettlementList extends React.Component {
   static propTypes = {
-    settlements: PropTypes.arrayOf(Props.SETTLEMENT),
-    selectSettlement: PropTypes.func,
+    settlements: PropTypes.arrayOf(Props.SETTLEMENT)
   }
 
   render() {

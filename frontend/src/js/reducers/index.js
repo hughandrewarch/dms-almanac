@@ -1,4 +1,4 @@
-import { RECEIVE_PERSON, RECEIVE_SETTLEMENT, RECEIVE_SETTLEMENT_LIST } from "../constants"
+import { RECEIVE_PERSON, RECEIVE_SETTLEMENT } from "../constants"
 
 const initialState = {
   settlements: [],
@@ -15,10 +15,6 @@ const initialState = {
 //TODO combine reducer
 function rootReducer(state = initialState, action) {
   switch (action.type) {
-    case RECEIVE_SETTLEMENT_LIST:
-      return Object.assign({}, state, {
-        settlements: action.payload
-      })
     case RECEIVE_SETTLEMENT:
       return Object.assign({}, state, {
         settlementPage: {

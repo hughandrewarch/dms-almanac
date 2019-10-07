@@ -1,13 +1,4 @@
-import {
-  FETCH_PERSON,
-  FETCH_PLACE,
-  FETCH_SETTLEMENT,
-  FETCH_SETTLEMENT_LIST,
-  RECEIVE_PERSON,
-  RECEIVE_SETTLEMENT,
-  RECEIVE_SETTLEMENT_LIST,
-  CREATE_SETTLEMENT
-} from "../constants"
+import { FETCH_PLACE, RECEIVE_PERSON, RECEIVE_SETTLEMENT, } from "../constants"
 
 // TODO break out by object
 // TODO make payloads more clear as to what they are
@@ -24,23 +15,8 @@ export function fetchSettlement(payload) {
   }
 }
 
-export function fetchSettlementList() {
-  return (dispatch) => {
-    return fetch('http://localhost:8080/settlements')
-      .then(res => res.json())
-      .then((data) => {
-        dispatch(receiveSettlementList(data))
-      })
-      .catch(console.log)
-  }
-}
-
-export function receiveSettlement(payload) {
-  return  { type: RECEIVE_SETTLEMENT, payload: payload }
-}
-
-export function receiveSettlementList(payload) {
-  return  { type: RECEIVE_SETTLEMENT_LIST, payload: payload }
+export function receiveSettlement(settlement) {
+  return { type: RECEIVE_SETTLEMENT, payload: settlement }
 }
 
 export function createSettlement(name, population, description) {
