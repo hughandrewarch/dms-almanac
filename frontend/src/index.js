@@ -7,7 +7,7 @@ import store from "./js/store"
 import Red from "./js/components/Red"
 import Green from "./js/components/Green"
 import { Router, Route } from "react-router-dom"
-import SettlementPage from "./js/components/settlement/SettlementPage"
+import SettlementPage from "./js/components/settlement/settlement_page"
 import PersonPage from "./js/components/person/PersonPage"
 import './index.scss'
 import CreateSettlementPage from "./js/pages/creators/create_settlement"
@@ -31,7 +31,7 @@ ReactDOM.render((
         <Route path="/settlement/:settlementId" render={props => {
           return (
             <Layout {...props}>
-              <SettlementPage {...props}/>
+              <SettlementPage settlementId={props.match.params.settlementId}/>
             </Layout>
           )
         }}/>
