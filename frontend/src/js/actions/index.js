@@ -1,4 +1,4 @@
-import { FETCH_PLACE, RECEIVE_PERSON, } from "../constants"
+import { FETCH_PLACE } from "../constants"
 
 // TODO break out by object
 // TODO make payloads more clear as to what they are
@@ -25,21 +25,4 @@ export function createSettlement(name, population, description) {
 
 export function fetchPlace(payload) {
   return { type: FETCH_PLACE, payload: payload }
-}
-
-export function fetchPerson(payload) {
-  return (dispatch) => {
-    const personId = parseInt(payload)
-
-    return fetch('http://localhost:8080/person/' + parseInt(personId))
-      .then(res => res.json())
-      .then((data) => {
-        dispatch(receivePerson(data))
-      })
-      .catch(console.log)
-  }
-}
-
-export function receivePerson(payload) {
-  return { type: RECEIVE_PERSON, payload: payload }
 }

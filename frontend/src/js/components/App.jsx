@@ -1,5 +1,5 @@
 import React from 'react'
-import { SettlementListHook } from "./settlement/list/settlement_hooks"
+import { SettlementListHook } from "./settlement/settlement_hooks"
 
 function App() {
   return (

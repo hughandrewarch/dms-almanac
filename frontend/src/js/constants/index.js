@@ -1,2 +1,1 @@
 export const FETCH_PLACE = "FETCH_PLACE"
-export const RECEIVE_PERSON = "RECEIVE_PERSON"

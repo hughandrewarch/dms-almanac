@@ -6,13 +6,13 @@ import { Provider } from "react-redux"
 import store from "./js/store"
 import Red from "./js/components/Red"
 import Green from "./js/components/Green"
-import { Router, Route } from "react-router-dom"
-import SettlementPage from "./js/components/settlement/settlement_page"
-import PersonPage from "./js/components/person/PersonPage"
+import { Route, Router } from "react-router-dom"
 import './index.scss'
 import CreateSettlementPage from "./js/pages/creators/create_settlement"
 import history from './js/history'
 import Layout from "./js/pages/layouts/layout"
+import { PersonHook } from "./js/components/person/person_hooks"
+import { SettlementHook } from "./js/components/settlement/settlement_hooks"
 
 ReactDOM.render((
   <Provider store={store}>
@@ -31,14 +31,14 @@ ReactDOM.render((
         <Route path="/settlement/:settlementId" render={props => {
           return (
             <Layout {...props}>
-              <SettlementPage settlementId={props.match.params.settlementId}/>
+              <SettlementHook settlementId={props.match.params.settlementId}/>
             </Layout>
           )
         }}/>
         <Route path="/person/:personId" render={props => {
           return (
             <Layout {...props}>
-              <PersonPage {...props}/>
+              <PersonHook personId={props.match.params.personId}/>
             </Layout>
           )
         }}/>

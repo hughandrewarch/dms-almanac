@@ -2,24 +2,25 @@ import React from "react"
 import * as Props from "../../props"
 import PropTypes from 'prop-types'
 import { Link } from "react-router-dom"
+import { Person } from '../../routes'
 
-//TODO figure out how to use/if to use
-export default class NavList extends React.Component {
+export default class PersonList extends React.Component {
   static propTypes = {
-    items: PropTypes.arrayOf(Props.SETTLEMENT),
-    onSelectLink: PropTypes.func,
+    people: PropTypes.arrayOf(Props.PERSON)
   }
 
   render() {
+
     return (
       <ul className="list-group list-group-flush">
-        {this.props.items.map(el => (
+        {this.props.people.map(el => (
           <li className="list-group-item"
               key={el.id}>
-            <Link to={this.props.onSelectLink(el.id)}>{el.name}</Link>
+            <Link to={Person.show(el.id)}>{el.name}</Link>
           </li>
         ))}
       </ul>
     )
   }
 }
+

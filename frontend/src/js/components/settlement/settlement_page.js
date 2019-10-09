@@ -1,5 +1,5 @@
 import React from "react"
-import { SettlementHook } from "./list/settlement_hooks"
+import { SettlementHook } from "./settlement_hooks"
 import PropTypes from 'prop-types'
 
 //TODO settlementId is very loosly coupled, component could break for semi random reasons

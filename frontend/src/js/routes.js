@@ -3,3 +3,9 @@ export class Settlements {
     return `/settlement/${id}`
   }
 }
+
+export class Person {
+  static show = (id) => {
+    return `/person/${id}`
+  }
+}

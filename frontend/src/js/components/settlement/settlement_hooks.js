@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react"
-import SettlementList from "./settlement_list"
-import Settlement from "../settlement"
-import PlaceList from "../../place/PlaceList"
-import PersonList from "../../person/PersonList"
+import SettlementList from "./list/settlement_list"
+import Settlement from "./settlement"
+import PlaceList from "../place/PlaceList"
+import PersonList from "../person/person_list"
+import NavList from "../list/NavList"
 
 
 //TODO add loading
@@ -32,7 +33,7 @@ export function SettlementHook(props) {
       <h2>Places</h2>
       <PlaceList placeList={data.settlementResponse.placeList}/>
       <h2>People</h2>
-      <PersonList personList={data.settlementResponse.personList}/>
+      <PersonList people={data.settlementResponse.personList}/>
     </div>
   )
 }
