@@ -3,22 +3,22 @@ import * as Props from "../../../props"
 import PropTypes from 'prop-types'
 import { Link } from "react-router-dom"
 import { Settlements } from '../../../routes'
+import NavList from "../../list/NavList"
 
 export default class SettlementList extends React.Component {
   static propTypes = {
     settlements: PropTypes.arrayOf(Props.SETTLEMENT)
   }
 
+  to(elementId) {
+    return Settlements.show(elementId)
+  }
+
   render() {
     return (
-      <ul className="list-group list-group-flush">
-        {this.props.settlements.map(el => (
-          <li className="list-group-item"
-              key={el.id}>
-            <Link to={Settlements.show(el.id)}>{el.name}</Link>
-          </li>
-        ))}
-      </ul>
+      <div>
+        <NavList items={this.props.settlements} to={this.to}/>
+      </div>
     )
   }
 }

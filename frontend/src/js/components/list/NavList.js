@@ -3,11 +3,14 @@ import * as Props from "../../props"
 import PropTypes from 'prop-types'
 import { Link } from "react-router-dom"
 
-//TODO figure out how to use/if to use
 export default class NavList extends React.Component {
   static propTypes = {
     items: PropTypes.arrayOf(Props.SETTLEMENT),
-    onSelectLink: PropTypes.func,
+    to: PropTypes.func,
+  }
+
+  to(elementId) {
+    return this.props.to(elementId)
   }
 
   render() {
@@ -16,7 +19,7 @@ export default class NavList extends React.Component {
         {this.props.items.map(el => (
           <li className="list-group-item"
               key={el.id}>
-            <Link to={this.props.onSelectLink(el.id)}>{el.name}</Link>
+            <Link to={this.to(el.id)}>{el.name}</Link>
           </li>
         ))}
       </ul>

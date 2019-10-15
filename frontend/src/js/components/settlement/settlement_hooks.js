@@ -3,8 +3,6 @@ import SettlementList from "./list/settlement_list"
 import Settlement from "./settlement"
 import PlaceList from "../place/PlaceList"
 import PersonList from "../person/person_list"
-import NavList from "../list/NavList"
-
 
 //TODO add loading
 //TODO break out into proper file structure
@@ -52,4 +50,3 @@ export function SettlementListHook() {
 
   return <SettlementList settlements={data.settlements}/>
 }
-
