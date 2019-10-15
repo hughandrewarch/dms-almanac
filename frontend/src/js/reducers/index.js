@@ -1,4 +1,4 @@
-//TODO remove reducer/ save for loading icon
+//TODO consider remove reducer or save for loading icon
 const initialState = {
 }
 

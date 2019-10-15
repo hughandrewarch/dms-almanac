@@ -17,7 +17,6 @@ export function PersonHook(props) {
       .catch(console.log)
   }, [props])
 
-  console.log(data)
   return (
     <div>
       <h2>Person</h2>

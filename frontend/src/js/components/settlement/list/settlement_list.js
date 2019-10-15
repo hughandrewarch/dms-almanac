@@ -1,7 +1,6 @@
 import React from "react"
 import * as Props from "../../../props"
 import PropTypes from 'prop-types'
-import { Link } from "react-router-dom"
 import { Settlements } from '../../../routes'
 import NavList from "../../list/NavList"
 

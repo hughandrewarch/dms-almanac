@@ -40,7 +40,6 @@ class SettlementCreateForm extends React.Component {
     })
   }
 
-  //TODO find way to properly chain calls so that i can add loading spinner then act on success/failure
   handleSubmit = () => {
     this.props.createSettlement(
       this.state.name,
@@ -49,10 +48,6 @@ class SettlementCreateForm extends React.Component {
     ).then(() => {
       this.props.onSubmit()
     })
-
-    // this.props.test().then(() => {
-    //   this.props.onSubmit()
-    // })
   }
 
   handleCancel = () => {
