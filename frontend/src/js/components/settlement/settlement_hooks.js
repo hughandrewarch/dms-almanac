@@ -3,6 +3,7 @@ import SettlementList from "./list/settlement_list"
 import Settlement from "./settlement"
 import PlaceList from "../place/PlaceList"
 import PersonList from "../person/person_list"
+import { getSettlement, getSettlements } from "../../api/settlement"
 
 //TODO add loading
 //TODO break out into proper file structure
@@ -16,12 +17,10 @@ export function SettlementHook(props) {
   })
 
   useEffect(() => {
-    fetch('http://localhost:8080/settlement/' + props.settlementId)
-      .then(res => res.json())
+    getSettlement(props.settlementId)
       .then((settlementResponse) => {
         setData({ settlementResponse: settlementResponse })
       })
-      .catch(console.log)
   }, [props])
 
   return (
@@ -40,12 +39,10 @@ export function SettlementListHook() {
   const [data, setData] = useState({ settlements: [] })
 
   useEffect(() => {
-    fetch('http://localhost:8080/settlements')
-      .then(res => res.json())
+    getSettlements()
       .then((settlements) => {
         setData({ settlements: settlements })
       })
-      .catch(console.log)
   }, [])
 
   return <SettlementList settlements={data.settlements}/>

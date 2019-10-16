@@ -1,22 +1,12 @@
 import React from "react"
-import connect from "react-redux/es/connect/connect"
-import { createSettlement } from "../../actions"
+import { createSettlement } from "../../api/settlement"
 import Button from "../buttons/button"
 import SettlementCreateFormFields from "./settlement_create_form_fields"
 import PropTypes from "prop-types"
 
 //TODO is there any real reason for the separation between create form and form fields
 // if form fields are not reusable
-const mapDispatchToProps = (dispatch) => {
-
-  return {
-    createSettlement: (name, population, description) => {
-      return dispatch(createSettlement(name, population, description))
-    }
-  }
-}
-
-class SettlementCreateForm extends React.Component {
+export default class SettlementCreateForm extends React.Component {
 
   static propTypes = {
     onSubmit: PropTypes.func,
@@ -41,7 +31,7 @@ class SettlementCreateForm extends React.Component {
   }
 
   handleSubmit = () => {
-    this.props.createSettlement(
+    createSettlement(
       this.state.name,
       this.state.population,
       this.state.description
@@ -54,6 +44,7 @@ class SettlementCreateForm extends React.Component {
     this.props.onCancel()
   }
 
+  //Todo pass fields as props, don't save them as state
   render() {
     return (
       <div>
@@ -64,5 +55,3 @@ class SettlementCreateForm extends React.Component {
     )
   }
 }
-
-export default connect(null, mapDispatchToProps)(SettlementCreateForm)
