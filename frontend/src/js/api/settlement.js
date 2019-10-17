@@ -1,31 +1,21 @@
-// TODO extract reusable api object
+import * as Api from './api'
+
 export function createSettlement(name, population, description) {
-  return fetch('http://localhost:8080/settlement', {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body:
-      JSON.stringify({
-        'name': name,
-        'population': parseInt(population),
-        'description': description,
-        'type': 'TOWN'
-      })
-  })
+  return Api.post('http://localhost:8080/settlement',
+    {
+      'name': name,
+      'population': parseInt(population),
+      'description': description,
+      'type': 'TOWN'
+    })
     .then(res => res.json())
     .catch(console.log)
 }
 
 export function getSettlement(id) {
-  return fetch('http://localhost:8080/settlement/' + id)
-    .then(res => res.json())
-    .catch(console.log)
+  return Api.get('http://localhost:8080/settlement/' + id)
 }
 
 export function getSettlements() {
-  return fetch('http://localhost:8080/settlements')
-    .then(res => res.json())
-    .catch(console.log)
+  return Api.get('http://localhost:8080/settlements')
 }
