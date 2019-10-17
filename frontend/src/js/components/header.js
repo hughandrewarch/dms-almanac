@@ -1,6 +1,6 @@
 import React from 'react'
-import ButtonDropdown from "./buttons/button_dropdown"
-import DropdownItem from "./buttons/dropdown_item"
+import ButtonDropdown from "./dropdowns/button_dropdown"
+import DropdownItem from "./dropdowns/dropdown_item"
 import { Link } from "react-router-dom"
 
 const forms = {

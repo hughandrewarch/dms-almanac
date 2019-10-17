@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
-import style from "./button.module.scss"
-import Button from "./button"
+import style from "../dropdowns/button_dropdown.module.scss"
+import Button from "../buttons/button"
 
 export default class ButtonDropdown extends React.Component {
 
