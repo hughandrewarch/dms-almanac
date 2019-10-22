@@ -2,8 +2,10 @@ rootProject.name = "backend"
 
 include 'api'
 include 'domain'
+include 'domain-java'
 include 'persistence'
 
 project(":api").projectDir = file("magic")
 project(":domain").projectDir = file("weave")
+project(":domain-java").projectDir = file("weave-java")
 project(":persistence").projectDir = file("raw-magic")
