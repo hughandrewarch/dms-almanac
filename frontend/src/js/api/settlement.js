@@ -8,8 +8,6 @@ export function createSettlement(name, population, description) {
       'description': description,
       'type': 'TOWN'
     })
-    .then(res => res.json())
-    .catch(console.log)
 }
 
 export function getSettlement(id) {

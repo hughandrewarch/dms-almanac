@@ -7,6 +7,7 @@ data class Person(
         val description: String
 )
 
+
 data class PersonRelation(
         val personId: Long,
         val relation: PersonRelationType,

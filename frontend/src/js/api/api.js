@@ -5,14 +5,17 @@ export const get = (path) => {
 }
 
 export const post = (path, body = {}) => {
-  fetch('http://localhost:8080/settlement', {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: body
-  })
+
+   let request = {
+         method: 'POST',
+         headers: {
+           'Accept': 'application/json',
+           'Content-Type': 'application/json',
+         },
+         body: JSON.stringify(body)
+       }
+
+  return fetch(path, request)
     .then(res => res.json())
     .catch(console.log)
 }
