@@ -1,15 +1,14 @@
 package app.services
 
-import almanac.models.SettlementType
-import app.models.SettlementResponse
-import app.serializers.ListSerializer
-import app.serializers.SettlementResponseSerializer
-import app.models.list.ListItem
-import org.springframework.stereotype.Component
 import almanac.ports.api.PlaceRepository
 import almanac.ports.api.SettlementRepository
 import almanac.services.PersonService
 import app.models.SettlementCreateRequest
+import app.models.SettlementResponse
+import app.models.list.ListItem
+import app.serializers.ListSerializer
+import app.serializers.SettlementResponseSerializer
+import org.springframework.stereotype.Component
 
 @Component
 class ApiSettlementService(

@@ -2,6 +2,7 @@ package app.services
 
 import almanac.models.Person
 import almanac.ports.api.PersonRepository
+import app.models.PersonCreateRequest
 import app.serializers.PersonResponseSerializer
 import com.nhaarman.mockitokotlin2.eq
 import com.nhaarman.mockitokotlin2.mock
@@ -11,7 +12,7 @@ import org.junit.jupiter.api.Test
 
 internal class ApiPersonServiceTest {
 
-    private val personResponseSerializer = mock<PersonResponseSerializer>()
+    private val personResponseSerializer = mock <PersonResponseSerializer>()
     private val personRepository = mock<PersonRepository>()
 
     private val subject = ApiPersonService(
@@ -32,4 +33,16 @@ internal class ApiPersonServiceTest {
         verify(personResponseSerializer).serialize(person)
     }
 
+    @Test
+    fun create() {
+        val personCreateRequest = PersonCreateRequest(
+                "name",
+                "description",
+                "race"
+        )
+
+        subject.create(personCreateRequest)
+
+        verify(personRepository).create("name", "race", "description")
+    }
 }
