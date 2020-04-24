@@ -9,6 +9,7 @@ import Green from "./js/components/Green"
 import { Route, Router } from "react-router-dom"
 import './index.scss'
 import CreateSettlementPage from "./js/pages/creators/create_settlement"
+import CreatePersonPage from "./js/pages/creators/create_person"
 import history from './js/history'
 import Layout from "./js/pages/layouts/layout"
 import { PersonHook } from "./js/components/person/person_hooks"
@@ -46,6 +47,13 @@ ReactDOM.render((
           return (
             <Layout {...props}>
               <CreateSettlementPage {...props}/>
+            </Layout>
+          )
+        }}/>
+        <Route path="/creator/person" render={props => {
+          return (
+            <Layout {...props}>
+              <CreatePersonPage {...props}/>
             </Layout>
           )
         }}/>
