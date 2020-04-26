@@ -1,9 +1,7 @@
 package app.services
 
 import almanac.models.*
-import almanac.ports.api.PlaceRepository
 import almanac.ports.api.SettlementRepository
-import almanac.services.PersonService
 import app.models.SettlementCreateRequest
 import app.serializers.ListSerializer
 import app.serializers.SettlementResponseSerializer
@@ -18,14 +16,10 @@ internal class ApiSettlementServiceTest {
     private val listSerializer = mock<ListSerializer>()
     private val settlementResponseSerializer = mock<SettlementResponseSerializer>()
     private val settlementRepository = mock<SettlementRepository>()
-    private val placeRepository = mock<PlaceRepository>()
-    private val personService = mock<PersonService>()
 
     private val subject = ApiSettlementService(listSerializer,
             settlementResponseSerializer,
-            settlementRepository,
-            placeRepository,
-            personService)
+            settlementRepository)
 
     @Test
     fun find() {
@@ -38,20 +32,14 @@ internal class ApiSettlementServiceTest {
                 "description",
                 SettlementType.CITY
         )
-        val placeList = listOf(Place(20L, "place", "place-d", PlaceType.SHOP))
-        val personList = listOf(Person(30L, "person", "race", "person-d"))
 
         whenever(settlementRepository.find(eq(id))).thenReturn(settlement)
-        whenever(placeRepository.findAll(eq(settlementId))).thenReturn(placeList)
-        whenever(personService.listDenizens(eq(settlementId))).thenReturn(personList)
 
         subject.find(id)
 
         verify(settlementRepository).find(id)
-        verify(placeRepository).findAll(settlementId)
-        verify(personService).listDenizens(settlementId)
 
-        verify(settlementResponseSerializer).serialize(settlement, placeList, personList)
+        verify(settlementResponseSerializer).serialize(settlement)
     }
 
     @Test
