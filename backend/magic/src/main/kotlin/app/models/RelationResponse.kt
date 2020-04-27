@@ -1,15 +1,11 @@
 package app.models
 
+import almanac.models.Relation
+
 data class RelationResponse(
         val relations: List<Relation>
 )
 
-//Todo maybe make domain object
-data class Relation(
-        val left: Long,
-        val right: Long,
-        val relation: String
-)
 /*
     State
     Relations {
