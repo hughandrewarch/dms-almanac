@@ -1,21 +1,16 @@
 package app.configurations
 
+import almanac.adapters.jdbc.*
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
-import almanac.adapters.jdbc.JdbcPersonRepository
-import almanac.adapters.jdbc.JdbcPlaceRepository
-import almanac.adapters.jdbc.JdbcSettlementRepository
-import almanac.adapters.jdbc.JdbcStatBlockRepository
-import almanac.services.PersonService
-import almanac.services.PlaceService
-import almanac.services.SettlementService
-import almanac.services.StatBlockService
+import almanac.services.*
 import org.springframework.jdbc.core.JdbcTemplate
 
 @Configuration
 class DomainServiceConfiguration {
 
     //TODO try to move these out of api layer?
+    //Api shouldn't need to know about persistence layer, at all.
     //Also possibly make individual repositories their own beans
     @Bean
     fun settlementService(jdbcTemplate: JdbcTemplate): SettlementService {
@@ -36,6 +31,20 @@ class DomainServiceConfiguration {
         val personRepo = JdbcPersonRepository(jdbcTemplate)
 
         return PersonService(personRepo)
+    }
+
+    @Bean
+    fun relationService(jdbcTemplate: JdbcTemplate): RelationService {
+        val relationServiceRepo = JdbcRelationRepository(jdbcTemplate)
+
+        return RelationService(relationServiceRepo)
+    }
+
+    @Bean
+    fun relationTypeService(jdbcTemplate: JdbcTemplate): RelationTypeService {
+        val relationTypeServiceRepo = JdbcRelationTypeRepository(jdbcTemplate)
+
+        return RelationTypeService(relationTypeServiceRepo)
     }
 
     @Bean

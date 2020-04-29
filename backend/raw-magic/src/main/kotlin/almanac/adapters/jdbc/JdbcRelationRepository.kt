@@ -42,7 +42,7 @@ private val mapper = RowMapper { rs, _ ->
     Relation(
         left = rs.getLong("left_id"),
         right = rs.getLong("right_id"),
-        relation = RelationType(
+        relationType = RelationType(
             id = rs.getLong("relation_type_id"),
             name = rs.getString("name")
         )
