@@ -1,5 +1,6 @@
 package app.services
 
+import almanac.models.Settlement
 import almanac.ports.api.SettlementRepository
 import app.models.SettlementCreateRequest
 import app.models.SettlementResponse
@@ -20,8 +21,12 @@ class ApiSettlementService(
         return settlementResponseSerializer.serialize(settlement)
     }
 
-    fun findAll(): List<ListItem> {
+    fun listAll(): List<ListItem> {
         return listSerializer.settlement(settlementRepository.findAll())
+    }
+
+    fun findAll(): List<Settlement> {
+        return settlementRepository.findAll()
     }
 
     fun create(request: SettlementCreateRequest): SettlementResponse {

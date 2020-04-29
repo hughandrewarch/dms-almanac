@@ -1,5 +1,6 @@
 package app.controllers
 
+import almanac.models.Settlement
 import app.models.SettlementCreateRequest
 import app.services.ApiSettlementService
 import app.models.SettlementResponse
@@ -12,8 +13,13 @@ import javax.validation.Valid
 class SettlementController(private val service: ApiSettlementService) {
 
     //TODO add tests
-    @GetMapping("/settlements")
-    fun settlements(): List<ListItem> {
+    @GetMapping("/settlement/list")
+    fun listSettlements(): List<ListItem> {
+        return service.listAll()
+    }
+
+    @GetMapping("/settlement")
+    fun settlements(): List<Settlement> {
         return service.findAll()
     }
 

@@ -3,7 +3,7 @@ import SettlementList from "./list/settlement_list"
 import Settlement from "./settlement"
 import PlaceList from "../place/PlaceList"
 import PersonList from "../person/person_list"
-import { getSettlement, getSettlements } from "../../api/settlement"
+import { getSettlement, getSettlements, listSettlements } from "../../api/settlement"
 
 //TODO add loading
 //TODO break out into proper file structure
@@ -36,14 +36,19 @@ export function SettlementHook(props) {
 }
 
 export function SettlementListHook() {
-  const [data, setData] = useState({ settlements: [] })
+  const [data, setData] = useState({ settlementsOld: [] })
 
   useEffect(() => {
     getSettlements()
       .then((settlements) => {
-        setData({ settlements: settlements })
+        setData({
+            settlements: settlements,
+            settlementsOld: settlements.map(settlement => {
+                return {id: settlement.id, name: settlement.name}
+            })
+        })
       })
   }, [])
 
-  return <SettlementList settlements={data.settlements}/>
+  return <SettlementList settlements={data.settlementsOld}/>
 }
