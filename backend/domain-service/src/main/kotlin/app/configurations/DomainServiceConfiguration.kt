@@ -9,9 +9,6 @@ import org.springframework.jdbc.core.JdbcTemplate
 @Configuration
 class DomainServiceConfiguration {
 
-    //TODO try to move these out of api layer?
-    //Api shouldn't need to know about persistence layer, at all.
-    //Also possibly make individual repositories their own beans
     @Bean
     fun settlementService(jdbcTemplate: JdbcTemplate): SettlementService {
         val settlementRepo = JdbcSettlementRepository(jdbcTemplate)

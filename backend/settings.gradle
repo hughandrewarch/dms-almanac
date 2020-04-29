@@ -4,8 +4,10 @@ include 'api'
 include 'domain'
 include 'domain-java'
 include 'persistence'
+include 'domain-connector'
 
 project(":api").projectDir = file("magic")
 project(":domain").projectDir = file("weave")
 project(":domain-java").projectDir = file("weave-java")
 project(":persistence").projectDir = file("raw-magic")
+project(":domain-connector").projectDir = file("domain-service")
