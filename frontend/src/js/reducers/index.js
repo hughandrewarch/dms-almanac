@@ -1,9 +1,11 @@
-import {RECEIVE_SETTLEMENTS, RECEIVE_PEOPLE} from "../constants"
+import {RECEIVE_SETTLEMENTS, RECEIVE_PEOPLE, RECEIVE_RELATIONS, RECEIVE_RELATION_TYPES} from "../constants"
 
 //TODO consider remove reducer or save for loading icon
 const initialState = {
   settlements: { byId: {}, allIds: []},
   people: { byId: {}, allIds: []},
+  relations: { byId: {}, allIds: []},
+  relationTypes: { byId: {}, allIds: []},
   settlementsList: [],
 }
 
@@ -16,6 +18,15 @@ function rootReducer(state = initialState, action) {
     case RECEIVE_PEOPLE:
       return Object.assign({}, state, {
         people: normalize(action.payload)
+      })
+    case RECEIVE_RELATIONS:
+      return Object.assign({}, state, {
+        relations: action.payload,
+        normalized: false
+      })
+    case RECEIVE_RELATION_TYPES:
+      return Object.assign({}, state, {
+        relationTypes: normalize(action.payload)
       })
     default:
       return state
