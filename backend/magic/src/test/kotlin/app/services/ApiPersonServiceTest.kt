@@ -34,6 +34,13 @@ internal class ApiPersonServiceTest {
     }
 
     @Test
+    fun findAll() {
+        subject.findAll()
+
+        verify(personRepository).findAll()
+    }
+
+    @Test
     fun create() {
         val personCreateRequest = PersonCreateRequest(
                 "name",

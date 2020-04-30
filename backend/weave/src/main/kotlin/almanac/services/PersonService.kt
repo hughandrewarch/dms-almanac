@@ -22,6 +22,10 @@ class PersonService(private val personRepository: PersonRepository) {
         return personRepository.find(id)
     }
 
+    fun findAll(): List<Person> {
+        return personRepository.findAll()
+    }
+
     fun listDenizens(relatedId: Long): List<Person> {
         return listPeople(PersonRelationType.DENIZEN, relatedId)
     }

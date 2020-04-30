@@ -1,5 +1,6 @@
 package app.services
 
+import almanac.models.Person
 import almanac.ports.api.PersonRepository
 import app.models.PersonCreateRequest
 import app.models.PersonResponse
@@ -13,6 +14,10 @@ class ApiPersonService(
 
     fun find(id: Long): PersonResponse {
         return personResponseSerializer.serialize(personRepository.find(id))
+    }
+
+    fun findAll(): List<Person> {
+        return personRepository.findAll()
     }
 
     fun create(request: PersonCreateRequest): PersonResponse {

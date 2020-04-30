@@ -20,6 +20,10 @@ class DomainPersonRepository(private val service: PersonService): PersonReposito
         return service.find(id)
     }
 
+    override fun findAll(): List<Person> {
+        return service.findAll()
+    }
+
     override fun listDenizens(settlementId: Long): List<Person> {
         return service.listDenizens(settlementId)
     }

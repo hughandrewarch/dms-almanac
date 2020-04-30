@@ -70,6 +70,15 @@ abstract class PersonRepositoryContractTest {
         }
 
         @Test
+        fun `it should return all people`() {
+            val people = subject.findAll()
+
+            assertThat(people).containsExactlyInAnyOrder(
+                person1, person2, person3
+            )
+        }
+
+        @Test
         fun `it should return empty if no denizens found`() {
             val people = subject.listDenizens(-1)
 

@@ -14,6 +14,7 @@ export function getSettlement(id) {
   return Api.get('http://localhost:8080/settlement/' + id)
 }
 
+//TODO remove
 export function listSettlements() {
   return Api.get('http://localhost:8080/settlement/list')
 }

@@ -1,5 +1,6 @@
 package app.controllers
 
+import almanac.models.Person
 import app.models.PersonCreateRequest
 import app.services.ApiPersonService
 import app.models.PersonResponse
@@ -16,6 +17,12 @@ class PersonController(private val service: ApiPersonService) {
     @GetMapping("/person/{id}")
     fun person(@PathVariable id: Long): PersonResponse {
         return service.find(id)
+    }
+
+    //TODO add tests
+    @GetMapping("/person")
+    fun people(): List<Person> {
+        return service.findAll()
     }
 
     @PostMapping("/person")

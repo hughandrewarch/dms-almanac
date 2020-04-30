@@ -35,6 +35,13 @@ internal class PersonServiceTest {
     }
 
     @Test
+    fun findAll() {
+        subject.findAll()
+
+        verify(repo).findAll()
+    }
+
+    @Test
     fun listDenizens() {
         val relatedId = 1L
 

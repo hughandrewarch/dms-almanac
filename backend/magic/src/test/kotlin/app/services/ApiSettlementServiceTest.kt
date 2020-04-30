@@ -44,19 +44,9 @@ internal class ApiSettlementServiceTest {
 
     @Test
     fun findAll() {
-        val settlements = listOf(Settlement(
-                10L,
-                "name",
-                100,
-                "description",
-                SettlementType.CITY
-        ))
-
-        whenever(settlementRepository.findAll()).thenReturn(settlements)
-
         subject.findAll()
 
-        verify(listSerializer).settlement(settlements)
+        verify(settlementRepository).findAll()
     }
 
     @Test

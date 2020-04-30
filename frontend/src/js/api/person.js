@@ -8,3 +8,8 @@ export function createPerson(name, description) {
       'race': 'HUMAN'
     })
 }
+
+export function getPeople() {
+  return Api.get('http://localhost:8080/person')
+}
+

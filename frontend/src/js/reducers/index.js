@@ -1,17 +1,21 @@
-import {RECEIVE_SETTLEMENTS} from "../constants"
+import {RECEIVE_SETTLEMENTS, RECEIVE_PEOPLE} from "../constants"
 
 //TODO consider remove reducer or save for loading icon
 const initialState = {
   settlements: { byId: {}, allIds: []},
+  people: { byId: {}, allIds: []},
   settlementsList: [],
 }
 
 function rootReducer(state = initialState, action) {
   switch (action.type) {
     case RECEIVE_SETTLEMENTS:
-
       return Object.assign({}, state, {
         settlements: normalize(action.payload)
+      })
+    case RECEIVE_PEOPLE:
+      return Object.assign({}, state, {
+        people: normalize(action.payload)
       })
     default:
       return state
