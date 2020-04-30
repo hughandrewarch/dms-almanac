@@ -14,6 +14,7 @@ export default class NavList extends React.Component {
   }
 
   render() {
+    if(this.props.items){
     return (
       <ul className="list-group list-group-flush">
         {this.props.items.map(el => (
@@ -24,5 +25,10 @@ export default class NavList extends React.Component {
         ))}
       </ul>
     )
+  } else {
+    return (
+    <div>OOP</div>
+    )
+  }
   }
 }

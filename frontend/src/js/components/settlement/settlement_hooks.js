@@ -3,7 +3,7 @@ import SettlementList from "./list/settlement_list"
 import Settlement from "./settlement"
 import PlaceList from "../place/PlaceList"
 import PersonList from "../person/person_list"
-import { getSettlement, getSettlements, listSettlements } from "../../api/settlement"
+import { getSettlement, getSettlements } from "../../api/settlement"
 
 //TODO add loading
 //TODO break out into proper file structure
@@ -40,7 +40,7 @@ export function SettlementListHook() {
 
   useEffect(() => {
     getSettlements()
-      .then((settlements) => {
+      .then(settlements => {
         setData({
             settlements: settlements,
             settlementsOld: settlements.map(settlement => {

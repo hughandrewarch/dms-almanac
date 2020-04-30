@@ -7,10 +7,7 @@ export function fetchPlace(payload) {
 
 export function fetchSettlements(payload) {
   return (dispatch) => {
-    const settlementId = parseInt(payload)
-
     return getSettlements()
-      .then(res => res.json())
       .then((data) => {
         dispatch(receiveSettlements(data))
       })
