@@ -20,10 +20,12 @@ function rootReducer(state = initialState, action) {
         people: normalize(action.payload)
       })
     case RECEIVE_RELATIONS:
-      return Object.assign({}, state, {
-        relations: action.payload,
-        normalized: false
-      })
+      console.log(state)
+      test(action.payload, state.relationTypes, state)
+      console.log(state)
+      console.log(action.payload)
+
+      return state
     case RECEIVE_RELATION_TYPES:
       return Object.assign({}, state, {
         relationTypes: normalize(action.payload)
@@ -31,6 +33,43 @@ function rootReducer(state = initialState, action) {
     default:
       return state
   }
+}
+
+function test(relations, relationTypes, state) {
+    relations.forEach(relation => {
+
+        var relationType = relationTypes.byId[relation.relationType].name
+        console.log("switch(" + relationType + ")")
+        switch(relationType) {
+            case "SettlementPerson":
+
+                //TODO see if possible to extract method do deal with more general left right terms?
+                if(state.settlements.byId[relation.left] !== undefined) {
+
+                    var people = state.settlements.byId[relation.left].people ?
+                                                    state.settlements.byId[relation.left].people.add(relation.right) :
+                                                    new Set([relation.right])
+                    var settlements = {[relation.left]: {  people: people   }}
+
+                    Object.assign(state.settlements.byId[relation.left], settlements[relation.left]);
+                }
+
+                if(state.people.byId[relation.right] !== undefined) {
+
+                    var settlements = state.people.byId[relation.right].settlements ?
+                                                    state.people.byId[relation.right].settlements.add(relation.left) :
+                                                    new Set([relation.left])
+                    var people = {[relation.right]: {  settlements: settlements   }}
+
+                    Object.assign(state.people.byId[relation.right], people[relation.right]);
+                }
+
+                break;
+            default:
+                console.log("NO")
+                break;
+        }
+    })
 }
 
 function normalize(list) {
