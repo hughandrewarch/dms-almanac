@@ -1,4 +1,6 @@
 import {RECEIVE_SETTLEMENTS, RECEIVE_PEOPLE, RECEIVE_RELATIONS, RECEIVE_RELATION_TYPES} from "../constants"
+import {SETTLEMENTS, PEOPLE} from "../constants/state_keys"
+import {SETTLEMENT_PERSON} from "../constants/relations"
 
 //TODO consider remove reducer or save for loading icon
 const initialState = {
@@ -20,11 +22,7 @@ function rootReducer(state = initialState, action) {
         people: normalize(action.payload)
       })
     case RECEIVE_RELATIONS:
-      console.log(state)
-      test(action.payload, state.relationTypes, state)
-      console.log(state)
-      console.log(action.payload)
-
+      linkRelations(action.payload, state.relationTypes, state)
       return state
     case RECEIVE_RELATION_TYPES:
       return Object.assign({}, state, {
@@ -35,41 +33,45 @@ function rootReducer(state = initialState, action) {
   }
 }
 
-function test(relations, relationTypes, state) {
+function linkRelations(relations, relationTypes, state) {
     relations.forEach(relation => {
 
         var relationType = relationTypes.byId[relation.relationType].name
         console.log("switch(" + relationType + ")")
         switch(relationType) {
-            case "SettlementPerson":
-
-                //TODO see if possible to extract method do deal with more general left right terms?
-                if(state.settlements.byId[relation.left] !== undefined) {
-
-                    var people = state.settlements.byId[relation.left].people ?
-                                                    state.settlements.byId[relation.left].people.add(relation.right) :
-                                                    new Set([relation.right])
-                    var settlements = {[relation.left]: {  people: people   }}
-
-                    Object.assign(state.settlements.byId[relation.left], settlements[relation.left]);
-                }
-
-                if(state.people.byId[relation.right] !== undefined) {
-
-                    var settlements = state.people.byId[relation.right].settlements ?
-                                                    state.people.byId[relation.right].settlements.add(relation.left) :
-                                                    new Set([relation.left])
-                    var people = {[relation.right]: {  settlements: settlements   }}
-
-                    Object.assign(state.people.byId[relation.right], people[relation.right]);
-                }
-
+            case SETTLEMENT_PERSON:
+                processRelations(SETTLEMENTS, PEOPLE, relation, state)
                 break;
             default:
                 console.log("NO")
                 break;
         }
     })
+}
+
+//TODO move out of reducer
+function buildRelationObject(originalRelations, newRelationId) {
+
+    var relation = originalRelations ?
+                    originalRelations.add(newRelationId) :
+                    new Set([newRelationId])
+    return relation
+}
+
+function addRelations(name, id, relationName, relationId, state) {
+    if(state[name].byId[id] !== undefined) {
+        let relations = {}
+
+        let originalRelations = state[name].byId[id][relationName]
+        relations[relationName] = buildRelationObject(originalRelations, relationId)
+
+        Object.assign(state[name].byId[id], relations);
+    }
+}
+
+function processRelations(leftName, rightName, relation, state) {
+     addRelations(leftName, relation.left, rightName, relation.right, state)
+     addRelations(rightName, relation.right, leftName, relation.left, state)
 }
 
 function normalize(list) {
