@@ -7,10 +7,10 @@ import { FETCH_PLACE,
             RECEIVE_PEOPLE,
             RECEIVE_RELATIONS,
             RECEIVE_RELATION_TYPES } from "../constants"
-import { getSettlements } from "../api/settlement"
 import { getPeople } from "../api/person"
 import { getRelations } from "../api/relation"
 import { getRelationTypes } from "../api/relation_type"
+import SettlementApi from "../api/SettlementApi"
 
 import environment from 'environment'
 
@@ -20,22 +20,30 @@ export function fetchPlace(payload) {
 
 //TODO break into own api structures?
 //TODO reread action dispatch, might be skipping a step, see fetchPlace
-export function fetchSettlementsOld(payload) {
-  return (dispatch) => {
-    return getSettlements()
-      .then((data) => {
-        dispatch(receiveSettlements(data))
-      })
-      .catch(console.log)
-  }
-}
+//export function fetchSettlementsOld(payload) {
+//  return (dispatch) => {
+//    return getSettlements()
+//      .then((data) => {
+//        dispatch(receiveSettlements(data))
+//      })
+//      .catch(console.log)
+//  }
+//}
 
 
-//TODO keep moving, look at httputility effect utility
+//TODO keep moving, look at actionutility to bring out lines 41-45 httputility effect utility
+//export function fetchSettlementsNew() {
+//    var response = SettlementApi.getAll()
+//}
+
 export function fetchSettlementsNew() {
-     const endpoint = environment.api.settlements;
-
-     console.log(endpoint)
+    return async (dispatch, getState) => {
+        return SettlementApi.getAll()
+            .then((data) => {
+                dispatch(receiveSettlements(data))
+            })
+            .catch(console.log)
+    }
 }
 
 export function fetchSettlements(payload) {
@@ -43,6 +51,9 @@ export function fetchSettlements(payload) {
 }
 
 function receiveSettlements(payload) {
+    console.log("receiveSettlements")
+    console.log(payload)
+
   return  { type: RECEIVE_SETTLEMENTS, payload: payload }
 }
 

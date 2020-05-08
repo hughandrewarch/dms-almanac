@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchSettlements, fetchPeople, fetchRelations, fetchRelationTypes } from "../../actions"
+import { fetchSettlements, fetchPeople, fetchRelations, fetchRelationTypes, fetchSettlementsNew } from "../../actions"
 
 const mapStateToProps = (state, props) => {
 
@@ -14,7 +14,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchSettlements: () => {
-        dispatch(fetchSettlements())
+        dispatch(fetchSettlementsNew())
     },
     fetchPeople: () => {
         dispatch(fetchPeople())
