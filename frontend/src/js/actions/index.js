@@ -12,12 +12,13 @@ import { getRelationTypes } from "../api/relation_type"
 
 import environment from 'environment'
 import SettlementApi from "../api/SettlementApi"
+import PersonApi from "../api/PersonApi"
 
 export function fetchPlace(payload) {
   return { type: FETCH_PLACE, payload: payload }
 }
 
-//TODO keep moving, look at actionutility to bring out lines 41-45 httputility effect utility
+//TODO keep moving, look at actionUtility to bring out lines 41-45 httputility effect utility
 export function fetchSettlements() {
     return async (dispatch, getState) => {
         return SettlementApi.getAll()
@@ -42,8 +43,14 @@ export function fetchPeopleOld(payload) {
   }
 }
 
-export function fetchPeople(payload) {
-  return  { type: FETCH_PEOPLE, payload: payload }
+export function fetchPeople() {
+    return async (dispatch, getState) => {
+        return PersonApi.getAll()
+            .then((data) => {
+                dispatch(receivePeople(data))
+            })
+            .catch(console.log)
+    }
 }
 
 function receivePeople(payload) {

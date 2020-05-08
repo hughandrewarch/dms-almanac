@@ -4,6 +4,9 @@ import { fetchSettlements, fetchPeople, fetchRelations, fetchRelationTypes } fro
 
 const mapStateToProps = (state, props) => {
 
+    console.log("MSTP")
+    console.log(state)
+
     return {
     }
 }
