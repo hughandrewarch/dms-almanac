@@ -1,20 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchSettlements, fetchPeople, fetchRelations, fetchRelationTypes, fetchSettlementsNew } from "../../actions"
+import { fetchSettlements, fetchPeople, fetchRelations, fetchRelationTypes } from "../../actions"
 
 const mapStateToProps = (state, props) => {
 
-    console.log("MSTP")
-    console.log(state)
     return {
-//       isRequesting: selectRequesting(state, [ShowsAction.REQUEST_SHOW, ShowsAction.REQUEST_CAST]),
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchSettlements: () => {
-        dispatch(fetchSettlementsNew())
+        dispatch(fetchSettlements())
     },
     fetchPeople: () => {
         dispatch(fetchPeople())
@@ -29,14 +26,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class HomePage extends React.Component {
-
-//     constructor() {
-//         this.test = this.test.bind(this)
-//     }
-
-//     test() {
-//         console.log(this.props)
-//     }
 
     componentDidMount() {
         this.props.fetchSettlements()

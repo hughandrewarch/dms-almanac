@@ -12,15 +12,6 @@ export function createSettlement(name, population, description) {
     })
 }
 
-export function getSettlement(id) {
-  return Api.get('http://localhost:8080/settlement/' + id)
-}
-
-//TODO remove
-export function listSettlements() {
-  return Api.get('http://localhost:8080/settlement/list')
-}
-
 const BASE_API = environment.baseApi
 const API = {
   settlements: `${BASE_API}/settlement`

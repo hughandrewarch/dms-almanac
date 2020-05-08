@@ -1,5 +1,4 @@
 import { FETCH_PLACE,
-            FETCH_SETTLEMENTS,
             FETCH_PEOPLE,
             FETCH_RELATIONS,
             FETCH_RELATION_TYPES,
@@ -10,33 +9,16 @@ import { FETCH_PLACE,
 import { getPeople } from "../api/person"
 import { getRelations } from "../api/relation"
 import { getRelationTypes } from "../api/relation_type"
-import SettlementApi from "../api/SettlementApi"
 
 import environment from 'environment'
+import SettlementApi from "../api/SettlementApi"
 
 export function fetchPlace(payload) {
   return { type: FETCH_PLACE, payload: payload }
 }
 
-//TODO break into own api structures?
-//TODO reread action dispatch, might be skipping a step, see fetchPlace
-//export function fetchSettlementsOld(payload) {
-//  return (dispatch) => {
-//    return getSettlements()
-//      .then((data) => {
-//        dispatch(receiveSettlements(data))
-//      })
-//      .catch(console.log)
-//  }
-//}
-
-
 //TODO keep moving, look at actionutility to bring out lines 41-45 httputility effect utility
-//export function fetchSettlementsNew() {
-//    var response = SettlementApi.getAll()
-//}
-
-export function fetchSettlementsNew() {
+export function fetchSettlements() {
     return async (dispatch, getState) => {
         return SettlementApi.getAll()
             .then((data) => {
@@ -46,14 +28,7 @@ export function fetchSettlementsNew() {
     }
 }
 
-export function fetchSettlements(payload) {
-  return  { type: FETCH_SETTLEMENTS, payload: payload }
-}
-
 function receiveSettlements(payload) {
-    console.log("receiveSettlements")
-    console.log(payload)
-
   return  { type: RECEIVE_SETTLEMENTS, payload: payload }
 }
 
