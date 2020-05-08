@@ -3,13 +3,13 @@ import HttpUtility from './HttpUtility'
 
 const BASE_API = environment.baseApi
 const API = {
-  people: `${BASE_API}/person`
+  relations: `${BASE_API}/relations`
 };
 
-export default class PersonApi {
+export default class RelationApi {
 
     static async getAll() {
-        const endpoint = API.people
+        const endpoint = API.relations
 
         return await HttpUtility.get(endpoint)
     }

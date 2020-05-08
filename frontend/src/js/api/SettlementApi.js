@@ -1,5 +1,5 @@
 import environment from 'environment'
-import * as Api from './api'
+import * as Api from './Api'
 import HttpUtility from './HttpUtility'
 
 export function createSettlement(name, population, description) {

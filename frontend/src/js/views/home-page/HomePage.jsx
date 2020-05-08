@@ -1,11 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchSettlements, fetchPeople, fetchRelations, fetchRelationTypes } from "../../actions"
-
+import Actions from "../../actions"
 const mapStateToProps = (state, props) => {
-
-    console.log("MSTP")
-    console.log(state)
 
     return {
     }
@@ -14,16 +10,16 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchSettlements: () => {
-        dispatch(fetchSettlements())
+        dispatch(Actions.fetchSettlements())
     },
     fetchPeople: () => {
-        dispatch(fetchPeople())
+        dispatch(Actions.fetchPeople())
     },
     fetchRelations: () => {
-        dispatch(fetchRelations())
+        dispatch(Actions.fetchRelations())
     },
     fetchRelationTypes: () => {
-        dispatch(fetchRelationTypes())
+        dispatch(Actions.fetchRelationTypes())
     }
   }
 }
