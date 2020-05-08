@@ -1,4 +1,6 @@
 import {RECEIVE_SETTLEMENTS, RECEIVE_PEOPLE, RECEIVE_RELATIONS, RECEIVE_RELATION_TYPES} from "../constants"
+import {FETCH_SETTLEMENTS, FETCH_PEOPLE, FETCH_RELATIONS, FETCH_RELATION_TYPES} from "../constants"
+import { fetchSettlementsOld, fetchPeopleOld, fetchRelationsOld, fetchRelationTypesOld, fetchSettlementsNew } from "../actions"
 import {SETTLEMENTS, PEOPLE} from "../constants/state_keys"
 import {SETTLEMENT_PERSON} from "../constants/relations"
 
@@ -28,22 +30,37 @@ function rootReducer(state = initialState, action) {
       return Object.assign({}, state, {
         relationTypes: normalize(action.payload)
       })
+    case FETCH_SETTLEMENTS:
+        console.log("FETCH_SETTLEMENTS")
+        fetchSettlementsNew()
+        break;
+    case FETCH_PEOPLE:
+        console.log("FETCH_PEOPLE")
+        fetchPeopleOld()
+        break;
+    case FETCH_RELATIONS:
+        console.log("FETCH_RELATIONS")
+        fetchRelationsOld()
+        break;
+    case FETCH_RELATION_TYPES:
+        console.log("FETCH_RELATION_TYPES")
+        fetchRelationTypesOld()
+        break;
     default:
-      return state
+        console.log(action.type)
+        return state
   }
 }
 
 function linkRelations(relations, relationTypes, state) {
     relations.forEach(relation => {
-
         var relationType = relationTypes.byId[relation.relationType].name
-        console.log("switch(" + relationType + ")")
+
         switch(relationType) {
             case SETTLEMENT_PERSON:
                 processRelations(SETTLEMENTS, PEOPLE, relation, state)
                 break;
             default:
-                console.log("NO")
                 break;
         }
     })

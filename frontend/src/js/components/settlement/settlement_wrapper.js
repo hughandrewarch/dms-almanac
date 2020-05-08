@@ -1,5 +1,4 @@
 import React from "react"
-import * as Props from "../../props"
 import PropTypes from 'prop-types'
 import connect from "react-redux/es/connect/connect"
 import Settlement from "./settlement"

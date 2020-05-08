@@ -1,3 +1,4 @@
+import environment from 'environment'
 import * as Api from './api'
 
 export function createSettlement(name, population, description) {
