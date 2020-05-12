@@ -3,11 +3,6 @@ import { connect } from 'react-redux';
 import Actions from "../../actions"
 import SettlementSelector from "../../selectors/SettlementSelector"
 
-const mapStateToProps = (state, props) => {
-
-    return state
-}
-
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchSettlements: () => {
@@ -32,29 +27,20 @@ class HomePage extends React.Component {
         this.props.fetchPeople()
         this.props.fetchRelationTypes()
         this.props.fetchRelations()
-
-        this.test1 = this.test1.bind(this);
-        this.test2 = this.test2.bind(this);
     }
 
-    test1() {
-        console.log("HELLO")
-        console.log(this.props)
-        console.log("GOODBYE")
-    }
-    test2() {
-        console.log(SettlementSelector.select(this.props, 2))
+    test3() {
+        this.props.history.push('/settlement/2')
     }
 
     render() {
         return (
         <div>
             <div>HOME PAGE</div>
-            <button onClick={this.test1}>Test 1</button>
-            <button onClick={this.test2}>Test 2</button>
+            <button onClick={this.test3.bind(this)}>Settlement 2</button>
         </div>
         );
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage)
+export default connect(null, mapDispatchToProps)(HomePage)

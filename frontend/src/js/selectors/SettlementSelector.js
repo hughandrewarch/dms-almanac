@@ -15,16 +15,15 @@ export default class SettlementSelector {
 }
 
 function buildSettlement(settlement, people) {
-     return {
-         id: settlement.id,
-         name: settlement.name,
-         people: people
-     }
- }
+    return {
+        settlement: settlement,
+        people: people
+    }
+}
 
 function settlementSelector(settlementId) {
-        return state => state.settlements.byId[settlementId]
-    }
+    return state => state.settlements.byId[settlementId]
+}
 
 
 //TODO add error handling

@@ -1,7 +1,6 @@
 import React from "react"
 import * as Props from "../../props"
 import PropTypes from 'prop-types'
-import { Person } from '../../routes'
 import NavList from "../list/NavList"
 
 export default class PersonList extends React.Component {
@@ -10,7 +9,7 @@ export default class PersonList extends React.Component {
   }
 
   to(elementId) {
-    return Person.show(elementId)
+    return "/" + elementId
   }
 
   render() {
