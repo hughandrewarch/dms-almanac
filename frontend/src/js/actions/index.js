@@ -1,4 +1,4 @@
-import { FETCH_PLACE, RECEIVE_SETTLEMENTS, RECEIVE_PEOPLE, RECEIVE_RELATIONS, RECEIVE_RELATION_TYPES } from "../constants"
+import { FETCH_PLACE, REQUEST, RECEIVE_SETTLEMENTS, RECEIVE_PEOPLE, RECEIVE_RELATIONS, RECEIVE_RELATION_TYPES } from "../constants"
 import SettlementApi from "../api/SettlementApi"
 import PersonApi from "../api/PersonApi"
 import RelationTypeApi from "../api/RelationTypeApi"
@@ -8,10 +8,17 @@ export function fetchPlace(payload) {
   return { type: FETCH_PLACE, payload: payload }
 }
 
+//TODO keep moving, look at actionUtility
+//TODO move fetchs into a reducer, actions should be pure, like place
 export default class Actions {
-//TODO keep moving, look at actionUtility to bring out lines 41-45 httputility effect utility
-    static fetchSettlements() {
+
+    static request() {
+        return  { type: REQUEST }
+    }
+
+    static fetchSettlements(dispatch) {
         return async (dispatch, getState) => {
+            dispatch(Actions.request())
             return SettlementApi.getAll()
                 .then((data) => {
                     dispatch(Actions.receiveSettlements(data))
@@ -26,6 +33,7 @@ export default class Actions {
 
     static fetchPeople() {
         return async (dispatch, getState) => {
+            dispatch(Actions.request())
             return PersonApi.getAll()
                 .then((data) => {
                     dispatch(Actions.receivePeople(data))
@@ -40,6 +48,7 @@ export default class Actions {
 
     static fetchRelations() {
         return async (dispatch, getState) => {
+            dispatch(Actions.request())
             return RelationApi.getAll()
                 .then((data) => {
                     dispatch(Actions.receiveRelations(data))
@@ -54,6 +63,7 @@ export default class Actions {
 
     static fetchRelationTypes() {
         return async (dispatch, getState) => {
+            dispatch(Actions.request())
             return RelationTypeApi.getAll()
                 .then((data) => {
                     dispatch(Actions.receiveRelationTypes(data))

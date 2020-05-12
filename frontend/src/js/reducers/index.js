@@ -1,4 +1,4 @@
-import {RECEIVE_SETTLEMENTS, RECEIVE_PEOPLE, RECEIVE_RELATIONS, RECEIVE_RELATION_TYPES} from "../constants"
+import {RECEIVE_SETTLEMENTS, RECEIVE_PEOPLE, RECEIVE_RELATIONS, RECEIVE_RELATION_TYPES, REQUEST} from "../constants"
 import {SETTLEMENTS, PEOPLE} from "../constants/state_keys"
 import {SETTLEMENT_PERSON} from "../constants/relations"
 
@@ -15,18 +15,27 @@ function rootReducer(state = initialState, action) {
   switch (action.type) {
     case RECEIVE_SETTLEMENTS:
       return Object.assign({}, state, {
-        settlements: normalize(action.payload)
+        settlements: normalize(action.payload),
+        isRequesting: false
       })
     case RECEIVE_PEOPLE:
       return Object.assign({}, state, {
-        people: normalize(action.payload)
+        people: normalize(action.payload),
+        isRequesting: false
       })
     case RECEIVE_RELATIONS:
       linkRelations(action.payload, state.relationTypes, state)
-      return state
+      return Object.assign({}, state, {
+        isRequesting: false
+      })
     case RECEIVE_RELATION_TYPES:
       return Object.assign({}, state, {
-        relationTypes: normalize(action.payload)
+        relationTypes: normalize(action.payload),
+        isRequesting: false
+      })
+    case REQUEST:
+      return Object.assign({}, state, {
+        isRequesting: true
       })
     default:
         console.log(action.type)

@@ -1,19 +1,62 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch, Router } from "react-router-dom"
+import Actions from "../actions"
 import HomePage from "./home-page/HomePage"
 import SettlementWrapper from "../components/settlement/settlement_wrapper"
 
+const mapStateToProps = (state, props) => {
+    return {
+        isRequesting: state.isRequesting
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        fetchSettlements: () => {
+            dispatch(Actions.fetchSettlements())
+        },
+        fetchPeople: () => {
+            dispatch(Actions.fetchPeople())
+        },
+        fetchRelations: () => {
+            dispatch(Actions.fetchRelations())
+        },
+        fetchRelationTypes: () => {
+            dispatch(Actions.fetchRelationTypes())
+        },
+        request: () => {
+            dispatch(Actions.request())
+        }
+    }
+}
+
 class App extends React.Component {
+
+    componentDidMount() {
+        this.props.fetchSettlements()
+        this.props.fetchPeople()
+        this.props.fetchRelationTypes()
+        this.props.fetchRelations()
+    }
 
     home() {
         this.props.history.push('/')
+    }
+
+    renderRequesting() {
+        if(this.props.isRequesting) {
+            return(
+                <div>L O A D I N G</div>
+            )
+        }
     }
 
     render() {
         return (
         <Router history={this.props.history}>
             <div onClick={this.home.bind(this)}>H E A D E R</div>
+            {this.renderRequesting()}
             <Switch>
                 <Route exact path="/" component={HomePage}/>
                 <Route exact path="/settlements">Settlements</Route>
@@ -25,5 +68,5 @@ class App extends React.Component {
     }
 }
 
-export default connect(null, null)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App)
 
