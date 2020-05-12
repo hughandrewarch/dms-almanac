@@ -2,10 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch, Router } from "react-router-dom"
 import Actions from "../actions"
+import SettlementActions from "../actions/SettlementActions"
 import HomePage from "./home-page/HomePage"
 import SettlementWrapper from "../components/settlement/settlement_wrapper"
 
 const mapStateToProps = (state, props) => {
+    console.log(state)
     return {
         isRequesting: state.isRequesting
     }
@@ -14,7 +16,7 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchSettlements: () => {
-            dispatch(Actions.fetchSettlements())
+            dispatch(SettlementActions.fetchSettlements())
         },
         fetchPeople: () => {
             dispatch(Actions.fetchPeople())

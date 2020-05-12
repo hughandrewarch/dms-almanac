@@ -1,5 +1,4 @@
-import { FETCH_PLACE, REQUEST, RECEIVE_SETTLEMENTS, RECEIVE_PEOPLE, RECEIVE_RELATIONS, RECEIVE_RELATION_TYPES } from "../constants"
-import SettlementApi from "../api/SettlementApi"
+import { FETCH_PLACE, REQUEST, RECEIVE_PEOPLE, RECEIVE_RELATIONS, RECEIVE_RELATION_TYPES } from "../constants"
 import PersonApi from "../api/PersonApi"
 import RelationTypeApi from "../api/RelationTypeApi"
 import RelationApi from "../api/RelationApi"
@@ -14,21 +13,6 @@ export default class Actions {
 
     static request() {
         return  { type: REQUEST }
-    }
-
-    static fetchSettlements(dispatch) {
-        return async (dispatch, getState) => {
-            dispatch(Actions.request())
-            return SettlementApi.getAll()
-                .then((data) => {
-                    dispatch(Actions.receiveSettlements(data))
-                })
-                .catch(console.log)
-        }
-    }
-
-    static receiveSettlements(payload) {
-      return  { type: RECEIVE_SETTLEMENTS, payload: payload }
     }
 
     static fetchPeople() {

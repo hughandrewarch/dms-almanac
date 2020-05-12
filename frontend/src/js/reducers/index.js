@@ -1,6 +1,11 @@
-import {RECEIVE_SETTLEMENTS, RECEIVE_PEOPLE, RECEIVE_RELATIONS, RECEIVE_RELATION_TYPES, REQUEST} from "../constants"
-import {SETTLEMENTS, PEOPLE} from "../constants/state_keys"
-import {SETTLEMENT_PERSON} from "../constants/relations"
+import { combineReducers } from 'redux';
+import { RECEIVE_SETTLEMENTS, RECEIVE_PEOPLE, RECEIVE_RELATIONS, RECEIVE_RELATION_TYPES, REQUEST } from "../constants"
+import { SETTLEMENTS, PEOPLE } from "../constants/state_keys"
+import { SETTLEMENT_PERSON } from "../constants/relations"
+import SettlementReducer from "./SettlementReducer"
+import PersonReducer from "./PersonReducer"
+import RelationTypeReducer from "./RelationTypeReducer"
+import RelationReducer from "./RelationReducer"
 
 //TODO consider remove reducer or save for loading icon
 const initialState = {
@@ -11,34 +16,32 @@ const initialState = {
   settlementsList: [],
 }
 
+export default combineReducers({
+    settlements: new SettlementReducer().reducer,
+    people: new PersonReducer().reducer,
+    relationTypes: new RelationTypeReducer().reducer,
+    relation: new RelationReducer().reducer,
+    root: rootReducer,
+})
+
+//export default (history) => {
+//      const reducerMap = {
+//            settlements: new SettlementReducer().reducer,
+//            root: rootReducer,
+//      };
+//
+//      return combineReducers(
+//            reducerMap
+//      );
+//};
+
 function rootReducer(state = initialState, action) {
   switch (action.type) {
-    case RECEIVE_SETTLEMENTS:
-      return Object.assign({}, state, {
-        settlements: normalize(action.payload),
-        isRequesting: false
-      })
-    case RECEIVE_PEOPLE:
-      return Object.assign({}, state, {
-        people: normalize(action.payload),
-        isRequesting: false
-      })
-    case RECEIVE_RELATIONS:
-      linkRelations(action.payload, state.relationTypes, state)
-      return Object.assign({}, state, {
-        isRequesting: false
-      })
-    case RECEIVE_RELATION_TYPES:
-      return Object.assign({}, state, {
-        relationTypes: normalize(action.payload),
-        isRequesting: false
-      })
     case REQUEST:
       return Object.assign({}, state, {
         isRequesting: true
       })
     default:
-        console.log(action.type)
         return state
   }
 }
@@ -99,4 +102,4 @@ function normalize(list) {
     }
 }
 
-export default rootReducer
+//export default rootReducer
