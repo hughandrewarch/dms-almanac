@@ -1,23 +1,13 @@
 import { createSelector } from 'reselect';
+import PeopleSelector from "./PeopleSelector"
 
 export default class SettlementSelector {
 
     static select(state, settlementId) {
 
-        const build = createSelector(
-            settlementSelector(settlementId),
-            peopleSelector(settlementId),
-            buildSettlement
-        )
+        const settlement = settlementSelector(settlementId)
 
-        return build(state)
-    }
-}
-
-function buildSettlement(settlement, people) {
-    return {
-        settlement: settlement,
-        people: people
+        return settlement(state)
     }
 }
 
@@ -25,18 +15,3 @@ function settlementSelector(settlementId) {
     return state => state.settlements.byId[settlementId]
 }
 
-
-//TODO add error handling
-function peopleSelector(settlementId) {
-    return state => {
-        const settlement = state.settlements.byId[settlementId]
-
-        return Array.from(settlement.people).map(personId => {
-            const person = state.people.byId[personId]
-            return {
-                id: personId,
-                name: person.name
-            }
-        })
-    }
-}

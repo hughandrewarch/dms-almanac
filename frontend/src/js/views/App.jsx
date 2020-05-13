@@ -7,7 +7,6 @@ import HomePage from "./home-page/HomePage"
 import SettlementWrapper from "../components/settlement/settlement_wrapper"
 
 const mapStateToProps = (state, props) => {
-    console.log(state)
     return {
         isRequesting: state.isRequesting
     }

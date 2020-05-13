@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 
 class HomePage extends React.Component {
 
-    test3() {
+    settlement1() {
+        this.props.history.push('/settlement/1')
+    }
+
+    settlement2() {
         this.props.history.push('/settlement/2')
     }
 
@@ -11,7 +15,8 @@ class HomePage extends React.Component {
         return (
         <div>
             <div>HOME PAGE</div>
-            <button onClick={this.test3.bind(this)}>Settlement 2</button>
+            <button onClick={this.settlement1.bind(this)}>Settlement 1</button>
+            <button onClick={this.settlement2.bind(this)}>Settlement 2</button>
         </div>
         );
     }

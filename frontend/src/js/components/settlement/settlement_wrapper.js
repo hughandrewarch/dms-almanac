@@ -4,9 +4,15 @@ import connect from "react-redux/es/connect/connect"
 import Settlement from "./settlement"
 import PersonList from "../person/person_list"
 import SettlementSelector from "../../selectors/SettlementSelector"
+import PeopleSelector from "../../selectors/PeopleSelector"
 
 const mapStateToProps = (state, props) => {
-    return SettlementSelector.select(state, props.match.params.settlementId)
+    let settlementId = props.match.params.settlementId
+
+    return {
+        settlement: SettlementSelector.select(state, settlementId),
+        people: PeopleSelector.selectBySettlementId(state, settlementId)
+    }
 }
 
 class SettlementWrapper extends React.Component {
