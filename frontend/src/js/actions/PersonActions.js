@@ -1,5 +1,5 @@
 import { RECEIVE_PEOPLE } from "../constants"
-import PeopleApi from "../api/PeopleApi"
+import PersonApi from "../api/PersonApi"
 import Actions from "./"
 
 export default class PersonActions {

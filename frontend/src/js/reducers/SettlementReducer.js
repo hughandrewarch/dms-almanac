@@ -19,17 +19,17 @@ export default class SettlementReducer extends BaseReducer {
 
 function normalize(list) {
 
-    var ids = list.map(item => {
+    var allIds = list.map(item => {
         return item.id
     })
 
-    var values = list.reduce(function(map, item) {
-        map[item.id] = {id: item.id, name: item.name}
+    var byId = list.reduce(function(map, item) {
+        map[item.id] = item
         return map
     }, {})
 
     return {
-        byId: values,
-        allIds: ids
+        byId: byId,
+        allIds: allIds
     }
 }

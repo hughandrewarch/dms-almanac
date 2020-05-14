@@ -24,7 +24,7 @@ function normalize(list) {
     })
 
     var values = list.reduce(function(map, item) {
-        map[item.id] = {id: item.id, name: item.name}
+        map[item.id] = item
         return map
     }, {})
 

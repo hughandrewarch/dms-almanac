@@ -3,6 +3,13 @@ import { SETTLEMENT_PERSON } from "../constants/relations"
 
 export default class PeopleSelector {
 
+    static select(state, personId) {
+
+        const person = personSelector(personId)
+
+        return person(state)
+    }
+
     static selectMany(state, peopleIds) {
 
         const people = peopleSelector(peopleIds)
@@ -20,6 +27,10 @@ export default class PeopleSelector {
 
         return PeopleSelector.selectMany(state, settlementPeopleIds)
     }
+}
+
+function personSelector(personId) {
+    return state => state.people.byId[personId]
 }
 
 function peopleSelector(peopleIds) {

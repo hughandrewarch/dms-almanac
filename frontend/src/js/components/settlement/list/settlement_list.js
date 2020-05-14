@@ -1,7 +1,6 @@
 import React from "react"
 import * as Props from "../../../props"
 import PropTypes from 'prop-types'
-import { Settlements } from '../../../routes'
 import NavList from "../../list/NavList"
 
 export default class SettlementList extends React.Component {
@@ -10,7 +9,7 @@ export default class SettlementList extends React.Component {
   }
 
   to(elementId) {
-    return Settlements.show(elementId)
+    return ''
   }
 
   render() {

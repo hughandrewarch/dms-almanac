@@ -9,7 +9,7 @@ export default class PersonList extends React.Component {
   }
 
   to(elementId) {
-    return "/" + elementId
+    return "person/" + elementId
   }
 
   render() {
