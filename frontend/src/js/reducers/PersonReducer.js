@@ -1,4 +1,5 @@
 import { RECEIVE_PEOPLE } from "../constants"
+import ResponseUtil from "../utilities/ResponseUtil"
 import BaseReducer from "./BaseReducer"
 
 export default class PersonReducer extends BaseReducer {
@@ -8,28 +9,11 @@ export default class PersonReducer extends BaseReducer {
     };
 
     [RECEIVE_PEOPLE](state, action) {
-        let people = normalize(action.payload)
+        let people = ResponseUtil.normalize(action.payload)
         return {
             ...state,
             byId: people.byId,
             allIds: people.allIds,
         }
-    }
-}
-
-function normalize(list) {
-
-    var ids = list.map(item => {
-        return item.id
-    })
-
-    var values = list.reduce(function(map, item) {
-        map[item.id] = item
-        return map
-    }, {})
-
-    return {
-        byId: values,
-        allIds: ids
     }
 }
