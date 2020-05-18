@@ -21,11 +21,11 @@ export default class SettlementsSelector {
 
         const settlementPeopleRelations = settlementPeopleRelationsSelector(personId)
 
-        const settlementPeopleIds = Object.values(settlementPeopleRelations(state)).map(function(relation) {
-            return relation.right
+        const settlementIds = Object.values(settlementPeopleRelations(state)).map(function(relation) {
+            return relation.left
         })
 
-        return SettlementsSelector.selectMany(state, settlementPeopleIds)
+        return SettlementsSelector.selectMany(state, settlementIds)
     }
 }
 
@@ -65,7 +65,7 @@ function filterRelationsSelector(rightId, relationType) {
 function filterRelations(relations, rightId, relationType) {
 
     return Object.values(relations).filter(function(relation) {
-        return relation.left == rightId && relation.relationType == relationType.id
+        return relation.right == rightId && relation.relationType == relationType.id
     })
 }
 
