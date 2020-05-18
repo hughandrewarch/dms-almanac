@@ -1,3 +1,5 @@
+import { RACE_ENUM } from "./race"
+
 export const FETCH_PLACE = "FETCH_PLACE"
 export const REQUEST = "REQUEST"
 
@@ -12,3 +14,5 @@ export const RECEIVE_RELATIONS = "RECEIVE_RELATIONS"
 
 export const FETCH_RELATION_TYPES = "FETCH_RELATION_TYPES"
 export const RECEIVE_RELATION_TYPES = "RECEIVE_RELATION_TYPES"
+
+export const RACE = RACE_ENUM

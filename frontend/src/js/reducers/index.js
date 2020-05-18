@@ -5,7 +5,6 @@ import PersonReducer from "./PersonReducer"
 import RelationTypeReducer from "./RelationTypeReducer"
 import RelationReducer from "./RelationReducer"
 
-//TODO consider remove reducer or save for loading icon
 const initialState = {
   settlements: { byId: {}, allIds: []},
   people: { byId: {}, allIds: []},
