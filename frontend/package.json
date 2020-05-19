@@ -16,11 +16,8 @@
     "typescript": "^3.6.3"
   },
   "scripts": {
-    "start2": "react-scripts start",
-    "start": "craco start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "export CLIENT_ENV=development craco start",
+    "test": "export CLIENT_ENV=test craco test"
   },
   "eslintConfig": {
     "extends": "react-app"

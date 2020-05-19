@@ -52,20 +52,22 @@ function settlementPeopleRelationsSelector(personId) {
     return filterRelationsSelector(personId, SETTLEMENT_PERSON)
 }
 
-function filterRelationsSelector(rightId, relationType) {
+function filterRelationsSelector(rightId, relationTypeName) {
 
     return createSelector(
         relationsSelector,
         state => rightId,
-        relationTypeSelector(relationType),
+        relationTypeSelector(relationTypeName),
         filterRelations
     )
 }
 
 function filterRelations(relations, rightId, relationType) {
 
+    const relationTypeId  = relationType ? relationType.id : undefined
+
     return Object.values(relations).filter(function(relation) {
-        return relation.right == rightId && relation.relationType == relationType.id
+        return relation.right == rightId && relation.relationType == relationTypeId
     })
 }
 

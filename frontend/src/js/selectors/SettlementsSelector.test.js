@@ -70,6 +70,38 @@ describe('SettlementSelector', () => {
 
             expect(selected).toEqual(expected)
         })
-    })
 
+        describe('with incomplete state', () => {
+
+            let updatedState
+            beforeEach(() => {
+                updatedState = Object.assign({}, state)
+            });
+
+            it('when missing relations, should return empty list', ()=> {
+                updatedState.relations = []
+
+                const selected = SettlementsSelector.selectByPersonId(updatedState, 1)
+
+                expect(selected).toEqual([])
+            })
+
+            it('when missing relation types, should return empty list', ()=> {
+                updatedState.relationTypes = { byId: {}, allIds: [] }
+
+                const selected = SettlementsSelector.selectByPersonId(updatedState, 1)
+
+                expect(selected).toEqual([])
+            })
+
+            it('when missing people, should return settlements based on relations', ()=> {
+                updatedState.people = { byId: {}, allIds: [] }
+
+                const selected = SettlementsSelector.selectByPersonId(updatedState, 1)
+                const expected = [{ id: 2, name: 'two' }]
+
+                expect(selected).toEqual(expected)
+            })
+        })
+    })
 })

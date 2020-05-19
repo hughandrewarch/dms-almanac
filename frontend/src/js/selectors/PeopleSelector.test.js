@@ -13,7 +13,7 @@ describe('PeopleSelector', () => {
         people: {
             byId: {
                 1: { id: 1, name: 'un'},
-                2: { id: 2, name: 'duex'},
+                2: { id: 2, name: 'deux'},
                 3: { id: 3, name: 'trois'}
             },
             allIds: [1, 2, 3]
@@ -51,13 +51,13 @@ describe('PeopleSelector', () => {
 
         it('select should return all selected people from state', () => {
             const selected = PeopleSelector.selectMany(state, [1, 2])
-            const expected = [{ id: 1, name: 'un' }, { id: 2, name: 'duex' }]
+            const expected = [{ id: 1, name: 'un' }, { id: 2, name: 'deux' }]
 
             expect(selected).toEqual(expected)
         })
     })
 
-    describe('selectByPersonId', () => {
+    describe('selectBySettlementId', () => {
         it('select should return empty list if no relations found', () => {
             const selected = PeopleSelector.selectBySettlementId(state, 2)
 
@@ -66,9 +66,42 @@ describe('PeopleSelector', () => {
 
         it('select should return all selected people from state', () => {
             const selected = PeopleSelector.selectBySettlementId(state, 1)
-            const expected = [{ id: 2, name: 'duex' }]
+            const expected = [{ id: 2, name: 'deux' }]
 
             expect(selected).toEqual(expected)
+        })
+
+        describe('with incomplete state', () => {
+
+            let updatedState
+            beforeEach(() => {
+                updatedState = Object.assign({}, state)
+            });
+
+            it('when missing relations, should return empty list', ()=> {
+                updatedState.relations = []
+
+                const selected = PeopleSelector.selectBySettlementId(updatedState, 1)
+
+                expect(selected).toEqual([])
+            })
+
+            it('when missing relation types, should return empty list', ()=> {
+                updatedState.relationTypes = { byId: {}, allIds: [] }
+
+                const selected = PeopleSelector.selectBySettlementId(updatedState, 1)
+
+                expect(selected).toEqual([])
+            })
+
+            it('when missing settlements, should return settlements based on relations', ()=> {
+                updatedState.settlements = { byId: {}, allIds: [] }
+
+                const selected = PeopleSelector.selectBySettlementId(updatedState, 1)
+                const expected = [{ id: 2, name: 'deux' }]
+
+                expect(selected).toEqual(expected)
+            })
         })
     })
 })
