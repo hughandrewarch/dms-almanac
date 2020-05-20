@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import SettlementsSelector from "../../selectors/SettlementsSelector"
 import PeopleSelector from "../../selectors/PeopleSelector"
+import PersonTable from "../components/person/PersonTable"
 
 const mapStateToProps = (state, props) => {
     let settlementId = props.match.params.settlementId
@@ -25,11 +26,7 @@ class SettlementPage extends React.Component {
     renderPeople() {
         if(this.props.people) {
             return(
-                <div>
-                    {this.props.people.map(person => (
-                        <div key={person.id}>{person.name}</div>
-                    ))}
-                </div>
+                <PersonTable people={this.props.people}/>
             )
         }
     }

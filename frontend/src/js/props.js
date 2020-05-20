@@ -6,6 +6,7 @@ export const LIST_ITEM = PropTypes.shape({
   name: PropTypes.string.required,
 })
 
+export const SETTLEMENTS = PropTypes.array
 export const SETTLEMENT = PropTypes.shape({
   LIST_ITEM,
   population: PropTypes.number,
@@ -16,8 +17,10 @@ export const PLACE = PropTypes.shape({
   description: PropTypes.string,
 })
 
+export const PEOPLE = PropTypes.array
 export const PERSON = PropTypes.shape({
-  LIST_ITEM,
+  id: PropTypes.number.required,
+  name: PropTypes.string.required,
   race: PropTypes.string,
   description: PropTypes.string,
 })

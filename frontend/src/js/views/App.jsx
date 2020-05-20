@@ -8,8 +8,7 @@ import RelationActions from "../actions/RelationActions"
 import RelationTypeActions from "../actions/RelationTypeActions"
 import HomePage from "./home-page/HomePage"
 import SettlementPage from "./settlement-page/SettlementPage"
-import SettlementWrapper from "../components/settlement/settlement_wrapper"
-import PersonWrapper from "../components/person/person_wrapper"
+import PersonPage from "./person-page/PersonPage"
 
 const mapStateToProps = (state, props) => {
     return {
@@ -67,7 +66,7 @@ class App extends React.Component {
             <Switch>
                 <Route exact path="/" component={HomePage}/>
                 <Route exact path="/settlement/:settlementId" component={SettlementPage}/>
-                <Route exact path="/person/:personId" component={PersonWrapper}/>
+                <Route exact path="/person/:personId" component={PersonPage}/>
                 <Route>N O T   F O U N D</Route>
             </Switch>
         </Router>
