@@ -42,6 +42,31 @@ describe('PeopleSelector', () => {
         })
     })
 
+    describe('selectAll', () => {
+        it('select should return empty list if no people found', () => {
+            const updatedState = Object.assign({}, state)
+            updatedState.people = { byId: {}, allId: []}
+
+            const selected = PeopleSelector.selectAll(updatedState)
+            const expected = []
+
+            expect(selected).toEqual(expected)
+        })
+
+        it('select should all people', () => {
+
+
+            const selected = PeopleSelector.selectAll(state)
+            const expected = [
+                { id: 1, name: 'un'},
+                { id: 2, name: 'deux'},
+                { id: 3, name: 'trois'}
+            ]
+
+            expect(selected).toEqual(expected)
+        })
+    })
+
     describe('selectMany', () => {
         it('select should return empty list if nun found', () => {
             const selected = PeopleSelector.selectMany(state, [])

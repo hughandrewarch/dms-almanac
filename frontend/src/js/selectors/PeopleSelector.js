@@ -10,6 +10,12 @@ export default class PeopleSelector {
         return person(state)
     }
 
+    static selectAll(state) {
+        const people = state => Object.values(state.people.byId)
+
+        return people(state)
+    }
+
     static selectMany(state, peopleIds) {
 
         const people = peopleSelector(peopleIds)

@@ -10,6 +10,12 @@ export default class SettlementsSelector {
         return settlement(state)
     }
 
+    static selectAll(state) {
+        const settlements = state => Object.values(state.settlements.byId)
+
+        return settlements(state)
+    }
+
     static selectMany(state, settlementIds) {
 
         const settlements = settlementsSelector(settlementIds)
