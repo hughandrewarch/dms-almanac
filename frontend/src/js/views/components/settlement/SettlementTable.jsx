@@ -9,12 +9,12 @@ export default class SettlementTable extends React.PureComponent {
     }
 
     render() {
-        const { settlements } = this.props
+        const { settlements, history } = this.props
 
         return (
             <div>
                 {settlements.map((settlement) => (
-                    <SettlementTableRow key={settlement.id} settlement={settlement} />
+                    <SettlementTableRow key={settlement.id} settlement={settlement} history={history} />
                 ))}
             </div>
         );

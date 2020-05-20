@@ -9,12 +9,12 @@ export default class PersonTable extends React.PureComponent {
     }
 
     render() {
-        const { people } = this.props
+        const { people, history } = this.props
 
         return (
             <div>
                 {people.map((person) => (
-                    <PersonTableRow key={person.id} person={person} />
+                    <PersonTableRow key={person.id} person={person} history={history} />
                 ))}
             </div>
         );

@@ -15,18 +15,23 @@ const mapStateToProps = (state, props) => {
 
 class SettlementPage extends React.Component {
 
+
     renderSettlement() {
-        if(this.props.settlement) {
+        const { settlement } = this.props
+
+        if(settlement) {
             return(
-                <div>{this.props.settlement.name}</div>
+                <div>{settlement.name} - {settlement.description} - {settlement.population}</div>
             )
         }
     }
 
     renderPeople() {
+        const { people, history } = this.props
+
         if(this.props.people) {
             return(
-                <PersonTable people={this.props.people}/>
+                <PersonTable people={people} history={history}/>
             )
         }
     }
