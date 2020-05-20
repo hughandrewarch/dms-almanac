@@ -14,6 +14,13 @@ const mapStateToProps = (state, props) => {
 
 class HomePage extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = { active: "SETTLEMENT"}
+
+        this.switchTab = this.switchTab.bind(this)
+    }
+
     renderSettlements() {
         const { settlements, history } = this.props
 
@@ -34,17 +41,47 @@ class HomePage extends React.Component {
         }
     }
 
+    renderContent() {
+        switch(this.state.active) {
+            case "SETTLEMENT":
+                return this.renderSettlements()
+            case "PERSON":
+                return this.renderPeople()
+        }
+    }
+
+    switchTab() {
+        console.log(this.state.active)
+        switch(this.state.active) {
+            case "SETTLEMENT":
+                this.setState({active: "PERSON"})
+                break
+            case "PERSON":
+            default:
+                this.setState({active: "SETTLEMENT"})
+                break
+        }
+    }
+
+    activeTab() {
+        switch(this.state.active) {
+            case "SETTLEMENT":
+                return "Settlements"
+            case "PERSON":
+                return "People"
+            default:
+                return "OOPS"
+        }
+    }
+
     render() {
         return (
             <div>
-                <div>HOME PAGE</div>
-                <h2>Settlements</h2>
-                <div>{this.renderSettlements()}</div>
-                <h2>People</h2>
-                <div>{this.renderPeople()}</div>
+                <div >HOME PAGE</div>
+                <h2 onClick={this.switchTab}>{this.activeTab()}</h2>
+                <div>{this.renderContent()}</div>
             </div>)
     }
 }
 
-//Will be connecting later
 export default connect(mapStateToProps, null)(HomePage)
