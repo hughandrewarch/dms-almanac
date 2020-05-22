@@ -9,6 +9,7 @@ import RelationTypeActions from "../actions/RelationTypeActions"
 import HomePage from "./home-page/HomePage"
 import SettlementPage from "./settlement-page/SettlementPage"
 import PersonPage from "./person-page/PersonPage"
+import CreateSettlementPage from "./create-settlement-page/CreateSettlementPage"
 
 const mapStateToProps = (state, props) => {
     return {
@@ -67,6 +68,7 @@ class App extends React.Component {
                 <Route exact path="/" component={HomePage}/>
                 <Route exact path="/settlement/:settlementId" component={SettlementPage}/>
                 <Route exact path="/person/:personId" component={PersonPage}/>
+                <Route exact path="/create" component={CreateSettlementPage}/>
                 <Route>N O T   F O U N D</Route>
             </Switch>
         </Router>

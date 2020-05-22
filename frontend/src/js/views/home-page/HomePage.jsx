@@ -51,7 +51,6 @@ class HomePage extends React.Component {
     }
 
     switchTab() {
-        console.log(this.state.active)
         switch(this.state.active) {
             case "SETTLEMENT":
                 this.setState({active: "PERSON"})
