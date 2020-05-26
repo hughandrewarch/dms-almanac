@@ -42,10 +42,10 @@ class SettlementCreateForm extends React.Component {
   }
 
   handleSubmit = () => {
-    this.props.create(this.state)
-    .then(() => {
-        this.props.onSubmit()
-    })
+    const { create, onSubmit } = this.props
+
+    create(this.state)
+        .then(onSubmit)
   }
 
   handleCancel = () => {
