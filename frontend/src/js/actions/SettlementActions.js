@@ -20,7 +20,6 @@ export default class SettlementActions {
     static create(settlement) {
         return async (dispatch) => {
             return SettlementApi.create(settlement).then((data) => {
-                console.log(data)
                 dispatch(SettlementActions.receiveSettlement(data))
             })
             .catch(console.log)

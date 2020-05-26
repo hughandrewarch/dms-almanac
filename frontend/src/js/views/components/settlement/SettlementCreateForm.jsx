@@ -10,12 +10,12 @@ import SettlementActions from "js/actions/SettlementActions"
 const mapDispatchToProps = (dispatch) => {
     return {
         create: (settlement) => {
-            dispatch(SettlementActions.create(settlement))
+            return dispatch(SettlementActions.create(settlement))
         }
     }
 }
 
-
+//TODO add validation
 class SettlementCreateForm extends React.Component {
 
   static propTypes = {
@@ -42,7 +42,10 @@ class SettlementCreateForm extends React.Component {
   }
 
   handleSubmit = () => {
-    const { name, population, description } = this.state
+    this.props.create(this.state)
+    .then(() => {
+        this.props.onSubmit()
+    })
   }
 
   handleCancel = () => {

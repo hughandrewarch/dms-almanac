@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PeopleSelector from "../../selectors/PeopleSelector"
-import SettlementsSelector from "../../selectors/SettlementsSelector"
-import PersonTable from "../components/person/PersonTable"
-import SettlementTable from "../components/settlement/SettlementTable"
+import PeopleSelector from "js/selectors/PeopleSelector"
+import SettlementsSelector from "js/selectors/SettlementsSelector"
+import PersonTable from "js/views/components/person/PersonTable"
+import SettlementTable from "js/views/components/settlement/SettlementTable"
+import SettlementCreateForm from "js/views/components/settlement/SettlementCreateForm"
+
 
 const mapStateToProps = (state, props) => {
     return {
@@ -19,6 +21,18 @@ class HomePage extends React.Component {
         this.state = { active: "SETTLEMENT"}
 
         this.switchTab = this.switchTab.bind(this)
+        this.return = this.return.bind(this)
+    }
+
+    return() {
+         switch(this.state.active) {
+            case "CREATE_SETTLEMENT":
+                this.setState({active: "SETTLEMENT"})
+                break
+            case "CREATE_PERSON":
+                this.setState({active: "PERSON"})
+                break
+        }
     }
 
     renderSettlements() {
@@ -41,12 +55,30 @@ class HomePage extends React.Component {
         }
     }
 
+    renderCreateSettlements() {
+        return(
+            <SettlementCreateForm
+                onSubmit={this.return}
+                onCancel={this.return}/>
+        )
+    }
+
+    renderCreatePeople() {
+        return(
+            <div>DREW</div>
+        )
+    }
+
     renderContent() {
         switch(this.state.active) {
             case "SETTLEMENT":
                 return this.renderSettlements()
             case "PERSON":
                 return this.renderPeople()
+            case "CREATE_SETTLEMENT":
+                return this.renderCreateSettlements()
+            case "CREATE_PERSON":
+                return this.renderCreatePeople()
         }
     }
 
@@ -56,8 +88,15 @@ class HomePage extends React.Component {
                 this.setState({active: "PERSON"})
                 break
             case "PERSON":
-            default:
+                this.setState({active: "CREATE_SETTLEMENT"})
+                break
+            case "CREATE_SETTLEMENT":
+                this.setState({active: "CREATE_PERSON"})
+                break
+            case "CREATE_PERSON":
                 this.setState({active: "SETTLEMENT"})
+                break
+            default:
                 break
         }
     }
@@ -68,6 +107,10 @@ class HomePage extends React.Component {
                 return "Settlements"
             case "PERSON":
                 return "People"
+            case "CREATE_SETTLEMENT":
+                return "Create Settlement"
+            case "CREATE_PERSON":
+                return "Create Person"
             default:
                 return "OOPS"
         }
