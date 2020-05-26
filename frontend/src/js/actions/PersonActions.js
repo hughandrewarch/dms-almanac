@@ -1,5 +1,5 @@
-import { RECEIVE_PEOPLE } from "../constants"
-import PersonApi from "../api/PersonApi"
+import { RECEIVE_PERSON, RECEIVE_PEOPLE } from "js/constants"
+import PersonApi from "js/api/PersonApi"
 import Actions from "./"
 
 export default class PersonActions {
@@ -13,6 +13,19 @@ export default class PersonActions {
                 })
                 .catch(console.log)
         }
+    }
+
+    static create(person) {
+        return async (dispatch) => {
+            return PersonApi.create(person).then((data) => {
+                dispatch(PersonActions.receivePerson(data))
+            })
+            .catch(console.log)
+        }
+    }
+
+    static receivePerson(payload) {
+      return  { type: RECEIVE_PERSON, payload: payload }
     }
 
     static receivePeople(payload) {

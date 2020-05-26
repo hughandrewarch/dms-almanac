@@ -5,6 +5,7 @@ import SettlementsSelector from "js/selectors/SettlementsSelector"
 import PersonTable from "js/views/components/person/PersonTable"
 import SettlementTable from "js/views/components/settlement/SettlementTable"
 import SettlementCreateForm from "js/views/components/settlement/SettlementCreateForm"
+import PersonCreateForm from "js/views/components/person/PersonCreateForm"
 
 
 const mapStateToProps = (state, props) => {
@@ -65,7 +66,9 @@ class HomePage extends React.Component {
 
     renderCreatePeople() {
         return(
-            <div>DREW</div>
+            <PersonCreateForm
+                onSubmit={this.return}
+                onCancel={this.return}/>
         )
     }
 

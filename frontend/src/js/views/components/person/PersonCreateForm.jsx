@@ -1,22 +1,19 @@
 import React from "react"
 import { connect } from 'react-redux'
-import SettlementCreateFormFields from "./SettlementCreateFormFields"
+import PersonCreateFormFields from "js/views/components/person/PersonCreateFormFields"
 import PropTypes from "prop-types"
-import SettlementApi from "../../../api/SettlementApi"
-import SettlementActions from "js/actions/SettlementActions"
+import PersonApi from "js/api/PersonApi"
+import PersonActions from "js/actions/PersonActions"
 
-//TODO is there any real reason for the separation between create form and form fields
-// if form fields are not reusable
 const mapDispatchToProps = (dispatch) => {
     return {
-        create: (settlement) => {
-            return dispatch(SettlementActions.create(settlement))
+        create: (person) => {
+            return dispatch(PersonActions.create(person))
         }
     }
 }
 
-//TODO add validation
-class SettlementCreateForm extends React.Component {
+class PersonCreateForm extends React.Component {
 
   static propTypes = {
     onSubmit: PropTypes.func,
@@ -27,16 +24,14 @@ class SettlementCreateForm extends React.Component {
     super(props)
     this.state = {
       name: '',
-      population: 0,
       description: '',
-      type: 'TOWN'
+      race: 'HUMAN'
     }
   }
 
   handleChange = (values) => {
     this.setState({
       name: values.name,
-      population: values.population,
       description: values.description,
     })
   }
@@ -52,11 +47,10 @@ class SettlementCreateForm extends React.Component {
     this.props.onCancel()
   }
 
-  //Todo pass fields as props, don't save them as state
   render() {
     return (
       <div>
-        <SettlementCreateFormFields onChange={this.handleChange}/>
+        <PersonCreateFormFields onChange={this.handleChange}/>
         <button onClick={this.handleSubmit}>Submit</button>
         <button onClick={this.handleCancel}>Cancel</button>
       </div>
@@ -64,4 +58,4 @@ class SettlementCreateForm extends React.Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(SettlementCreateForm)
+export default connect(null, mapDispatchToProps)(PersonCreateForm)
