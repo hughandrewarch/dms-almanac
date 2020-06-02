@@ -17,6 +17,7 @@ export default class HttpUtility {
     }
 
     static async post(endpoint, body = {}) {
+        console.log(body)
         let request = {
             method: 'POST',
             headers: {

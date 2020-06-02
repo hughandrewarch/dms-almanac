@@ -1,7 +1,5 @@
 import environment from 'environment'
-import * as Api from 'js/api/Api'
 import HttpUtility from 'js/api/HttpUtility'
-import Settlement from 'js/models/Settlement'
 
 const BASE_API = environment.baseApi
 const API = {

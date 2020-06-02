@@ -1,4 +1,6 @@
-import { RACE_ENUM } from "./race"
+import { RACE_ENUM } from "js/constants/race"
+import { SETTLEMENT as _SETTLEMENT } from "js/constants/settlement"
+import { PERSON as _PERSON } from "js/constants/person"
 
 export const FETCH_PLACE = "FETCH_PLACE"
 export const REQUEST = "REQUEST"
@@ -18,3 +20,5 @@ export const FETCH_RELATION_TYPES = "FETCH_RELATION_TYPES"
 export const RECEIVE_RELATION_TYPES = "RECEIVE_RELATION_TYPES"
 
 export const RACE = RACE_ENUM
+export const SETTLEMENT = _SETTLEMENT
+export const PERSON = _PERSON

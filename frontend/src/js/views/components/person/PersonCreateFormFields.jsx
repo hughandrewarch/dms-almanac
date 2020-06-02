@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { PERSON } from 'js/constants'
 
 export default class PersonCreateFormFields extends React.Component {
   static propTypes = {
@@ -18,6 +19,7 @@ export default class PersonCreateFormFields extends React.Component {
     this.props.onChange({
       name: this.state.name,
       description: this.state.description,
+      race: this.state.race
     })
   }
 
@@ -27,7 +29,7 @@ export default class PersonCreateFormFields extends React.Component {
 
     this.setState({
         [name]: value
-    }, this.onChange())
+    }, this.onChange)
   }
 
   renderNameFormField() {
@@ -49,11 +51,41 @@ export default class PersonCreateFormFields extends React.Component {
     )
   }
 
+  renderRaceFormField() {
+    return (
+      <select name="race" onChange={this.changeHandler}>
+        <option default value=""></option>
+        {Object.values(PERSON.RACE).map(race => (
+          <option key={race.key} value={race.key}>{race.name}</option>
+        ))}
+      </select>
+    )
+  }
+
+  renderSubRaceFormField() {
+    const { race } = this.state
+
+    if(race) {
+      if(PERSON.RACE[race].SUBRACE) {
+        return (
+          <select name="sub_race" onChange={this.changeHandler}>
+            <option default value=""></option>
+            {PERSON.RACE[race].SUBRACE.map(subrace => (
+              <option key={subrace.key} value={subrace.key}>{subrace.name}</option>
+            ))}
+          </select>
+        )
+      }
+    }
+  }
+
   render() {
     return (
       <div>
         {this.renderNameFormField()}
         {this.renderDescriptionFormField()}
+        {this.renderRaceFormField()}
+        {this.renderSubRaceFormField()}
       </div>
     )
   }

@@ -1,5 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { SETTLEMENT } from 'js/constants'
+import capitalize from 'lodash/capitalize'
 
 export default class SettlementCreateFormFields extends React.Component {
     static propTypes = {
@@ -20,6 +22,7 @@ export default class SettlementCreateFormFields extends React.Component {
             name: this.state.name,
             population: this.state.population,
             description: this.state.description,
+            type: this.state.type
         })
     }
 
@@ -29,7 +32,7 @@ export default class SettlementCreateFormFields extends React.Component {
 
         this.setState({
             [name]: value
-        }, () => this.onChange())
+        }, this.onChange)
     }
 
   renderNameFormField() {
@@ -61,12 +64,24 @@ export default class SettlementCreateFormFields extends React.Component {
     )
   }
 
+  renderSettlementType() {
+    return (
+      <select name="type" onChange={this.changeHandler}>
+        <option default value=""></option>
+        {SETTLEMENT.TYPE.map(type => (
+          <option key={type} value={type}>{capitalize(type)}</option>
+        ))}
+      </select>
+    )
+  }
+
   render() {
     return (
       <div>
         {this.renderNameFormField()}
         {this.renderPopulationFormField()}
         {this.renderDescriptionFormField()}
+        {this.renderSettlementType()}
       </div>
     )
   }

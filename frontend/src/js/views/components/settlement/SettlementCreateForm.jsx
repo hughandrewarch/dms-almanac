@@ -2,7 +2,6 @@ import React from "react"
 import { connect } from 'react-redux'
 import SettlementCreateFormFields from "./SettlementCreateFormFields"
 import PropTypes from "prop-types"
-import SettlementApi from "../../../api/SettlementApi"
 import SettlementActions from "js/actions/SettlementActions"
 
 //TODO is there any real reason for the separation between create form and form fields
@@ -15,7 +14,6 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-//TODO add validation
 class SettlementCreateForm extends React.Component {
 
   static propTypes = {
@@ -23,25 +21,18 @@ class SettlementCreateForm extends React.Component {
     onCancel: PropTypes.func,
   }
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      name: '',
-      population: 0,
-      description: '',
-      type: 'TOWN'
-    }
-  }
-
   handleChange = (values) => {
     this.setState({
       name: values.name,
       population: values.population,
       description: values.description,
+      type: values.type,
     })
   }
 
   handleSubmit = () => {
+    console.log(this.state)
+
     const { create, onSubmit } = this.props
 
     create(this.state)

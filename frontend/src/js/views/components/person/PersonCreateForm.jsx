@@ -2,7 +2,6 @@ import React from "react"
 import { connect } from 'react-redux'
 import PersonCreateFormFields from "js/views/components/person/PersonCreateFormFields"
 import PropTypes from "prop-types"
-import PersonApi from "js/api/PersonApi"
 import PersonActions from "js/actions/PersonActions"
 
 const mapDispatchToProps = (dispatch) => {
@@ -25,7 +24,6 @@ class PersonCreateForm extends React.Component {
     this.state = {
       name: '',
       description: '',
-      race: 'HUMAN'
     }
   }
 
@@ -33,6 +31,7 @@ class PersonCreateForm extends React.Component {
     this.setState({
       name: values.name,
       description: values.description,
+      race: values.race,
     })
   }
 
@@ -44,6 +43,7 @@ class PersonCreateForm extends React.Component {
   }
 
   handleCancel = () => {
+    console.log(this.state)
     this.props.onCancel()
   }
 

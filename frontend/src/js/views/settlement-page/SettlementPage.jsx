@@ -21,7 +21,7 @@ class SettlementPage extends React.Component {
 
         if(settlement) {
             return(
-                <div>{settlement.name} - {settlement.description} - {settlement.population}</div>
+                <div>{settlement.name} - {settlement.population} - {settlement.description} - {settlement.type}</div>
             )
         }
     }

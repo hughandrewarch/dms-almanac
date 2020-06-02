@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "history": "latest",
+    "lodash": "^4.17.15",
     "node-sass": "^4.14.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
