@@ -7,7 +7,6 @@ import SettlementTable from "js/views/components/settlement/SettlementTable"
 import SettlementCreateForm from "js/views/components/settlement/SettlementCreateForm"
 import PersonCreateForm from "js/views/components/person/PersonCreateForm"
 
-
 const mapStateToProps = (state, props) => {
     return {
         settlements: SettlementsSelector.selectAll(state),
