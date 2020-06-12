@@ -4,6 +4,7 @@ import PropTypes from "prop-types"
 import SettlementActions from "js/actions/SettlementActions"
 import { SETTLEMENT } from 'js/constants'
 import capitalize from 'lodash/capitalize'
+import ValidationUtil, { VALIDATORS as v } from 'js/utilities/ValidationUtil'
 
 //TODO is there any real reason for the separation between create form and form fields
 // if form fields are not reusable
@@ -25,10 +26,10 @@ class SettlementCreateForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-        name: { value: '', error: false },
-        population: { value: 0, error: false },
-        description: { value: '', error: false },
-        type: { value: '', error: false },
+        name: { value: '', isValid: false, validators: [v.REQUIRED] },
+        population: { value: 0, isValid: true, validators: [v.NON_NEGATIVE, v.REQUIRED] },
+        description: { value: '', isValid: true, validators: [] },
+        type: { value: '', isValid: false, validators: [v.REQUIRED] },
         submitClicked: false
     }
   }
@@ -38,8 +39,11 @@ class SettlementCreateForm extends React.Component {
       const value = event.target.value
 
       this.setState({
-          [name]: { value: value, error: false }
-      }, this.validate)
+        [name]: {
+          ...this.state[name],
+          value: value
+        }
+      }, this.validate(name))
   }
 
   handleSubmit = () => {
@@ -60,25 +64,21 @@ class SettlementCreateForm extends React.Component {
     this.setState({submitClicked: true})
   }
 
-  //TODO pull out to validation util
-  validate = () => {
-    const { name, population, type } = this.state
+  //TODO push down into form field components
+  validate(name) {
+    return () => {
+        const { value, validators } = this.state[name]
 
-    if(name.value == ""){
-        this.setState({name: { error: true }})
-    }
-    if(population.value < 0){
-        this.setState({population: { error: true }})
-    }
-    if(type.value == ""){
-        this.setState({type: { error: true }})
+        let isValid = ValidationUtil.validate(value, validators)
+
+        this.setState({[name]: { ...this.state[name], isValid: isValid }})
     }
   }
 
   isValid = () => {
     const { name, population, type } = this.state
 
-    return !name.error && !population.error && !type.error
+    return name.isValid && population.isValid && type.isValid
   }
 
   handleCancel = () => {
@@ -137,8 +137,7 @@ class SettlementCreateForm extends React.Component {
   }
 
   showError = (name) => {
-    return this.state[name].error && this.state.submitClicked
-//     return false
+    return !this.state[name].isValid && this.state.submitClicked
   }
 
   render() {
