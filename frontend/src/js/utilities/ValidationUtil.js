@@ -11,7 +11,7 @@ export default class ValidationUtil {
             isValid &= validateMap(value, validator)
         })
 
-        return isValid
+        return Boolean(isValid)
     }
 }
 
