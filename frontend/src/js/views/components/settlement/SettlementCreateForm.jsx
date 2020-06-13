@@ -2,9 +2,10 @@ import React from "react"
 import { connect } from 'react-redux'
 import PropTypes from "prop-types"
 import SettlementActions from "js/actions/SettlementActions"
+import NumberFormField from "js/views/components/NumberFormField"
 import { SETTLEMENT } from 'js/constants'
 import capitalize from 'lodash/capitalize'
-import ValidationUtil, { VALIDATORS as v } from 'js/utilities/ValidationUtil'
+import { VALIDATORS as v } from 'js/utilities/ValidationUtil'
 
 //TODO is there any real reason for the separation between create form and form fields
 // if form fields are not reusable
@@ -37,13 +38,15 @@ class SettlementCreateForm extends React.Component {
   changeHandler = event => {
       const name = event.target.name
       const value = event.target.value
+      const isValid = event.target.isValid
 
       this.setState({
         [name]: {
           ...this.state[name],
-          value: value
+          value: value,
+          isValid: isValid
         }
-      }, this.validate(name))
+      })
   }
 
   handleSubmit = () => {
@@ -62,17 +65,6 @@ class SettlementCreateForm extends React.Component {
     }
 
     this.setState({submitClicked: true})
-  }
-
-  //TODO push down into form field components
-  validate(name) {
-    return () => {
-        const { value, validators } = this.state[name]
-
-        let isValid = ValidationUtil.validate(value, validators)
-
-        this.setState({[name]: { ...this.state[name], isValid: isValid }})
-    }
   }
 
   isValid = () => {
@@ -99,6 +91,21 @@ class SettlementCreateForm extends React.Component {
   }
 
   renderPopulationFormField() {
+    let classError = this.showError("population") ? "t-error" : ""
+
+    return (
+        <NumberFormField
+          className={classError}
+          name="population"
+          value={this.state.population.value}
+          onChange={this.changeHandler}
+          isRequired
+          nonNegative
+          />
+    )
+  }
+
+  renderPopulationFormField_old() {
     let classError = this.showError("population") ? "t-error" : ""
 
     return (
