@@ -2,36 +2,34 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ValidationUtil from 'js/utilities/ValidationUtil'
 
-//text form field
 export default class InputFormField extends React.Component {
-  //todo add validator functions
   //todo maybe pull validation out to form or form fields level?
   static propTypes = {
     name: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     onChange: PropTypes.func,
-    validators: PropTypes.arrayOf(PropTypes.string),
+    validators: PropTypes.arrayOf(PropTypes.func),
   }
 
   constructor(props) {
       super(props)
 
       this.state = {
-          value: props.value,
-          isValid: this.validate(props.value)
+          value: props.value
       }
   }
 
+  componentDidMount() {
+    this.updateValue(this.state.value)
+  }
+
+  //TODO will be changed to return array of error enum
   validate(value) {
-    return ValidationUtil.validate(value, this.props.validators)
+    return ValidationUtil.isValid(value, this.props.validators)
   }
 
   changeHandler = event => {
-    const value = event.target.value
-
-    this.setState({
-        value: value
-    }, this.onChange)
+    this.updateValue(event.target.value)
   }
 
   onChange = () => {
@@ -39,15 +37,18 @@ export default class InputFormField extends React.Component {
         target: {
             name: this.props.name,
             value: this.state.value,
-            isValid: this.validate(this.state.value),
+            errors: !this.validate(this.state.value),
         }
     })
   }
 
-  render = () => {
-    console.log("Input rerender", this.props)
-    console.log("Input rerender", this.state)
+  updateValue(value) {
+    this.setState({
+      value: value
+    }, this.onChange)
+  }
 
+  render = () => {
     return (
         <input
             className={this.props.className}

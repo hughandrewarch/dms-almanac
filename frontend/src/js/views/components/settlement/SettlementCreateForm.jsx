@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import PropTypes from "prop-types"
 import SettlementActions from "js/actions/SettlementActions"
 import NumberFormField from "js/views/components/NumberFormField"
+import TextFormField from "js/views/components/TextFormField"
 import { SETTLEMENT } from 'js/constants'
 import capitalize from 'lodash/capitalize'
-import { VALIDATORS as v } from 'js/utilities/ValidationUtil'
 
 //TODO is there any real reason for the separation between create form and form fields
 // if form fields are not reusable
@@ -26,51 +26,56 @@ class SettlementCreateForm extends React.Component {
 
   constructor(props) {
     super(props)
+
     this.state = {
-        name: { value: '', isValid: false, validators: [v.REQUIRED] },
-        population: { value: 0, isValid: true, validators: [v.NON_NEGATIVE, v.REQUIRED] },
-        description: { value: '', isValid: true, validators: [] },
-        type: { value: '', isValid: false, validators: [v.REQUIRED] },
-        submitClicked: false
+        name: { value: '' },
+        population: { value: '0' },
+        description: { value: '' },
+        type: { value: '' },
+        showErrors: false
     }
   }
 
   changeHandler = event => {
       const name = event.target.name
       const value = event.target.value
-      const isValid = event.target.isValid
+      const errors = event.target.errors
 
       this.setState({
         [name]: {
           ...this.state[name],
           value: value,
-          isValid: isValid
+          errors: errors
         }
       })
   }
 
   handleSubmit = () => {
-    const { create, onSubmit } = this.props
+    if(this.hasErrors()) {
+        this.setState({showErrors: true})
+        console.log("name.hasErrors():", this.state.name.errors)
+        console.log("population.hasErrors():", this.state.population.errors)
+        console.log("type.hasErrors():", this.state.type.errors)
 
+        return
+    }
+
+    const { create, onSubmit } = this.props
     const settlement = {
         name: this.state.name.value,
         population: this.state.population.value,
         description: this.state.description.value,
         type: this.state.type.value
     }
+    create(settlement)
+        .then(onSubmit)
 
-    if(this.isValid()) {
-        create(settlement)
-            .then(onSubmit)
-    }
-
-    this.setState({submitClicked: true})
   }
 
-  isValid = () => {
+  hasErrors = () => {
     const { name, population, type } = this.state
 
-    return name.isValid && population.isValid && type.isValid
+    return name.errors || population.errors || type.errors
   }
 
   handleCancel = () => {
@@ -81,12 +86,13 @@ class SettlementCreateForm extends React.Component {
     let classError = this.showError("name") ? "t-error" : ""
 
     return (
-        <input
+        <TextFormField
           className={classError}
-          type="text"
           name="name"
           value={this.state.name.value}
-          onChange={this.changeHandler}/>
+          onChange={this.changeHandler}
+          isRequired
+          />
     )
   }
 
@@ -102,19 +108,6 @@ class SettlementCreateForm extends React.Component {
           isRequired
           nonNegative
           />
-    )
-  }
-
-  renderPopulationFormField_old() {
-    let classError = this.showError("population") ? "t-error" : ""
-
-    return (
-        <input
-          className={classError}
-          type="number"
-          name="population"
-          value={this.state.population.value}
-          onChange={this.changeHandler}/>
     )
   }
 
@@ -144,7 +137,7 @@ class SettlementCreateForm extends React.Component {
   }
 
   showError = (name) => {
-    return !this.state[name].isValid && this.state.submitClicked
+    return this.state[name].errors && this.state.showErrors
   }
 
   render() {
