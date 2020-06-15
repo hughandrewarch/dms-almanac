@@ -1,20 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import ValidationUtil from 'js/utilities/ValidationUtil'
+import ValidationUtil, { VALIDATORS as v } from 'js/utilities/ValidationUtil'
 
-export default class InputFormField extends React.Component {
+export default class TextAreaFormField extends React.Component {
 
   static propTypes = {
     name: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    validators: PropTypes.arrayOf(PropTypes.func),
+    isRequired: PropTypes.bool
   }
 
   constructor(props) {
       super(props)
 
+      this.validators = []
       this.state = {
           value: props.value
+      }
+
+      if(this.props.isRequired) {
+          this.validators.push(v.REQUIRED)
       }
   }
 
@@ -24,7 +28,7 @@ export default class InputFormField extends React.Component {
 
   //TODO will be changed to return array of error enum
   validate(value) {
-    return ValidationUtil.isValid(value, this.props.validators)
+    return ValidationUtil.isValid(value, this.validators)
   }
 
   changeHandler = event => {
@@ -49,9 +53,8 @@ export default class InputFormField extends React.Component {
 
   render = () => {
     return (
-        <input {...this.props}
+        <textarea {...this.props}
             name={this.props.name}
-            type={this.props.type}
             value={this.state.value}
             onChange={this.changeHandler}/>
     )

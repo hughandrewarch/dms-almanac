@@ -7,7 +7,6 @@ import InputFormField from './InputFormField'
 export default class NumberFormField extends React.Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
-    onChange: PropTypes.func,
     nonNegative: PropTypes.bool,
     isRequired: PropTypes.bool
   }
@@ -23,16 +22,14 @@ export default class NumberFormField extends React.Component {
       if(this.props.nonNegative) {
         this.validators.push(v.NON_NEGATIVE)
       }
+
   }
 
   render = () => {
       return (
-        <InputFormField
-            className={this.props.className}
+        <InputFormField {...this.props}
             name={this.props.name}
             type="number"
-            value={this.props.value}
-            onChange={this.props.onChange}
             validators={this.validators}/>
     )
   }

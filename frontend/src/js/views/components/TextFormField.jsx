@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { VALIDATORS as v } from 'js/utilities/ValidationUtil'
 import InputFormField from './InputFormField'
 
-//text form field
 export default class TextFormField extends React.Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
@@ -22,12 +21,9 @@ export default class TextFormField extends React.Component {
 
   render = () => {
       return (
-        <InputFormField
-            className={this.props.className}
+        <InputFormField {...this.props}
             name={this.props.name}
             type="text"
-            value={this.props.value}
-            onChange={this.props.onChange}
             validators={this.validators}/>
     )
   }

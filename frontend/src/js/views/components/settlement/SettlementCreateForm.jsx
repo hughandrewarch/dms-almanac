@@ -4,6 +4,7 @@ import PropTypes from "prop-types"
 import SettlementActions from "js/actions/SettlementActions"
 import NumberFormField from "js/views/components/NumberFormField"
 import TextFormField from "js/views/components/TextFormField"
+import TextAreaFormField from "js/views/components/TextAreaFormField"
 import { SETTLEMENT } from 'js/constants'
 import capitalize from 'lodash/capitalize'
 
@@ -112,11 +113,8 @@ class SettlementCreateForm extends React.Component {
   }
 
   renderDescriptionFormField() {
-    let classError = this.showError("description") ? "t-error" : ""
-
     return (
-        <textarea
-          className={classError}
+        <TextAreaFormField
           name="description"
           value={this.state.description.value}
           onChange={this.changeHandler}/>
