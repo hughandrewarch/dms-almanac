@@ -5,6 +5,8 @@ import SettlementActions from "js/actions/SettlementActions"
 import NumberFormField from "js/views/components/NumberFormField"
 import TextFormField from "js/views/components/TextFormField"
 import TextAreaFormField from "js/views/components/TextAreaFormField"
+import SelectFormField from "js/views/components/SelectFormField"
+import SettlementTypeSelect from "js/views/components/SettlementTypeSelect"
 import { SETTLEMENT } from 'js/constants'
 import capitalize from 'lodash/capitalize'
 
@@ -37,27 +39,9 @@ class SettlementCreateForm extends React.Component {
     }
   }
 
-  changeHandler = event => {
-      const name = event.target.name
-      const value = event.target.value
-      const errors = event.target.errors
-
-      this.setState({
-        [name]: {
-          ...this.state[name],
-          value: value,
-          errors: errors
-        }
-      })
-  }
-
-  handleSubmit = () => {
+  submitHandler = () => {
     if(this.hasErrors()) {
         this.setState({showErrors: true})
-        console.log("name.hasErrors():", this.state.name.errors)
-        console.log("population.hasErrors():", this.state.population.errors)
-        console.log("type.hasErrors():", this.state.type.errors)
-
         return
     }
 
@@ -73,14 +57,32 @@ class SettlementCreateForm extends React.Component {
 
   }
 
+  cancelHandler = () => {
+    this.props.onCancel()
+  }
+
+  changeHandler = event => {
+      const name = event.target.name
+      const value = event.target.value
+      const errors = event.target.errors
+
+      this.setState({
+        [name]: {
+          ...this.state[name],
+          value: value,
+          errors: errors
+        }
+      })
+  }
+
   hasErrors = () => {
     const { name, population, type } = this.state
 
     return name.errors || population.errors || type.errors
   }
 
-  handleCancel = () => {
-    this.props.onCancel()
+  showError = (name) => {
+    return this.state[name].errors && this.state.showErrors
   }
 
   renderNameFormField() {
@@ -125,17 +127,13 @@ class SettlementCreateForm extends React.Component {
     let classError = this.showError("type") ? "t-error" : ""
 
     return (
-      <select className={classError} name="type" onChange={this.changeHandler}>
-        <option default value=""></option>
-        {SETTLEMENT.TYPE.map(type => (
-          <option key={type} value={type}>{capitalize(type)}</option>
-        ))}
-      </select>
+      <SettlementTypeSelect
+        className={classError}
+        name="type"
+        value={this.state.type.value}
+        onChange={this.changeHandler}
+        isRequired/>
     )
-  }
-
-  showError = (name) => {
-    return this.state[name].errors && this.state.showErrors
   }
 
   render() {
@@ -146,8 +144,8 @@ class SettlementCreateForm extends React.Component {
         {this.renderPopulationFormField()}
         {this.renderDescriptionFormField()}
         {this.renderTypeFormField()}
-        <button onClick={this.handleSubmit}>Submit</button>
-        <button onClick={this.handleCancel}>Cancel</button>
+        <button onClick={this.submitHandler}>Submit</button>
+        <button onClick={this.cancelHandler}>Cancel</button>
       </div>
     )
   }

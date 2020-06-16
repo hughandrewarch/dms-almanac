@@ -35,6 +35,12 @@ export default class TextAreaFormField extends React.Component {
     this.updateValue(event.target.value)
   }
 
+  updateValue(value) {
+    this.setState({
+      value: value
+    }, this.onChange)
+  }
+
   onChange = () => {
     this.props.onChange({
         target: {
@@ -43,12 +49,6 @@ export default class TextAreaFormField extends React.Component {
             errors: !this.validate(this.state.value),
         }
     })
-  }
-
-  updateValue(value) {
-    this.setState({
-      value: value
-    }, this.onChange)
   }
 
   render = () => {

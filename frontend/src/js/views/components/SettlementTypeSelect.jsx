@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import SelectFormField from './SelectFormField'
 import { VALIDATORS as v } from 'js/utilities/ValidationUtil'
-import InputFormField from './InputFormField'
+import { SETTLEMENT } from 'js/constants'
 
-export default class NumberFormField extends React.Component {
+export default class SettlementTypeSelect extends React.Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
-    nonNegative: PropTypes.bool,
     isRequired: PropTypes.bool
   }
 
@@ -17,19 +17,14 @@ export default class NumberFormField extends React.Component {
       if(this.props.isRequired) {
         this.validators.push(v.REQUIRED)
       }
-
-      if(this.props.nonNegative) {
-        this.validators.push(v.NON_NEGATIVE)
-      }
-
   }
 
   render = () => {
       return (
-        <InputFormField {...this.props}
-            name={this.props.name}
-            type="number"
-            validators={this.validators}/>
+          <SelectFormField {...this.props}
+              name={this.props.name}
+              options={SETTLEMENT.TYPE}
+              validators={this.validators}/>
     )
   }
 }

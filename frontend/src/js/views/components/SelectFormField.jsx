@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ValidationUtil from 'js/utilities/ValidationUtil'
+import capitalize from 'lodash/capitalize'
 
-export default class InputFormField extends React.Component {
+export default class SelectFormField extends React.Component {
 
   static propTypes = {
     name: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    validators: PropTypes.arrayOf(PropTypes.func),
+    options: PropTypes.arrayOf(PropTypes.string),
+    validators: PropTypes.arrayOf(PropTypes.func)
   }
 
   constructor(props) {
@@ -16,7 +17,8 @@ export default class InputFormField extends React.Component {
       this.validators = this.props.validators ? this.props.validators : []
 
       this.state = {
-          value: props.value
+          value: props.value,
+          options: this.props.options ? this.props.options : []
       }
   }
 
@@ -51,11 +53,14 @@ export default class InputFormField extends React.Component {
 
   render = () => {
     return (
-        <input {...this.props}
-            name={this.props.name}
-            type={this.props.type}
-            value={this.state.value}
-            onChange={this.changeHandler}/>
+      <select {...this.props}
+        name={this.props.name}
+        onChange={this.changeHandler}>
+            <option default value=""></option>
+            {this.state.options.map(type => (
+              <option key={type} value={type}>{capitalize(type)}</option>
+            ))}
+      </select>
     )
   }
 }

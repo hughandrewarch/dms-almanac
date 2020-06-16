@@ -1,6 +1,5 @@
 export default class ValidationUtil {
 
-    //todo rename validate impies it does something, this is only checking if valid
     static isValid = (value, validators) => {
         let isValid = true
 
