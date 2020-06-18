@@ -54,7 +54,6 @@ class SettlementCreateForm extends React.Component {
     }
     create(settlement)
         .then(onSubmit)
-
   }
 
   handleCancel = () => {
