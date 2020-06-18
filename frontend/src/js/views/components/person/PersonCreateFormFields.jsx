@@ -1,17 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { PERSON } from 'js/constants'
+import NumberFormField from "js/views/components/NumberFormField"
+import TextFormField from "js/views/components/TextFormField"
+import TextAreaFormField from "js/views/components/TextAreaFormField"
+import SelectFormField from "js/views/components/SelectFormField"
+import RaceSelect from "js/views/components/RaceSelect"
+import SubRaceSelect from "js/views/components/SubRaceSelect"
 
 export default class PersonCreateFormFields extends React.Component {
   static propTypes = {
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func,
+    showErrors: PropTypes.bool
   }
 
   constructor(props) {
     super(props)
     this.state = {
-        name: '',
-        description: ''
+        name: { value: '' },
+        description: { value: '' },
+        race: { value: '' },
+        subrace: { value: '' },
     }
   }
 
@@ -19,65 +28,72 @@ export default class PersonCreateFormFields extends React.Component {
     this.props.onChange({
       name: this.state.name,
       description: this.state.description,
-      race: this.state.race
+      race: this.state.race,
+      subrace: this.state.subrace
     })
   }
 
   changeHandler = event => {
     const name = event.target.name
     const value = event.target.value
+    const errors = event.target.errors
 
     this.setState({
-        [name]: value
+        [name]: {
+          ...this.state[name],
+          value: value,
+          errors: errors
+        }
     }, this.onChange)
   }
 
+  showError(name) {
+    return this.state[name].errors && this.props.showErrors
+  }
+
   renderNameFormField() {
+    let classError = this.showError("name") ? "t-error" : ""
+
     return (
-      <input
-        type="text"
-        name="name"
-        value={this.state.name}
-        onChange={this.changeHandler}/>
+        <TextFormField
+          className={classError}
+          name="name"
+          value={this.state.name.value}
+          onChange={this.changeHandler}
+          isRequired
+          />
     )
   }
 
   renderDescriptionFormField() {
     return (
-      <textarea
-        name="description"
-        value={this.state.description}
-        onChange={this.changeHandler}/>
+        <TextAreaFormField
+          name="description"
+          value={this.state.description.value}
+          onChange={this.changeHandler}/>
     )
   }
 
   renderRaceFormField() {
-    return (
-      <select name="race" onChange={this.changeHandler}>
-        <option default value=""></option>
-        {Object.values(PERSON.RACE).map(race => (
-          <option key={race.key} value={race.key}>{race.name}</option>
-        ))}
-      </select>
-    )
+      return (
+        <RaceSelect
+            name="race"
+            value={this.state.race.value}
+            onChange={this.changeHandler}/>
+      )
   }
 
   renderSubRaceFormField() {
-    const { race } = this.state
+      const { race, subrace } = this.state
 
-    if(race) {
-      if(PERSON.RACE[race].SUBRACE) {
-        return (
-          <select name="sub_race" onChange={this.changeHandler}>
-            <option default value=""></option>
-            {PERSON.RACE[race].SUBRACE.map(subrace => (
-              <option key={subrace.key} value={subrace.key}>{subrace.name}</option>
-            ))}
-          </select>
-        )
-      }
-    }
-  }
+      return (
+          <SubRaceSelect
+              name="subrace"
+              race={race.value}
+              value={subrace.value}
+              onChange={this.changeHandler}/>
+      )
+}
 
   render() {
     return (

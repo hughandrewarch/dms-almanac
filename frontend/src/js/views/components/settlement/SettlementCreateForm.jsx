@@ -39,7 +39,7 @@ class SettlementCreateForm extends React.Component {
     }
   }
 
-  submitHandler = () => {
+  handleSubmit = () => {
     if(this.hasErrors()) {
         this.setState({showErrors: true})
         return
@@ -57,11 +57,11 @@ class SettlementCreateForm extends React.Component {
 
   }
 
-  cancelHandler = () => {
+  handleCancel = () => {
     this.props.onCancel()
   }
 
-  changeHandler = event => {
+  handleChange = event => {
       const name = event.target.name
       const value = event.target.value
       const errors = event.target.errors
@@ -93,7 +93,7 @@ class SettlementCreateForm extends React.Component {
           className={classError}
           name="name"
           value={this.state.name.value}
-          onChange={this.changeHandler}
+          onChange={this.handleChange}
           isRequired
           />
     )
@@ -107,7 +107,7 @@ class SettlementCreateForm extends React.Component {
           className={classError}
           name="population"
           value={this.state.population.value}
-          onChange={this.changeHandler}
+          onChange={this.handleChange}
           isRequired
           nonNegative
           />
@@ -119,7 +119,7 @@ class SettlementCreateForm extends React.Component {
         <TextAreaFormField
           name="description"
           value={this.state.description.value}
-          onChange={this.changeHandler}/>
+          onChange={this.handleChange}/>
     )
   }
 
@@ -131,7 +131,7 @@ class SettlementCreateForm extends React.Component {
         className={classError}
         name="type"
         value={this.state.type.value}
-        onChange={this.changeHandler}
+        onChange={this.handleChange}
         isRequired/>
     )
   }
@@ -144,8 +144,8 @@ class SettlementCreateForm extends React.Component {
         {this.renderPopulationFormField()}
         {this.renderDescriptionFormField()}
         {this.renderTypeFormField()}
-        <button onClick={this.submitHandler}>Submit</button>
-        <button onClick={this.cancelHandler}>Cancel</button>
+        <button onClick={this.handleSubmit}>Submit</button>
+        <button onClick={this.handleCancel}>Cancel</button>
       </div>
     )
   }

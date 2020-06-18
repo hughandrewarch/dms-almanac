@@ -32,25 +32,42 @@ class PersonCreateForm extends React.Component {
       name: values.name,
       description: values.description,
       race: values.race,
+      subrace: values.subrace,
     })
   }
 
-  handleSubmit = () => {
-    const { create, onSubmit } = this.props
+  hasErrors = () => {
+    const { name, description, race } = this.state
 
-    create(this.state)
+    return name.errors || description.errors || race.errors
+  }
+
+  handleSubmit = () => {
+
+    if(this.hasErrors()) {
+        this.setState({showErrors: true})
+        return
+    }
+
+    const { create, onSubmit } = this.props
+    const person = {
+        name: this.state.name.value,
+        description: this.state.description.value,
+        race: this.state.race.value
+    }
+
+    create(person)
         .then(onSubmit)
   }
 
   handleCancel = () => {
-    console.log(this.state)
     this.props.onCancel()
   }
 
   render() {
     return (
       <div>
-        <PersonCreateFormFields onChange={this.handleChange}/>
+        <PersonCreateFormFields onChange={this.handleChange} showErrors={this.state.showErrors}/>
         <button onClick={this.handleSubmit}>Submit</button>
         <button onClick={this.handleCancel}>Cancel</button>
       </div>

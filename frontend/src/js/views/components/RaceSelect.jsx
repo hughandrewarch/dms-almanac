@@ -2,10 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import SelectFormField from './SelectFormField'
 import { VALIDATORS as v } from 'js/utilities/ValidationUtil'
-import { SETTLEMENT } from 'js/constants'
-import capitalize from 'lodash/capitalize'
+import { PERSON } from 'js/constants'
 
-export default class SettlementTypeSelect extends React.Component {
+export default class RaceSelect extends React.Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
     isRequired: PropTypes.bool
@@ -13,11 +12,10 @@ export default class SettlementTypeSelect extends React.Component {
 
   constructor(props) {
       super(props)
-      this.validators = []
-
-      this.options = Object.values(SETTLEMENT.TYPE).map(type => {
-        return {key: type, name: capitalize(type) }
+      this.races = Object.values(PERSON.RACE).map(race => {
+        return {key: race.key, name: race.name }
       })
+      this.validators = []
 
       if(this.props.isRequired) {
         this.validators.push(v.REQUIRED)
@@ -28,7 +26,7 @@ export default class SettlementTypeSelect extends React.Component {
       return (
           <SelectFormField {...this.props}
               name={this.props.name}
-              options={this.options}
+              options={this.races}
               validators={this.validators}/>
     )
   }

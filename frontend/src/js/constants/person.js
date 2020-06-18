@@ -32,7 +32,7 @@ export const PERSON = {
         },
         HALF_ELF: {
             key: "HALF_ELF",
-            name: "Half-ELF"
+            name: "Half-Elf"
         },
         HALF_ORC: {
             key: "HALF_ORC",
