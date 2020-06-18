@@ -2,7 +2,6 @@ package almanac.ports.persistence
 
 import almanac.exceptions.PersonNotFoundException
 import almanac.models.Person
-import almanac.models.PersonRelationType
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
@@ -63,27 +62,6 @@ abstract class PersonRepositoryContractTest {
         assertThat(people).containsExactlyInAnyOrder(
                 Person(person1.id, "Lester", "Human", "Dresses as a Rabbit"),
                 Person(person2.id, "Lombeau", "Human", "Wandering fancyman")
-        )
-    }
-
-    @Test
-    fun `findAll by relation with no relations`() {
-        val people = subject.findAll(PersonRelationType.DENIZEN, -1)
-
-        assertThat(people).isEmpty()
-    }
-
-    @Test
-    fun `findAll by relation with relations`() {
-        val person = subject.create("Lester", "Human", "Dresses as a Rabbit")
-        subject.create("Lombeau", "Human", "Wandering Fancyman")
-
-        subject.createRelation(person.id, PersonRelationType.DENIZEN, 1L)
-
-        val people = subject.findAll(PersonRelationType.DENIZEN, 1L)
-
-        assertThat(people).containsExactlyInAnyOrder(
-                Person(person.id, "Lester", "Human", "Dresses as a Rabbit")
         )
     }
 }

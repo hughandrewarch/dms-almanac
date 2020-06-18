@@ -1,9 +1,9 @@
 package almanac.services
 
-import almanac.models.PersonRelationType
 import almanac.ports.persistence.PersonRepository
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 internal class PersonServiceTest {
@@ -16,13 +16,6 @@ internal class PersonServiceTest {
         subject.create("Lombeau", "Human", "Wandering Fancyman")
 
         verify(repo).create("Lombeau", "Human", "Wandering Fancyman")
-    }
-
-    @Test
-    fun createRelation() {
-        subject.createRelation(1L, PersonRelationType.WORKER, 2L)
-
-        verify(repo).createRelation(1L, PersonRelationType.WORKER, 2L)
     }
 
     @Test
@@ -47,6 +40,6 @@ internal class PersonServiceTest {
 
         subject.listDenizens(relatedId)
 
-        verify(repo).findAll(PersonRelationType.DENIZEN, relatedId)
+        assertThat(true).isFalse()
     }
 }

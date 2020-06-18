@@ -46,30 +46,6 @@ class JdbcPlaceRepository(private val jdbcTemplate: JdbcTemplate) : PlaceReposit
 
         return find(id)
     }
-
-    override fun createRelation(settlementId: Long, placeId: Long) {
-        jdbcTemplate.update(preparedStatementCreator("""
-                insert into settlement_place (place_id, settlement_id)
-                values
-                (?, ?)
-            """
-        ) { ps ->
-            ps.setLong(1, placeId)
-            ps.setLong(2, settlementId)
-        })
-    }
-
-    override fun findAll(settlementId: Long): List<Place> {
-        return jdbcTemplate.query(preparedStatementCreator("""
-                select p.id, name, description, type
-                from place p, settlement_place sp
-                where p.id = sp.place_id
-                and sp.settlement_id = ?
-                """.trimMargin()
-        ) { ps ->
-            ps.setLong(1, settlementId)
-        }, mapper)
-    }
 }
 
 private val mapper = RowMapper { rs, _ ->

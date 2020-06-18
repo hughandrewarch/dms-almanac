@@ -2,7 +2,6 @@ package almanac.ports.api
 
 import almanac.exceptions.PersonNotFoundException
 import almanac.models.Person
-import almanac.models.PersonRelationType
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.BeforeEach
@@ -83,19 +82,6 @@ abstract class PersonRepositoryContractTest {
             val people = subject.listDenizens(-1)
 
             assertThat(people).isEmpty()
-        }
-
-        @Test
-        fun `it should list of matching denizens`() {
-            subject.createRelation(person1.id, PersonRelationType.DENIZEN, 1L)
-            subject.createRelation(person2.id, PersonRelationType.DENIZEN, 2L)
-            subject.createRelation(person3.id, PersonRelationType.DENIZEN, 1L)
-
-            val people = subject.listDenizens(1L)
-
-            assertThat(people).containsExactlyInAnyOrder(
-                    person1, person3
-            )
         }
     }
 }

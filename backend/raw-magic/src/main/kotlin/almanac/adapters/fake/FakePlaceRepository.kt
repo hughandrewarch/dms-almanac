@@ -25,18 +25,6 @@ class FakePlaceRepository : PlaceRepository {
         return place
     }
 
-    override fun createRelation(settlementId: Long, placeId: Long) {
-        relations.add(SettlementPlace(settlementId, placeId))
-    }
-
-    override fun findAll(settlementId: Long): List<Place> {
-        val placeIds = relations
-                .filter { it.settlementId == settlementId }
-                .map { it.placeId }
-
-        return places.filter { placeIds.contains(it.id) }
-    }
-
     fun init() {
         places = allFullPlaces
         relations = placeRelations

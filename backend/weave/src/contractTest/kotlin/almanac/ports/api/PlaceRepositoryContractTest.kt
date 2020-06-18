@@ -18,36 +18,6 @@ abstract class PlaceRepositoryContractTest {
     abstract fun buildSubject(): PlaceRepository
 
     @Nested
-    inner class findAll() {
-
-        private lateinit var place: Place
-
-        @BeforeEach
-        fun setup() {
-            place = subject.create("Ship Wrecked", "Converted ship wreck", PlaceType.TAVERN)
-        }
-
-        @Test
-        fun `it returns nothing when no relation`() {
-            val places = subject.findAll(1L)
-
-            assertThat(places).isEmpty()
-        }
-
-        @Test
-        fun `it returns a list of related places`() {
-            subject.createRelation(place.id, 1L)
-
-            val places = subject.findAll(1L)
-
-            assertThat(places)
-                    .containsExactlyInAnyOrder(
-                            place
-                    )
-        }
-    }
-
-    @Nested
     inner class create() {
 
         @Test

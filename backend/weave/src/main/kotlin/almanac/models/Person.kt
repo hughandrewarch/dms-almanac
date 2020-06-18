@@ -6,17 +6,3 @@ data class Person(
         val race: String, //enum?
         val description: String
 )
-
-
-data class PersonRelation(
-        val personId: Long,
-        val relation: PersonRelationType,
-        val relationId: Long
-        )
-
-enum class PersonRelationType {
-    DENIZEN,
-    OWNER,
-    WORKER,
-    MEMBER,
-}

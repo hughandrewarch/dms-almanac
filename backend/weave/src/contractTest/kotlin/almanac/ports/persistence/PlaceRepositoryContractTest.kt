@@ -80,32 +80,5 @@ abstract class PlaceRepositoryContractTest {
         )
     }
 
-    @Test //nested findAll
-    fun `findAll with settlement id and no relations should return empty list`() {
-        val settlement = settlementRepository.create("Hughan", 6000, "Royal Capital", SettlementType.CITY)
-
-        val people = subject.findAll(settlement.id)
-
-        assertThat(people).isEmpty()
-    }
-
-    @Test //nested findAll
-    fun `findAll with settlement id and relations should return list of places`() {
-        val settlement = settlementRepository.create("Hughan", 6000, "Royal Capital", SettlementType.CITY)
-        val place1 = subject.create("Drunken Dancer", "tavern with live music and dancing", PlaceType.TAVERN)
-        val place2 = subject.create("Two Legged Barstool", "enchanters shop", PlaceType.SHOP)
-
-        subject.createRelation(settlement.id, place1.id)
-        subject.createRelation(settlement.id, place2.id)
-
-        val people = subject.findAll(settlement.id)
-
-        assertThat(people).containsExactlyInAnyOrder(
-                place1,
-                place2
-        )
-    }
-
-
     abstract fun buildSettlementRepository(): SettlementRepository
 }

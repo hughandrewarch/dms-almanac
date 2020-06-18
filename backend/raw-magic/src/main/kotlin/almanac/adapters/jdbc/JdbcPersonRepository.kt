@@ -3,7 +3,6 @@ package almanac.adapters.jdbc
 import almanac.exceptions.PersonNotFoundException
 import almanac.adapters.jdbc.util.preparedStatementCreator
 import almanac.models.Person
-import almanac.models.PersonRelationType
 import almanac.ports.persistence.PersonRepository
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.RowMapper
@@ -44,35 +43,6 @@ class JdbcPersonRepository(private val jdbcTemplate: JdbcTemplate) : PersonRepos
         val id = keyHolder.key!!.toLong()
 
         return find(id)
-    }
-
-    override fun createRelation(personId: Long, relation: PersonRelationType, relationId: Long) {
-
-        jdbcTemplate.update(preparedStatementCreator("""
-                insert into person_relation (person_id, relation, relation_id)
-                values 
-                (?, ?, ?)
-            """
-        ) { ps ->
-            ps.setLong(1, personId)
-            ps.setString(2, relation.toString())
-            ps.setLong(3, relationId)
-        })
-    }
-
-    override fun findAll(relation: PersonRelationType, relatedId: Long): List<Person> {
-
-        return jdbcTemplate.query(preparedStatementCreator("""
-                select p.id, name, race, description
-                from person p, person_relation pr
-                where p.id = pr.person_id 
-                and pr.relation = ? 
-                and pr.relation_id = ?
-                """.trimMargin()
-        ) { ps ->
-            ps.setString(1, relation.toString())
-            ps.setLong(2, relatedId)
-        }, mapper)
     }
 }
 

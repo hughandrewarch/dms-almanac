@@ -17,20 +17,4 @@ internal class PlaceServiceTest {
 
         verify(repo).create("Ship Wrecked", "converted ship wreck", PlaceType.TAVERN)
     }
-
-    @Test
-    fun createRelation() {
-        subject.createRelation(1L, 2L)
-
-        verify(repo).createRelation(1L, 2L)
-    }
-
-    @Test
-    fun findPlace() {
-        val settlementId = 1L
-
-        subject.findPlaces(settlementId)
-
-        verify(repo).findAll(settlementId)
-    }
 }

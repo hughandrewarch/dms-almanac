@@ -11,12 +11,4 @@ class DomainPlaceRepository(private val service: PlaceService): PlaceRepository 
     override fun create(name: String, description: String, type: PlaceType): Place {
         return service.create(name, description, type)
     }
-
-    override fun findAll(settlementId: Long): List<Place> {
-        return service.findPlaces(settlementId)
-    }
-
-    override fun createRelation(id: Long, settlementId: Long) {
-        service.createRelation(id, settlementId)
-    }
 }

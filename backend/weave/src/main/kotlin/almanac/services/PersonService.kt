@@ -2,7 +2,6 @@ package almanac.services
 
 import almanac.models.Person
 import almanac.ports.persistence.PersonRepository
-import almanac.models.PersonRelationType
 
 //TODO: Move out to own module?
 //api -- service -- persistence
@@ -14,10 +13,6 @@ class PersonService(private val personRepository: PersonRepository) {
         return personRepository.create(name, race, description)
     }
 
-    fun createRelation(id: Long, relation: PersonRelationType, relationId: Long) {
-        personRepository.createRelation(id, relation, relationId)
-    }
-
     fun find(id: Long): Person {
         return personRepository.find(id)
     }
@@ -27,10 +22,6 @@ class PersonService(private val personRepository: PersonRepository) {
     }
 
     fun listDenizens(relatedId: Long): List<Person> {
-        return listPeople(PersonRelationType.DENIZEN, relatedId)
-    }
-
-    private fun listPeople(relation: PersonRelationType, relatedId: Long): List<Person> {
-        return personRepository.findAll(relation, relatedId)
+        return emptyList()//listPeople(PersonRelationType.DENIZEN, relatedId)
     }
 }
