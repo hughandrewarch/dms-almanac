@@ -11,6 +11,13 @@ internal class RelationServiceTest {
     private val subject = RelationService(repo)
 
     @Test
+    fun create() {
+        subject.create(1L, 2L, 3L)
+
+        verify(repo).create(1L, 2L, 3L)
+    }
+
+    @Test
     fun findAll() {
         subject.findAll()
 

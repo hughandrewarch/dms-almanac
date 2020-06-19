@@ -5,26 +5,31 @@ import almanac.exceptions.RelationTypeNotFoundException
 import almanac.models.Relation
 import almanac.models.RelationType
 import almanac.ports.persistence.RelationRepository
+import almanac.ports.persistence.RelationTypeRepository
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.RowMapper
 
-class JdbcRelationRepository(private val jdbcTemplate: JdbcTemplate) : RelationRepository {
+class JdbcRelationRepository(private val jdbcTemplate: JdbcTemplate,
+                             private val relationTypeRepository: RelationTypeRepository) : RelationRepository {
 
-    override fun create(left: Long, right: Long, relationType: Long): Boolean {
-        return try {
+    override fun create(leftId: Long, rightId: Long, relationTypeId: Long): Relation {
+        try {
             jdbcTemplate.update(preparedStatementCreator("""
                 insert into relation (left_id, right_id, relation_type_id)
                 values
                 (?, ?, ?)
             """
             ) { ps ->
-                ps.setLong(1, left)
-                ps.setLong(2, right)
-                ps.setLong(3, relationType)
+                ps.setLong(1, leftId)
+                ps.setLong(2, rightId)
+                ps.setLong(3, relationTypeId)
             }) > 0
+
+            val relationType = relationTypeRepository.find(relationTypeId)
+            return Relation(leftId, rightId, relationType)
         } catch (e: DataIntegrityViolationException) {
-            throw RelationTypeNotFoundException(relationType)
+            throw RelationTypeNotFoundException(relationTypeId)
         }
     }
 

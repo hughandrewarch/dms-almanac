@@ -23,7 +23,7 @@ class JdbcRelationRepositoryTest : RelationRepositoryContractTest() {
     private lateinit var jdbcTemplate: JdbcTemplate
 
     override fun buildSubject(): RelationRepository {
-        return JdbcRelationRepository(jdbcTemplate)
+        return JdbcRelationRepository(jdbcTemplate, buildRelationTypeRepository())
     }
 
     override fun buildRelationTypeRepository(): RelationTypeRepository {

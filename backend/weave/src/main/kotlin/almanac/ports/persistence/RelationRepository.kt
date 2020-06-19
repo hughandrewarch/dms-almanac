@@ -3,6 +3,6 @@ package almanac.ports.persistence
 import almanac.models.Relation
 
 interface RelationRepository {
-    fun create(left: Long, right: Long, relationType: Long): Boolean
+    fun create(leftId: Long, rightId: Long, relationTypeId: Long): Relation
     fun findAll(): List<Relation>
 }

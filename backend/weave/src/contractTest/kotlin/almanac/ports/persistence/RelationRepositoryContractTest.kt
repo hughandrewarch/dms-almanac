@@ -35,7 +35,7 @@ abstract class RelationRepositoryContractTest {
 
         val createdRelation = subject.create(101L, 201L, relationType.id)
 
-        assertThat(createdRelation).isTrue()
+        assertThat(createdRelation).isEqualTo(Relation(101L, 201L, relationType))
     }
 
     @Test
