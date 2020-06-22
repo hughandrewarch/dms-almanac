@@ -64,6 +64,27 @@ abstract class RelationTypeRepositoryContractTest {
     }
 
     @Test
+    fun `findByName throws an error when no RelationType exists`() {
+        Assertions.assertThatThrownBy {
+            subject.findByName("name")
+        }
+            .isInstanceOf(RelationTypeNotFoundException::class.java)
+            .hasMessageContaining("No relationType found with name 'name'")
+    }
+
+    @Test
+    fun `findByName returns a RelationType`() {
+        val createdRelationType = subject.create("name")
+
+        val relationType = subject.findByName("name")
+
+        assertThat(relationType).isEqualTo(
+            RelationType(id = createdRelationType.id,
+                name = "name")
+        )
+    }
+
+    @Test
     fun findAll() {
         val relation1 = subject.create("SettlementPerson")
         val relation2 = subject.create("SettlementPlace")

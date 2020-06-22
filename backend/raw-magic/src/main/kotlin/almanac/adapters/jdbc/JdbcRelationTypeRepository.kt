@@ -48,6 +48,14 @@ class JdbcRelationTypeRepository(private val jdbcTemplate: JdbcTemplate) : Relat
             mapper
         )
     }
+
+    override fun findByName(name: String): RelationType {
+        return jdbcTemplate.query(
+            """select id, name from relation_type where name = ?""",
+            mapper,
+            name
+        ).singleOrNull() ?: throw RelationTypeNotFoundException(name)
+    }
 }
 
 private val mapper = RowMapper { rs, _ ->

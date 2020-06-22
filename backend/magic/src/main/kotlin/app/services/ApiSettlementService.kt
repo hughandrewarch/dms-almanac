@@ -2,6 +2,7 @@ package app.services
 
 import almanac.models.Settlement
 import almanac.ports.api.SettlementRepository
+import app.models.RelationResponse
 import app.models.SettlementCreateRequest
 import app.models.SettlementResponse
 import app.models.list.ListItem

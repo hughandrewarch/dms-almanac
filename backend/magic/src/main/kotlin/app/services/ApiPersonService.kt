@@ -25,10 +25,4 @@ class ApiPersonService(
 
         return personResponseSerializer.serialize(person)
     }
-
-//    fun create(request: SettlementCreateRequest): SettlementResponse {
-//        val settlement = settlementRepository.create(request.name, request.population, request.description, request.type)
-//
-//        return settlementResponseSerializer.serialize(settlement, emptyList(), emptyList())
-//    }
 }

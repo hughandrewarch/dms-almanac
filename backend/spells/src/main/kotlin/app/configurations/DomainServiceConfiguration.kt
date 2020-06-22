@@ -34,8 +34,9 @@ class DomainServiceConfiguration {
     fun relationService(jdbcTemplate: JdbcTemplate,
                         jdbcRelationTypeRepository: JdbcRelationTypeRepository): RelationService {
         val relationServiceRepo = JdbcRelationRepository(jdbcTemplate, jdbcRelationTypeRepository)
+        val relationTypeServiceRepo = JdbcRelationTypeRepository(jdbcTemplate)
 
-        return RelationService(relationServiceRepo)
+        return RelationService(relationServiceRepo, relationTypeServiceRepo)
     }
 
     @Bean

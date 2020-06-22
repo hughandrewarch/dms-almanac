@@ -1,5 +1,16 @@
 package almanac.exceptions
 
-import almanac.exceptions.base.BaseNotFoundException
+import java.lang.RuntimeException
 
-class RelationTypeNotFoundException(relationTypeId: Long): BaseNotFoundException(relationTypeId, "relationType")
+open class RelationTypeNotFoundException: RuntimeException {
+    constructor(relationTypeName: String): super(getError(relationTypeName))
+    constructor(relationTypeId: Long): super(getError(relationTypeId))
+}
+
+private fun getError(relationTypeId: Long): String {
+    return "No relationType found with id <$relationTypeId>"
+}
+
+private fun getError(relationTypeName: String): String {
+    return "No relationType found with name '$relationTypeName'"
+}
