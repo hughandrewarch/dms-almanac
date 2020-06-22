@@ -1,1 +1,1 @@
-export const SETTLEMENT_PERSON = "SettlementPerson"
+export const SETTLEMENT_PERSON = "SETTLEMENT_PERSON"

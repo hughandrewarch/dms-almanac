@@ -1,6 +1,5 @@
 import React from "react"
 import { connect } from 'react-redux'
-import PersonCreateFormFields from "js/views/components/person/PersonCreateFormFields"
 import PropTypes from "prop-types"
 import PersonActions from "js/actions/PersonActions"
 import TextFormField from "js/views/components/TextFormField"

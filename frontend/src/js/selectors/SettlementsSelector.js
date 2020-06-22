@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { SETTLEMENT_PERSON } from "../constants/relations"
+import { SETTLEMENT_PERSON } from "js/constants/relations"
 
 export default class SettlementsSelector {
 
