@@ -14,6 +14,8 @@ class JdbcRelationRepository(private val jdbcTemplate: JdbcTemplate,
                              private val relationTypeRepository: RelationTypeRepository) : RelationRepository {
 
     override fun create(leftId: Long, rightId: Long, relationTypeId: Long): Relation {
+        val relationType = relationTypeRepository.find(relationTypeId)
+
         try {
             jdbcTemplate.update(preparedStatementCreator("""
                 insert into relation (left_id, right_id, relation_type_id)
@@ -26,7 +28,6 @@ class JdbcRelationRepository(private val jdbcTemplate: JdbcTemplate,
                 ps.setLong(3, relationTypeId)
             }) > 0
 
-            val relationType = relationTypeRepository.find(relationTypeId)
             return Relation(leftId, rightId, relationType)
         } catch (e: DataIntegrityViolationException) {
             throw RelationTypeNotFoundException(relationTypeId)

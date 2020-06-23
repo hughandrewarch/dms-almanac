@@ -31,12 +31,11 @@ class DomainServiceConfiguration {
     }
 
     @Bean
-    fun relationService(jdbcTemplate: JdbcTemplate,
-                        jdbcRelationTypeRepository: JdbcRelationTypeRepository): RelationService {
-        val relationServiceRepo = JdbcRelationRepository(jdbcTemplate, jdbcRelationTypeRepository)
-        val relationTypeServiceRepo = JdbcRelationTypeRepository(jdbcTemplate)
+    fun relationService(jdbcTemplate: JdbcTemplate): RelationService {
+        val relationTypeRepo = JdbcRelationTypeRepository(jdbcTemplate)
+        val relationRepo = JdbcRelationRepository(jdbcTemplate, relationTypeRepo)
 
-        return RelationService(relationServiceRepo, relationTypeServiceRepo)
+        return RelationService(relationRepo, relationTypeRepo)
     }
 
     @Bean

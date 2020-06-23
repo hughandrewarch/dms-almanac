@@ -1,4 +1,4 @@
-import { RECEIVE_PEOPLE, RACE } from "../constants"
+import { RECEIVE_PEOPLE, PERSON } from "../constants"
 import PersonReducer from "./PersonReducer"
 
 describe('PersonReducer', () => {
@@ -14,8 +14,8 @@ describe('PersonReducer', () => {
     it('should update people state', () => {
 
       const payload = [
-        {id: 1, name: "one", description: "first", race: RACE.HUMAN},
-        {id: 2, name: "two", description: "second", race: RACE.ELF}
+        {id: 1, name: "one", description: "first", race: PERSON.RACE.HUMAN},
+        {id: 2, name: "two", description: "second", race: PERSON.RACE.ELF}
         ]
         const action = { type: RECEIVE_PEOPLE, payload: payload }
 

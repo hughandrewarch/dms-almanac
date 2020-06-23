@@ -27,6 +27,13 @@ export default class HttpUtility {
         }
 
         return fetch(endpoint, request)
+            .then(res => {
+                if(!res.ok) {
+                    console.log("TODO: handle errors")
+                    throw Error(res.statusText)
+                }
+                return res
+            })
             .then(res => res.json())
             .catch(console.log)
 
