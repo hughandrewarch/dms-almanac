@@ -20,7 +20,7 @@ describe('PeopleSelector', () => {
         },
         relationTypes: {
             byId: {
-                1: { id: 1, name: 'SettlementPerson'}
+                1: { id: 1, name: 'SETTLEMENT_PERSON'}
             },
             allIds: [1]
         },
@@ -119,11 +119,87 @@ describe('PeopleSelector', () => {
                 expect(selected).toEqual([])
             })
 
-            it('when missing settlements, should return settlements based on relations', ()=> {
+            it('when missing settlements, should return people based on relations', ()=> {
                 updatedState.settlements = { byId: {}, allIds: [] }
 
                 const selected = PeopleSelector.selectBySettlementId(updatedState, 1)
                 const expected = [{ id: 2, name: 'deux' }]
+
+                expect(selected).toEqual(expected)
+            })
+        })
+    })
+
+    describe('selectUnrelatedBySettlement', () => {
+        it('select should return all if no relations found', () => {
+            const selected = PeopleSelector.selectUnrelatedBySettlement(state, 2)
+            const expected = [{ id: 1, name: 'un'}, { id: 2, name: 'deux'}, { id: 3, name: 'trois'}]
+
+            expect(selected).toEqual(expected)
+        })
+
+        it('select should return all unrelated people from state', () => {
+            const selected = PeopleSelector.selectUnrelatedBySettlement(state, 1)
+            const expected = [{ id: 1, name: 'un'}, { id: 3, name: 'trois'}]
+
+            expect(selected).toEqual(expected)
+        })
+
+        it('select should return empty list if all are related', () => {
+            let updatedState = Object.assign({}, state)
+            updatedState.relations = [
+                {left: 1, right: 1, relationType: 1},
+                {left: 1, right: 2, relationType: 1},
+                {left: 1, right: 3, relationType: 1}
+            ]
+
+            const selected = PeopleSelector.selectUnrelatedBySettlement(updatedState, 1)
+            const expected = []
+
+            expect(selected).toEqual(expected)
+        })
+
+        describe('with incomplete state', () => {
+
+            let updatedState
+            beforeEach(() => {
+                updatedState = Object.assign({}, state)
+            });
+
+            it('when no relations, should return all people', ()=> {
+                updatedState.relations = []
+                const expected = [
+                    { id: 1, name: 'un'},
+                    { id: 2, name: 'deux'},
+                    { id: 3, name: 'trois'}
+                ]
+
+                const selected = PeopleSelector.selectUnrelatedBySettlement(updatedState, 1)
+
+                expect(selected).toEqual(expected)
+            })
+
+            it('when missing relation types, should return all people', ()=> {
+                updatedState.relationTypes = { byId: {}, allIds: [] }
+                const expected = [
+                    { id: 1, name: 'un'},
+                    { id: 2, name: 'deux'},
+                    { id: 3, name: 'trois'}
+                ]
+
+                const selected = PeopleSelector.selectUnrelatedBySettlement(updatedState, 1)
+
+                expect(selected).toEqual(expected)
+            })
+
+            it('when missing settlements, should return people based on relations', ()=> {
+                updatedState.settlements = { byId: {}, allIds: [] }
+
+                const selected = PeopleSelector.selectUnrelatedBySettlement(updatedState, 1)
+                const expected = [
+                    { id: 1, name: 'un'},
+                    { id: 3, name: 'trois'}
+                ]
 
                 expect(selected).toEqual(expected)
             })

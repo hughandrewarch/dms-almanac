@@ -4,7 +4,6 @@ import { SETTLEMENT_PERSON } from "../constants/relations"
 export default class PeopleSelector {
 
     static select(state, personId) {
-
         const person = personSelector(personId)
 
         return person(state)
@@ -17,14 +16,12 @@ export default class PeopleSelector {
     }
 
     static selectMany(state, peopleIds) {
-
         const people = peopleSelector(peopleIds)
 
         return people(state)
     }
 
     static selectBySettlementId(state, settlementId) {
-
         const settlementPeopleRelations = settlementPeopleRelationsSelector(settlementId)
 
         const settlementPeopleIds = Object.values(settlementPeopleRelations(state)).map(function(relation) {
@@ -32,6 +29,17 @@ export default class PeopleSelector {
         })
 
         return PeopleSelector.selectMany(state, settlementPeopleIds)
+    }
+
+    static selectUnrelatedBySettlement(state, settlementId) {
+        const allPeople = PeopleSelector.selectAll(state)
+        const relatedPeople = PeopleSelector.selectBySettlementId(state, settlementId).map(function(person) {
+            return person.id
+        })
+
+        return Object.values(allPeople).filter(function(person) {
+            return !relatedPeople.includes(person.id)
+        })
     }
 }
 
